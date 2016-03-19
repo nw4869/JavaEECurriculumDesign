@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ASCII"?>
+<persistence:DataTypeBinding xmi:version="2.0"
+	xmlns:xmi="http://www.omg.org/XMI"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:data="model.data" xmlns:persistence="data.persistence">
+	<extendedCore xsi:type="data:DataType" href="Authority.datatype#/" />
+<fieldBindings id="26eb60f7-d987-456c-ab64-d152793274c5" fetchType="EAGER" >
+	<field href="Authority.datatype#//@fields[name='userId']"/>
+	<column name="user_id" id="70e1f569-c528-470d-b85a-fe9994fcff7a" length="255" scale="0" precision="0"
+nullable="false" 
+/>
+</fieldBindings>
+<fieldBindings id="52e69cce-f267-487d-b9b5-a4e9e401ca9a" fetchType="EAGER" >
+	<field href="Authority.datatype#//@fields[name='authorityField']"/>
+	<column name="authority" id="1d8cca8f-70d4-445d-85d9-16647693ca8a" length="45" scale="0" precision="0"
+nullable="false" 
+/>
+</fieldBindings>
+<relationshipBindings fetchType="LAZY" owningSide="true" sharedPrimaryKey="false"
+	mapAsType="MANY_TO_ONE" id="9145d102-f63f-4afd-b9df-2c1597de6109" >
+<relationship href="Authority.datatype#//@relationships[name='user']" />
+<joinTable id ="d7a48ec8-7a85-4618-bde4-6f575de700d9" name ="user" catalog ="bbs">
+<joinColumns name ="user_id" id ="fb3022b4-4cc9-4461-bf03-96e396f07b84" referencedColumnName ="id" unique ="false" nullable ="false" insertable ="false" updatable ="false" /></joinTable>
+</relationshipBindings>
+<table name="authority"  id="8a19605a-8d6d-428f-be14-974beba83336" catalog="bbs" /></persistence:DataTypeBinding>
+
+
