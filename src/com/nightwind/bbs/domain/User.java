@@ -51,7 +51,7 @@ public class User implements Serializable {
 
 	@Column(name = "id", nullable = false)
 	@Basic(fetch = FetchType.EAGER)
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	@XmlElement
 	Integer id;
@@ -115,7 +115,7 @@ public class User implements Serializable {
 	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/domain/User.datatype#//@fields%5Bname='createTime'%5D]
 	 */
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "create_time")
+	@Column(name = "create_time", insertable = false)
 	@Basic(fetch = FetchType.EAGER)
 	@XmlElement
 	Calendar createTime;
@@ -138,6 +138,14 @@ public class User implements Serializable {
 	@OneToMany(mappedBy = "user", cascade = { CascadeType.REMOVE }, fetch = FetchType.LAZY)
 	@XmlElement(name = "", namespace = "")
 	java.util.Set<com.nightwind.bbs.domain.Comment> comments;
+	
+	@PrePersist
+	public void prePersist() {
+		if (enabled == null) {
+			enabled = true;
+		}
+	}
+	
 
 	/**
 	 * @generated

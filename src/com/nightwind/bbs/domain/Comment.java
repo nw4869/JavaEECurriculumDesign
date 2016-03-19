@@ -41,7 +41,7 @@ public class Comment implements Serializable {
 
 	@Column(name = "id", nullable = false)
 	@Basic(fetch = FetchType.EAGER)
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	@XmlElement
 	Integer id;
@@ -66,7 +66,7 @@ public class Comment implements Serializable {
 	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/domain/Comment.datatype#//@fields%5Bname='createTime'%5D]
 	 */
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "create_time")
+	@Column(name = "create_time", insertable = false)
 	@Basic(fetch = FetchType.EAGER)
 	@XmlElement
 	Calendar createTime;

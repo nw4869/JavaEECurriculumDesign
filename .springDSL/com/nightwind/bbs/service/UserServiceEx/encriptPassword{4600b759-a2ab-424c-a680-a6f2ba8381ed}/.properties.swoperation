@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="ASCII"?>
+<skyway:SkywayServiceOperation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:skyway="model.service.skyway" xmlns:type="model.type" description="" internalId="4600b759-a2ab-424c-a680-a6f2ba8381ed" api="false"><inputs name="plainPwd"><dataType xsi:type="type:PrimitiveDataType"/></inputs><outputs name="output"><dataType xsi:type="type:PrimitiveDataType"/></outputs><modifiers>PROTECTED</modifiers></skyway:SkywayServiceOperation>

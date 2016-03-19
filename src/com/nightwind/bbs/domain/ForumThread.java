@@ -42,7 +42,7 @@ public class ForumThread implements Serializable {
 
 	@Column(name = "id", nullable = false)
 	@Basic(fetch = FetchType.EAGER)
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	@XmlElement
 	Integer id;
@@ -67,7 +67,7 @@ public class ForumThread implements Serializable {
 	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/domain/ForumThread.datatype#//@fields%5Bname='createTime'%5D]
 	 */
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "create_time")
+	@Column(name = "create_time", insertable = false)
 	@Basic(fetch = FetchType.EAGER)
 	@XmlElement
 	Calendar createTime;
@@ -75,7 +75,7 @@ public class ForumThread implements Serializable {
 	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/domain/ForumThread.datatype#//@fields%5Bname='lastModified'%5D]
 	 */
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "last_modified")
+	@Column(name = "last_modified", insertable = false)
 	@Basic(fetch = FetchType.EAGER)
 	@XmlElement
 	Calendar lastModified;
