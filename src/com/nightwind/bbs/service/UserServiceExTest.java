@@ -172,10 +172,21 @@ public class UserServiceExTest {
 	@Test
 	public void updateInfo() throws com.nightwind.exception.UserNotFoundException {
 		// TODO: JUnit - Populate test inputs for operation: updateInfo 
-		User user = new com.nightwind.bbs.domain.User();
+		User user = new User();
+		user.copy(service.findUserById(2));
+//		user.setId(2);
+		
+		user.setUsername("asdfasdfasdf");
+		user.setPassword("new password??");
+		
+		user.setEmail("test@test.com");
+		user.setAvatar("/avatar/test.jpg");
+		user.setSignature("my signature");
+		
 		User response = null;
 		response = service.updateInfo(user);
 		// TODO: JUnit - Add assertions to test outputs of operation: updateInfo
+		System.out.println("update user: " + response);
 	}
 
 	/**

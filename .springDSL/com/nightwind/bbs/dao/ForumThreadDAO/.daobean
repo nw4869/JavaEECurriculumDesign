@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="ASCII"?>
-<bean:DAOBean xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bean="spring.bean" xmlns:data="model.data" scope="singleton"><extendedCore xsi:type="data:DataStore" href=".properties.datastore#/"/></bean:DAOBean>

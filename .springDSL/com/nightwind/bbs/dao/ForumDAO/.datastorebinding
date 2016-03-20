@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="ASCII"?>
-<persistence:DataStoreBinding xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:data="model.data" xmlns:persistence="data.persistence" connectionName="MySql_bbs" allowTableModifications="false"><extendedCore xsi:type="data:DataStore" href=".properties.datastore#/"/><hibernateBinding dialect="org.hibernate.dialect.MySQLDialect" metaDataDialect="org.skyway.integration.data.persistence.importer.hibernate.SWMySQLMetaDataDialect"/></persistence:DataStoreBinding>

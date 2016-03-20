@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="ASCII"?>
-<jaxb:JAXBDataTypeBinding xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:data="model.data" xmlns:jaxb="jaxb"><extendedCore xsi:type="data:DataType" href="Forum.datatype#/"/><xmlAccessTypeAnnotation/><xmlTypeAnnotation typeName="Forum"/><xmlElementAnnotations elementName="" namespace="" elementID="forumThreads"><skywayElement xsi:type="data:Relationship" href="Forum.datatype#//@relationships[name='forumThreads']"/></xmlElementAnnotations></jaxb:JAXBDataTypeBinding>

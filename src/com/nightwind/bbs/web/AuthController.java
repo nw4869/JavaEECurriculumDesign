@@ -22,10 +22,7 @@ import com.nightwind.exception.AccountExistedException;
 import com.nightwind.exception.AuthorizeException;
 import com.nightwind.exception.UserNotFoundException;
 
-/**
- * 
- * @generated
- */
+
 @SessionAttributes("crtUser")
 @Controller("AuthController")
 @RequestMapping(value = "/auth")

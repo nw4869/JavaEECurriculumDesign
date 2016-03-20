@@ -28,6 +28,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
 
 /**
@@ -102,7 +103,7 @@ public class User implements Serializable {
 	 * 
 	 */
 
-	@Max(255)
+	@Length(max=255)
 	@Column(name = "avatar", length = 255)
 	@Basic(fetch = FetchType.EAGER)
 	@XmlElement
@@ -120,7 +121,7 @@ public class User implements Serializable {
 	 * 
 	 */
 
-	@Max(255)
+	@Length(max=255)
 	@Column(name = "signature", length = 255)
 	@Basic(fetch = FetchType.EAGER)
 	@XmlElement
