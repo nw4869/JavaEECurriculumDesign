@@ -22,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * Spring service that handles CRUD requests for ForumThread entities
  * 
- * @ModelCoreReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/service/ForumThreadService/.properties.srv]
+ * 
  * @generated
  */
 
@@ -33,7 +33,7 @@ public class ForumThreadServiceImpl implements ForumThreadService {
 	/**
 	 * DAO injected by Spring that manages Comment entities
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/service/ForumThreadService/.properties.srv#//@variables%5Bname='commentDAO'%5D]
+	 * 
 	 */
 	@Autowired
 	private CommentDAO commentDAO;
@@ -41,7 +41,7 @@ public class ForumThreadServiceImpl implements ForumThreadService {
 	/**
 	 * DAO injected by Spring that manages Forum entities
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/service/ForumThreadService/.properties.srv#//@variables%5Bname='forumDAO'%5D]
+	 * 
 	 */
 	@Autowired
 	private ForumDAO forumDAO;
@@ -49,7 +49,7 @@ public class ForumThreadServiceImpl implements ForumThreadService {
 	/**
 	 * DAO injected by Spring that manages ForumThread entities
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/service/ForumThreadService/.properties.srv#//@variables%5Bname='forumThreadDAO'%5D]
+	 * 
 	 */
 	@Autowired
 	private ForumThreadDAO forumThreadDAO;
@@ -57,7 +57,7 @@ public class ForumThreadServiceImpl implements ForumThreadService {
 	/**
 	 * DAO injected by Spring that manages User entities
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/service/ForumThreadService/.properties.srv#//@variables%5Bname='userDAO'%5D]
+	 * 
 	 */
 	@Autowired
 	private UserDAO userDAO;
@@ -65,7 +65,7 @@ public class ForumThreadServiceImpl implements ForumThreadService {
 	/**
 	 * Instantiates a new ForumThreadServiceImpl.
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/service/ForumThreadService/.properties.srv]
+	 * 
 	 * @AuxiliaryModelComponent
 	 */
 	public ForumThreadServiceImpl() {
@@ -74,7 +74,7 @@ public class ForumThreadServiceImpl implements ForumThreadService {
 	/**
 	 * Save an existing Forum entity
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/service/ForumThreadService/saveForumThreadForum%7B72244b13-4c5a-45cb-8095-5569cf00a429%7D/.properties.swoperation]
+	 * 
 	 */
 	@Transactional
 	public ForumThread saveForumThreadForum(Integer id, Forum related_forum) {
@@ -103,7 +103,7 @@ public class ForumThreadServiceImpl implements ForumThreadService {
 	/**
 	 * Load an existing ForumThread entity
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/service/ForumThreadService/loadForumThreads%7B4aa1b1fb-0349-48ab-85af-7150eceeea77%7D/.properties.swoperation]
+	 * 
 	 */
 	@Transactional
 	public Set<ForumThread> loadForumThreads() {
@@ -113,7 +113,7 @@ public class ForumThreadServiceImpl implements ForumThreadService {
 	/**
 	 * Delete an existing User entity
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/service/ForumThreadService/deleteForumThreadUser%7Bf77c73dc-b85a-4765-815b-d3096b882724%7D/.properties.swoperation]
+	 * 
 	 */
 	@Transactional
 	public ForumThread deleteForumThreadUser(Integer forumthread_id, Integer related_user_id) {
@@ -137,7 +137,7 @@ public class ForumThreadServiceImpl implements ForumThreadService {
 	/**
 	 * Delete an existing ForumThread entity
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/service/ForumThreadService/deleteForumThread%7B6b457b8a-598d-457a-a018-ff42bd54cc5f%7D/.properties.swoperation]
+	 * 
 	 */
 	@Transactional
 	public void deleteForumThread(ForumThread forumthread) {
@@ -148,7 +148,7 @@ public class ForumThreadServiceImpl implements ForumThreadService {
 	/**
 	 * Delete an existing Comment entity
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/service/ForumThreadService/deleteForumThreadComments%7B60839500-d792-4f5f-ac25-37f8e40bc06e%7D/.properties.swoperation]
+	 * 
 	 */
 	@Transactional
 	public ForumThread deleteForumThreadComments(Integer forumthread_id, Integer related_comments_id) {
@@ -168,7 +168,7 @@ public class ForumThreadServiceImpl implements ForumThreadService {
 	/**
 	 * Return a count of all ForumThread entity
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/service/ForumThreadService/countForumThreads%7Bb65826b0-d5a0-4a23-a89e-083f373a9cc4%7D/.properties.swoperation]
+	 * 
 	 */
 	@Transactional
 	public Integer countForumThreads() {
@@ -178,7 +178,7 @@ public class ForumThreadServiceImpl implements ForumThreadService {
 	/**
 	 * Return all ForumThread entity
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/service/ForumThreadService/findAllForumThreads%7B87e5a7cf-82c3-4d61-8fee-5c15949324ab%7D/.properties.swoperation]
+	 * 
 	 */
 	@Transactional
 	public List<ForumThread> findAllForumThreads(Integer startResult, Integer maxRows) {
@@ -188,7 +188,7 @@ public class ForumThreadServiceImpl implements ForumThreadService {
 	/**
 	 * Save an existing User entity
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/service/ForumThreadService/saveForumThreadUser%7B72444b2a-2d41-492e-8221-7b52c2ef2c61%7D/.properties.swoperation]
+	 * 
 	 */
 	@Transactional
 	public ForumThread saveForumThreadUser(Integer id, User related_user) {
@@ -224,7 +224,7 @@ public class ForumThreadServiceImpl implements ForumThreadService {
 	}
 
 	/**
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/service/ForumThreadService/findForumThreadByPrimaryKey%7B197a790b-5e93-452f-9454-aea404affdaf%7D/.properties.swoperation]
+	 * 
 	 */
 	@Transactional
 	public ForumThread findForumThreadByPrimaryKey(Integer id) {
@@ -234,7 +234,7 @@ public class ForumThreadServiceImpl implements ForumThreadService {
 	/**
 	 * Delete an existing Forum entity
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/service/ForumThreadService/deleteForumThreadForum%7B34641b1d-a533-4016-90d2-28c8c1afcf04%7D/.properties.swoperation]
+	 * 
 	 */
 	@Transactional
 	public ForumThread deleteForumThreadForum(Integer forumthread_id, Integer related_forum_id) {
@@ -258,7 +258,7 @@ public class ForumThreadServiceImpl implements ForumThreadService {
 	/**
 	 * Save an existing ForumThread entity
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/service/ForumThreadService/saveForumThread%7B539ed205-d91e-4a7a-b602-65d9a4b04a35%7D/.properties.swoperation]
+	 * 
 	 */
 	@Transactional
 	public void saveForumThread(ForumThread forumthread) {
@@ -282,7 +282,7 @@ public class ForumThreadServiceImpl implements ForumThreadService {
 	/**
 	 * Save an existing Comment entity
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/service/ForumThreadService/saveForumThreadComments%7B8c5e623a-376a-46ab-81b2-03c86662a97d%7D/.properties.swoperation]
+	 * 
 	 */
 	@Transactional
 	public ForumThread saveForumThreadComments(Integer id, Comment related_comments) {

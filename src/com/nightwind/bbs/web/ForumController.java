@@ -27,7 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 /**
  * Spring MVC controller that handles CRUD requests for Forum entities
  * 
- * @ModelCoreReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/ForumController/.properties.webcontroller]
+ * 
  * @generated
  */
 
@@ -37,7 +37,7 @@ public class ForumController {
 	/**
 	 * DAO injected by Spring that manages Forum entities
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/ForumController/.properties.webcontroller#//@variables%5Bname='forumDAO'%5D]
+	 * 
 	 */
 	@Autowired
 	private ForumDAO forumDAO;
@@ -45,7 +45,7 @@ public class ForumController {
 	/**
 	 * DAO injected by Spring that manages ForumThread entities
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/ForumController/.properties.webcontroller#//@variables%5Bname='forumThreadDAO'%5D]
+	 * 
 	 */
 	@Autowired
 	private ForumThreadDAO forumThreadDAO;
@@ -53,7 +53,7 @@ public class ForumController {
 	/**
 	 * Service injected by Spring that provides CRUD operations for Forum entities
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/ForumController/.properties.webcontroller#//@variables%5Bname='forumService'%5D]
+	 * 
 	 */
 	@Autowired
 	private ForumService forumService;
@@ -61,7 +61,7 @@ public class ForumController {
 	/**
 	 * Show all Forum entities
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/ForumController/listForums%7Bbe85fa12-701c-42ff-b8a7-509c8d09bbe0%7D/.properties.swoperation]
+	 * 
 	 */
 	@RequestMapping("/indexForum")
 	public ModelAndView listForums() {
@@ -77,7 +77,7 @@ public class ForumController {
 	/**
 	 * Entry point to show all Forum entities
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/ForumController/indexForum%7B5549a790-120a-4cbf-9cb0-3b21eb2d4678%7D/.properties.swoperation]
+	 * 
 	 */
 	public String indexForum() {
 		return "redirect:/indexForum";
@@ -86,7 +86,7 @@ public class ForumController {
 	/**
 	 * Edit an existing ForumThread entity
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/ForumController/editForumForumThreads%7B4d66ffd4-5eb2-4685-8bf0-92f797a99a89%7D/.properties.swoperation]
+	 * 
 	 */
 	@RequestMapping("/editForumForumThreads")
 	public ModelAndView editForumForumThreads(@RequestParam Integer forum_id, @RequestParam Integer forumthreads_id) {
@@ -103,7 +103,7 @@ public class ForumController {
 	/**
 	 * Save an existing ForumThread entity
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/ForumController/saveForumForumThreads%7Bd3baa9d8-d1e6-48f6-9c7c-834ddb67053c%7D/.properties.swoperation]
+	 * 
 	 */
 	@RequestMapping("/saveForumForumThreads")
 	public ModelAndView saveForumForumThreads(@RequestParam Integer forum_id, @ModelAttribute ForumThread forumthreads) {
@@ -120,7 +120,7 @@ public class ForumController {
 	/**
 	 * Select the Forum entity for display allowing the user to confirm that they would like to delete the entity
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/ForumController/confirmDeleteForum%7B2965951f-1248-4674-a361-bd4a575c6454%7D/.properties.swoperation]
+	 * 
 	 */
 	@RequestMapping("/confirmDeleteForum")
 	public ModelAndView confirmDeleteForum(@RequestParam Integer idKey) {
@@ -135,7 +135,7 @@ public class ForumController {
 	/**
 	 * Edit an existing Forum entity
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/ForumController/editForum%7B20cfd716-e414-469d-83a1-c8561b4a51c6%7D/.properties.swoperation]
+	 * 
 	 */
 	@RequestMapping("/editForum")
 	public ModelAndView editForum(@RequestParam Integer idKey) {
@@ -150,7 +150,7 @@ public class ForumController {
 	/**
 	 * Show all ForumThread entities by Forum
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/ForumController/listForumForumThreads%7B7c3b356b-8f2a-401a-ad99-ae3b181e1be9%7D/.properties.swoperation]
+	 * 
 	 */
 	@RequestMapping("/listForumForumThreads")
 	public ModelAndView listForumForumThreads(@RequestParam Integer idKey) {
@@ -165,7 +165,7 @@ public class ForumController {
 	/**
 	 * Select an existing Forum entity
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/ForumController/selectForum%7B371c93f7-700c-413f-9ec7-2e19c59186ba%7D/.properties.swoperation]
+	 * 
 	 */
 	@RequestMapping("/selectForum")
 	public ModelAndView selectForum(@RequestParam Integer idKey) {
@@ -180,7 +180,7 @@ public class ForumController {
 	/**
 	 * Create a new ForumThread entity
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/ForumController/newForumForumThreads%7Bd267b482-6d66-4991-972a-3a1aa7b67ea1%7D/.properties.swoperation]
+	 * 
 	 */
 	@RequestMapping("/newForumForumThreads")
 	public ModelAndView newForumForumThreads(@RequestParam Integer forum_id) {
@@ -196,7 +196,7 @@ public class ForumController {
 	/**
 	 * View an existing ForumThread entity
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/ForumController/selectForumForumThreads%7B796e78a8-e02d-485a-9f90-84bc36e2e89e%7D/.properties.swoperation]
+	 * 
 	 */
 	@RequestMapping("/selectForumForumThreads")
 	public ModelAndView selectForumForumThreads(@RequestParam Integer forum_id, @RequestParam Integer forumthreads_id) {
@@ -213,7 +213,7 @@ public class ForumController {
 	/**
 	 * Delete an existing ForumThread entity
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/ForumController/deleteForumForumThreads%7B17ba254e-18ce-43ad-b28a-963f821b2c6d%7D/.properties.swoperation]
+	 * 
 	 */
 	@RequestMapping("/deleteForumForumThreads")
 	public ModelAndView deleteForumForumThreads(@RequestParam Integer forum_id, @RequestParam Integer related_forumthreads_id) {
@@ -231,7 +231,7 @@ public class ForumController {
 	/**
 	 * Delete an existing Forum entity
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/ForumController/deleteForum%7Ba3bd2f8a-3ed2-4c99-b341-fa746c0efa3f%7D/.properties.swoperation]
+	 * 
 	 */
 	@RequestMapping("/deleteForum")
 	public String deleteForum(@RequestParam Integer idKey) {
@@ -243,7 +243,7 @@ public class ForumController {
 	/**
 	 * Select the child ForumThread entity for display allowing the user to confirm that they would like to delete the entity
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/ForumController/confirmDeleteForumForumThreads%7B09d58069-9706-4e8d-8628-ed8ba6f70ba1%7D/.properties.swoperation]
+	 * 
 	 */
 	@RequestMapping("/confirmDeleteForumForumThreads")
 	public ModelAndView confirmDeleteForumForumThreads(@RequestParam Integer forum_id, @RequestParam Integer related_forumthreads_id) {
@@ -259,7 +259,7 @@ public class ForumController {
 	/**
 	 * Save an existing Forum entity
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/ForumController/saveForum%7B89db6194-d59a-4454-a22f-279397b38d4b%7D/.properties.swoperation]
+	 * 
 	 */
 	@RequestMapping("/saveForum")
 	public String saveForum(@ModelAttribute Forum forum) {
@@ -270,7 +270,7 @@ public class ForumController {
 	/**
 	 * Create a new Forum entity
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/ForumController/newForum%7Bf797b376-622c-4c04-a9a0-7a1dd53b1f6f%7D/.properties.swoperation]
+	 * 
 	 */
 	@RequestMapping("/newForum")
 	public ModelAndView newForum() {
@@ -286,7 +286,7 @@ public class ForumController {
 	/**
 	 * Register custom, context-specific property editors
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/ForumController/initBinder%7B41d78d53-6c66-46d6-8aeb-041d413d2839%7D/.properties.swoperation]
+	 * 
 	 */
 	@InitBinder
 	public void initBinder(WebDataBinder binder, HttpServletRequest request) { // Register static property editors.
@@ -303,7 +303,7 @@ public class ForumController {
 	}
 
 	/**
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/ForumController/streamBinary%7B8a320a5a-6e9e-4764-bf1b-f0bf599ee21e%7D/.properties.swoperation]
+	 * 
 	 */
 	@RequestMapping("/forumController/binary.action")
 	public ModelAndView streamBinary(@ModelAttribute HttpServletRequest request, @ModelAttribute HttpServletResponse response) {

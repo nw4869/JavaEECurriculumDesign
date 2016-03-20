@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.*;
 import javax.persistence.*;
 
 /**
- * @ModelCoreReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/domain/Authority.datatype]
+ * 
  * @generated
  */
 @IdClass(com.nightwind.bbs.domain.AuthorityPK.class)
@@ -33,7 +33,7 @@ public class Authority implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/domain/Authority.datatype#//@fields%5Bname='userId'%5D]
+	 * 
 	 */
 
 	@Column(name = "user_id", nullable = false)
@@ -42,7 +42,7 @@ public class Authority implements Serializable {
 	@XmlElement
 	Integer userId;
 	/**
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/domain/Authority.datatype#//@fields%5Bname='authorityField'%5D]
+	 * 
 	 */
 
 	@Column(name = "authority", length = 45, nullable = false)
@@ -52,7 +52,7 @@ public class Authority implements Serializable {
 	String authorityField;
 
 	/**
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/domain/Authority.datatype#//@relationships%5Bname='user'%5D]
+	 * 
 	 */
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumns({ @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false) })

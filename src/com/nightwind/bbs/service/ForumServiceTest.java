@@ -164,8 +164,8 @@ public class ForumServiceTest {
 	@Test
 	public void saveForum() {
 		// TODO: JUnit - Populate test inputs for operation: saveForum 
-		Forum forum_1 = new com.nightwind.bbs.domain.Forum();
-		service.saveForum(forum_1);
+		Forum forum = new com.nightwind.bbs.domain.Forum();
+		service.saveForum(forum);
 	}
 
 	/**
@@ -221,8 +221,8 @@ public class ForumServiceTest {
 	@Test
 	public void deleteForum() {
 		// TODO: JUnit - Populate test inputs for operation: deleteForum 
-		Forum forum = new com.nightwind.bbs.domain.Forum();
-		service.deleteForum(forum);
+		Forum forum_1 = new com.nightwind.bbs.domain.Forum();
+		service.deleteForum(forum_1);
 	}
 
 	/**

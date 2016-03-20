@@ -23,7 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * DAO to manage Forum entities.
  * 
- * @ModelCoreReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/ForumDAO/.properties.datastore]
+ * 
  * @generated
  */
 @Repository("ForumDAO")
@@ -75,7 +75,7 @@ public class ForumDAOImpl extends AbstractJpaDao<Forum> implements ForumDAO {
 	/**
 	 * JPQL Query - findForumByDescription
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/ForumDAO/findForumByDescription.query]JPASelect
+	 * JPASelect
 	 */
 	@Transactional
 	public Set<Forum> findForumByDescription(String description) throws DataAccessException {
@@ -86,7 +86,7 @@ public class ForumDAOImpl extends AbstractJpaDao<Forum> implements ForumDAO {
 	/**
 	 * JPQL Query - findForumByDescription
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/ForumDAO/findForumByDescription.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
 
 	@SuppressWarnings("unchecked")
@@ -99,7 +99,7 @@ public class ForumDAOImpl extends AbstractJpaDao<Forum> implements ForumDAO {
 	/**
 	 * JPQL Query - findForumByTitle
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/ForumDAO/findForumByTitle.query]JPASelect
+	 * JPASelect
 	 */
 	@Transactional
 	public Set<Forum> findForumByTitle(String title) throws DataAccessException {
@@ -110,7 +110,7 @@ public class ForumDAOImpl extends AbstractJpaDao<Forum> implements ForumDAO {
 	/**
 	 * JPQL Query - findForumByTitle
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/ForumDAO/findForumByTitle.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
 
 	@SuppressWarnings("unchecked")
@@ -123,7 +123,7 @@ public class ForumDAOImpl extends AbstractJpaDao<Forum> implements ForumDAO {
 	/**
 	 * JPQL Query - findAllForums
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/ForumDAO/findAllForums.query]JPASelect
+	 * JPASelect
 	 */
 	@Transactional
 	public Set<Forum> findAllForums() throws DataAccessException {
@@ -134,7 +134,7 @@ public class ForumDAOImpl extends AbstractJpaDao<Forum> implements ForumDAO {
 	/**
 	 * JPQL Query - findAllForums
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/ForumDAO/findAllForums.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
 
 	@SuppressWarnings("unchecked")
@@ -147,7 +147,7 @@ public class ForumDAOImpl extends AbstractJpaDao<Forum> implements ForumDAO {
 	/**
 	 * JPQL Query - findForumByDescriptionContaining
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/ForumDAO/findForumByDescriptionContaining.query]JPASelect
+	 * JPASelect
 	 */
 	@Transactional
 	public Set<Forum> findForumByDescriptionContaining(String description) throws DataAccessException {
@@ -158,7 +158,7 @@ public class ForumDAOImpl extends AbstractJpaDao<Forum> implements ForumDAO {
 	/**
 	 * JPQL Query - findForumByDescriptionContaining
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/ForumDAO/findForumByDescriptionContaining.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
 
 	@SuppressWarnings("unchecked")
@@ -171,7 +171,7 @@ public class ForumDAOImpl extends AbstractJpaDao<Forum> implements ForumDAO {
 	/**
 	 * JPQL Query - findForumById
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/ForumDAO/findForumById.query]JPASelect
+	 * JPASelect
 	 */
 	@Transactional
 	public Forum findForumById(Integer id) throws DataAccessException {
@@ -182,7 +182,7 @@ public class ForumDAOImpl extends AbstractJpaDao<Forum> implements ForumDAO {
 	/**
 	 * JPQL Query - findForumById
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/ForumDAO/findForumById.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
 
 	@Transactional
@@ -198,7 +198,7 @@ public class ForumDAOImpl extends AbstractJpaDao<Forum> implements ForumDAO {
 	/**
 	 * JPQL Query - findForumByTitleContaining
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/ForumDAO/findForumByTitleContaining.query]JPASelect
+	 * JPASelect
 	 */
 	@Transactional
 	public Set<Forum> findForumByTitleContaining(String title) throws DataAccessException {
@@ -209,7 +209,7 @@ public class ForumDAOImpl extends AbstractJpaDao<Forum> implements ForumDAO {
 	/**
 	 * JPQL Query - findForumByTitleContaining
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/ForumDAO/findForumByTitleContaining.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
 
 	@SuppressWarnings("unchecked")
@@ -222,7 +222,7 @@ public class ForumDAOImpl extends AbstractJpaDao<Forum> implements ForumDAO {
 	/**
 	 * JPQL Query - findForumByPrimaryKey
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/ForumDAO/findForumByPrimaryKey.query]JPASelect
+	 * JPASelect
 	 */
 	@Transactional
 	public Forum findForumByPrimaryKey(Integer id) throws DataAccessException {
@@ -233,7 +233,7 @@ public class ForumDAOImpl extends AbstractJpaDao<Forum> implements ForumDAO {
 	/**
 	 * JPQL Query - findForumByPrimaryKey
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/ForumDAO/findForumByPrimaryKey.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
 
 	@Transactional

@@ -132,10 +132,10 @@ public class UserServiceTest {
 	@Test
 	public void deleteUserForumThreads() {
 		// TODO: JUnit - Populate test inputs for operation: deleteUserForumThreads 
-		Integer user_id_2 = 0;
+		Integer user_id_1 = 0;
 		Integer related_forumthreads_id = 0;
 		User response = null;
-		response = service.deleteUserForumThreads(user_id_2, related_forumthreads_id);
+		response = service.deleteUserForumThreads(user_id_1, related_forumthreads_id);
 		// TODO: JUnit - Add assertions to test outputs of operation: deleteUserForumThreads
 	}
 
@@ -152,10 +152,10 @@ public class UserServiceTest {
 	@Test
 	public void saveUserForumThreads() {
 		// TODO: JUnit - Populate test inputs for operation: saveUserForumThreads 
-		Integer id_3 = 0;
+		Integer id_2 = 0;
 		ForumThread related_forumthreads = new com.nightwind.bbs.domain.ForumThread();
 		User response = null;
-		response = service.saveUserForumThreads(id_3, related_forumthreads);
+		response = service.saveUserForumThreads(id_2, related_forumthreads);
 		// TODO: JUnit - Add assertions to test outputs of operation: saveUserForumThreads
 	}
 
@@ -189,10 +189,10 @@ public class UserServiceTest {
 	@Test
 	public void saveUserAuthorities() {
 		// TODO: JUnit - Populate test inputs for operation: saveUserAuthorities 
-		Integer id_1 = 0;
+		Integer id = 0;
 		Authority related_authorities = new com.nightwind.bbs.domain.Authority();
 		User response = null;
-		response = service.saveUserAuthorities(id_1, related_authorities);
+		response = service.saveUserAuthorities(id, related_authorities);
 		// TODO: JUnit - Add assertions to test outputs of operation: saveUserAuthorities
 	}
 
@@ -209,11 +209,11 @@ public class UserServiceTest {
 	@Test
 	public void deleteUserAuthorities() {
 		// TODO: JUnit - Populate test inputs for operation: deleteUserAuthorities 
-		Integer user_id = 0;
+		Integer user_id_2 = 0;
 		Integer related_authorities_userId = 0;
 		String related_authorities_authorityField = null;
 		User response = null;
-		response = service.deleteUserAuthorities(user_id, related_authorities_userId, related_authorities_authorityField);
+		response = service.deleteUserAuthorities(user_id_2, related_authorities_userId, related_authorities_authorityField);
 		// TODO: JUnit - Add assertions to test outputs of operation: deleteUserAuthorities
 	}
 
@@ -264,10 +264,10 @@ public class UserServiceTest {
 	@Test
 	public void saveUserComments() {
 		// TODO: JUnit - Populate test inputs for operation: saveUserComments 
-		Integer id_2 = 0;
+		Integer id_1 = 0;
 		Comment related_comments = new com.nightwind.bbs.domain.Comment();
 		User response = null;
-		response = service.saveUserComments(id_2, related_comments);
+		response = service.saveUserComments(id_1, related_comments);
 		// TODO: JUnit - Add assertions to test outputs of operation: saveUserComments
 	}
 
@@ -284,10 +284,10 @@ public class UserServiceTest {
 	@Test
 	public void deleteUserComments() {
 		// TODO: JUnit - Populate test inputs for operation: deleteUserComments 
-		Integer user_id_1 = 0;
+		Integer user_id = 0;
 		Integer related_comments_id = 0;
 		User response = null;
-		response = service.deleteUserComments(user_id_1, related_comments_id);
+		response = service.deleteUserComments(user_id, related_comments_id);
 		// TODO: JUnit - Add assertions to test outputs of operation: deleteUserComments
 	}
 
@@ -302,9 +302,9 @@ public class UserServiceTest {
 	@Test
 	public void findUserByPrimaryKey() {
 		// TODO: JUnit - Populate test inputs for operation: findUserByPrimaryKey 
-		Integer id = 0;
+		Integer id_3 = 0;
 		User response = null;
-		response = service.findUserByPrimaryKey(id);
+		response = service.findUserByPrimaryKey(id_3);
 		// TODO: JUnit - Add assertions to test outputs of operation: findUserByPrimaryKey
 	}
 

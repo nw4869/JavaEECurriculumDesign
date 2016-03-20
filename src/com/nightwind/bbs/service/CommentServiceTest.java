@@ -114,8 +114,8 @@ public class CommentServiceTest {
 	@Test
 	public void deleteComment() {
 		// TODO: JUnit - Populate test inputs for operation: deleteComment 
-		Comment comment = new com.nightwind.bbs.domain.Comment();
-		service.deleteComment(comment);
+		Comment comment_1 = new com.nightwind.bbs.domain.Comment();
+		service.deleteComment(comment_1);
 	}
 
 	/**
@@ -148,10 +148,10 @@ public class CommentServiceTest {
 	@Test
 	public void deleteCommentUser() {
 		// TODO: JUnit - Populate test inputs for operation: deleteCommentUser 
-		Integer comment_id_1 = 0;
+		Integer comment_id = 0;
 		Integer related_user_id = 0;
 		Comment response = null;
-		response = service.deleteCommentUser(comment_id_1, related_user_id);
+		response = service.deleteCommentUser(comment_id, related_user_id);
 		// TODO: JUnit - Add assertions to test outputs of operation: deleteCommentUser
 	}
 
@@ -185,8 +185,8 @@ public class CommentServiceTest {
 	@Test
 	public void saveComment() {
 		// TODO: JUnit - Populate test inputs for operation: saveComment 
-		Comment comment_1 = new com.nightwind.bbs.domain.Comment();
-		service.saveComment(comment_1);
+		Comment comment = new com.nightwind.bbs.domain.Comment();
+		service.saveComment(comment);
 	}
 
 	/**
@@ -202,10 +202,10 @@ public class CommentServiceTest {
 	@Test
 	public void saveCommentForumThread() {
 		// TODO: JUnit - Populate test inputs for operation: saveCommentForumThread 
-		Integer id_1 = 0;
+		Integer id_2 = 0;
 		ForumThread related_forumthread = new com.nightwind.bbs.domain.ForumThread();
 		Comment response = null;
-		response = service.saveCommentForumThread(id_1, related_forumthread);
+		response = service.saveCommentForumThread(id_2, related_forumthread);
 		// TODO: JUnit - Add assertions to test outputs of operation: saveCommentForumThread
 	}
 
@@ -222,10 +222,10 @@ public class CommentServiceTest {
 	@Test
 	public void saveCommentUser() {
 		// TODO: JUnit - Populate test inputs for operation: saveCommentUser 
-		Integer id_2 = 0;
+		Integer id = 0;
 		User related_user = new com.nightwind.bbs.domain.User();
 		Comment response = null;
-		response = service.saveCommentUser(id_2, related_user);
+		response = service.saveCommentUser(id, related_user);
 		// TODO: JUnit - Add assertions to test outputs of operation: saveCommentUser
 	}
 
@@ -240,9 +240,9 @@ public class CommentServiceTest {
 	@Test
 	public void findCommentByPrimaryKey() {
 		// TODO: JUnit - Populate test inputs for operation: findCommentByPrimaryKey 
-		Integer id = 0;
+		Integer id_1 = 0;
 		Comment response = null;
-		response = service.findCommentByPrimaryKey(id);
+		response = service.findCommentByPrimaryKey(id_1);
 		// TODO: JUnit - Add assertions to test outputs of operation: findCommentByPrimaryKey
 	}
 
@@ -259,10 +259,10 @@ public class CommentServiceTest {
 	@Test
 	public void deleteCommentForumThread() {
 		// TODO: JUnit - Populate test inputs for operation: deleteCommentForumThread 
-		Integer comment_id = 0;
+		Integer comment_id_1 = 0;
 		Integer related_forumthread_id = 0;
 		Comment response = null;
-		response = service.deleteCommentForumThread(comment_id, related_forumthread_id);
+		response = service.deleteCommentForumThread(comment_id_1, related_forumthread_id);
 		// TODO: JUnit - Add assertions to test outputs of operation: deleteCommentForumThread
 	}
 

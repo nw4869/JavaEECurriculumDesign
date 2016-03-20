@@ -95,10 +95,10 @@ public class ForumThreadServiceTest {
 	@Test
 	public void saveForumThreadForum() {
 		// TODO: JUnit - Populate test inputs for operation: saveForumThreadForum 
-		Integer id_2 = 0;
+		Integer id_3 = 0;
 		Forum related_forum = new com.nightwind.bbs.domain.Forum();
 		ForumThread response = null;
-		response = service.saveForumThreadForum(id_2, related_forum);
+		response = service.saveForumThreadForum(id_3, related_forum);
 		// TODO: JUnit - Add assertions to test outputs of operation: saveForumThreadForum
 	}
 
@@ -152,8 +152,8 @@ public class ForumThreadServiceTest {
 	@Test
 	public void deleteForumThread() {
 		// TODO: JUnit - Populate test inputs for operation: deleteForumThread 
-		ForumThread forumthread = new com.nightwind.bbs.domain.ForumThread();
-		service.deleteForumThread(forumthread);
+		ForumThread forumthread_1 = new com.nightwind.bbs.domain.ForumThread();
+		service.deleteForumThread(forumthread_1);
 	}
 
 	/**
@@ -226,10 +226,10 @@ public class ForumThreadServiceTest {
 	@Test
 	public void saveForumThreadUser() {
 		// TODO: JUnit - Populate test inputs for operation: saveForumThreadUser 
-		Integer id_3 = 0;
+		Integer id = 0;
 		User related_user = new com.nightwind.bbs.domain.User();
 		ForumThread response = null;
-		response = service.saveForumThreadUser(id_3, related_user);
+		response = service.saveForumThreadUser(id, related_user);
 		// TODO: JUnit - Add assertions to test outputs of operation: saveForumThreadUser
 	}
 
@@ -244,9 +244,9 @@ public class ForumThreadServiceTest {
 	@Test
 	public void findForumThreadByPrimaryKey() {
 		// TODO: JUnit - Populate test inputs for operation: findForumThreadByPrimaryKey 
-		Integer id = 0;
+		Integer id_1 = 0;
 		ForumThread response = null;
-		response = service.findForumThreadByPrimaryKey(id);
+		response = service.findForumThreadByPrimaryKey(id_1);
 		// TODO: JUnit - Add assertions to test outputs of operation: findForumThreadByPrimaryKey
 	}
 
@@ -283,8 +283,8 @@ public class ForumThreadServiceTest {
 	@Test
 	public void saveForumThread() {
 		// TODO: JUnit - Populate test inputs for operation: saveForumThread 
-		ForumThread forumthread_1 = new com.nightwind.bbs.domain.ForumThread();
-		service.saveForumThread(forumthread_1);
+		ForumThread forumthread = new com.nightwind.bbs.domain.ForumThread();
+		service.saveForumThread(forumthread);
 	}
 
 	/**
@@ -300,10 +300,10 @@ public class ForumThreadServiceTest {
 	@Test
 	public void saveForumThreadComments() {
 		// TODO: JUnit - Populate test inputs for operation: saveForumThreadComments 
-		Integer id_1 = 0;
+		Integer id_2 = 0;
 		Comment related_comments = new com.nightwind.bbs.domain.Comment();
 		ForumThread response = null;
-		response = service.saveForumThreadComments(id_1, related_comments);
+		response = service.saveForumThreadComments(id_2, related_comments);
 		// TODO: JUnit - Add assertions to test outputs of operation: saveForumThreadComments
 	}
 

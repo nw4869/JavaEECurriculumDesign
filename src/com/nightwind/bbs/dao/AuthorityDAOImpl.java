@@ -23,7 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * DAO to manage Authority entities.
  * 
- * @ModelCoreReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/AuthorityDAO/.properties.datastore]
+ * 
  * @generated
  */
 @Repository("AuthorityDAO")
@@ -76,7 +76,7 @@ public class AuthorityDAOImpl extends AbstractJpaDao<Authority> implements
 	/**
 	 * JPQL Query - findAuthorityByAuthorityFieldContaining
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/AuthorityDAO/findAuthorityByAuthorityFieldContaining.query]JPASelect
+	 * JPASelect
 	 */
 	@Transactional
 	public Set<Authority> findAuthorityByAuthorityFieldContaining(String authorityField) throws DataAccessException {
@@ -87,7 +87,7 @@ public class AuthorityDAOImpl extends AbstractJpaDao<Authority> implements
 	/**
 	 * JPQL Query - findAuthorityByAuthorityFieldContaining
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/AuthorityDAO/findAuthorityByAuthorityFieldContaining.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
 
 	@SuppressWarnings("unchecked")
@@ -100,7 +100,7 @@ public class AuthorityDAOImpl extends AbstractJpaDao<Authority> implements
 	/**
 	 * JPQL Query - findAuthorityByPrimaryKey
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/AuthorityDAO/findAuthorityByPrimaryKey.query]JPASelect
+	 * JPASelect
 	 */
 	@Transactional
 	public Authority findAuthorityByPrimaryKey(Integer userId, String authorityField) throws DataAccessException {
@@ -111,7 +111,7 @@ public class AuthorityDAOImpl extends AbstractJpaDao<Authority> implements
 	/**
 	 * JPQL Query - findAuthorityByPrimaryKey
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/AuthorityDAO/findAuthorityByPrimaryKey.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
 
 	@Transactional
@@ -127,7 +127,7 @@ public class AuthorityDAOImpl extends AbstractJpaDao<Authority> implements
 	/**
 	 * JPQL Query - findAllAuthoritys
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/AuthorityDAO/findAllAuthoritys.query]JPASelect
+	 * JPASelect
 	 */
 	@Transactional
 	public Set<Authority> findAllAuthoritys() throws DataAccessException {
@@ -138,7 +138,7 @@ public class AuthorityDAOImpl extends AbstractJpaDao<Authority> implements
 	/**
 	 * JPQL Query - findAllAuthoritys
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/AuthorityDAO/findAllAuthoritys.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
 
 	@SuppressWarnings("unchecked")
@@ -151,7 +151,7 @@ public class AuthorityDAOImpl extends AbstractJpaDao<Authority> implements
 	/**
 	 * JPQL Query - findAuthorityByUserId
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/AuthorityDAO/findAuthorityByUserId.query]JPASelect
+	 * JPASelect
 	 */
 	@Transactional
 	public Set<Authority> findAuthorityByUserId(Integer userId) throws DataAccessException {
@@ -162,7 +162,7 @@ public class AuthorityDAOImpl extends AbstractJpaDao<Authority> implements
 	/**
 	 * JPQL Query - findAuthorityByUserId
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/AuthorityDAO/findAuthorityByUserId.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
 
 	@SuppressWarnings("unchecked")
@@ -175,7 +175,7 @@ public class AuthorityDAOImpl extends AbstractJpaDao<Authority> implements
 	/**
 	 * JPQL Query - findAuthorityByAuthorityField
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/AuthorityDAO/findAuthorityByAuthorityField.query]JPASelect
+	 * JPASelect
 	 */
 	@Transactional
 	public Set<Authority> findAuthorityByAuthorityField(String authorityField) throws DataAccessException {
@@ -186,7 +186,7 @@ public class AuthorityDAOImpl extends AbstractJpaDao<Authority> implements
 	/**
 	 * JPQL Query - findAuthorityByAuthorityField
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/AuthorityDAO/findAuthorityByAuthorityField.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
 
 	@SuppressWarnings("unchecked")

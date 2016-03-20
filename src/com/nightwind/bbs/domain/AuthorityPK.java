@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.*;
 
 /**
- * @ModelCoreReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/domain/Authority.datatype]
+ * 
  * @generated
  * @AuxiliaryModelComponent
  */
@@ -21,7 +21,7 @@ public class AuthorityPK implements Serializable {
 	}
 
 	/**
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/domain/Authority.datatype#//@fields%5Bname='userId'%5D]
+	 * 
 	 */
 
 	@Column(name = "user_id", nullable = false)
@@ -29,7 +29,7 @@ public class AuthorityPK implements Serializable {
 	@Id
 	public Integer userId;
 	/**
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/domain/Authority.datatype#//@fields%5Bname='authorityField'%5D]
+	 * 
 	 */
 
 	@Column(name = "authority", length = 45, nullable = false)

@@ -65,7 +65,7 @@
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>bbs Servlet</servlet-name>
-		<url-pattern>*.action</url-pattern>
+		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>bbs Servlet</servlet-name>

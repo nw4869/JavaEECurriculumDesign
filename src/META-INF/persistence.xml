@@ -3,11 +3,11 @@
 <persistence-unit name="MySql_bbs" transaction-type="JTA">
 			<description>generated-persistence-unit</description>
 					<provider>org.hibernate.ejb.HibernatePersistence</provider>
+      			<class>com.nightwind.bbs.domain.User</class>
+      			<class>com.nightwind.bbs.domain.ForumThread</class>
       			<class>com.nightwind.bbs.domain.Authority</class>
       			<class>com.nightwind.bbs.domain.Comment</class>
       			<class>com.nightwind.bbs.domain.Forum</class>
-      			<class>com.nightwind.bbs.domain.ForumThread</class>
-      			<class>com.nightwind.bbs.domain.User</class>
    			<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		</persistence-unit>
 	

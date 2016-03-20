@@ -1,29 +1,21 @@
 package com.nightwind.bbs.service;
 
 import com.nightwind.bbs.domain.User;
+import com.nightwind.exception.AccountExistedException;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
-
 import org.springframework.context.ApplicationContext;
-
 import org.springframework.mock.web.MockHttpServletRequest;
-
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
-
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
-
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
-
 import org.springframework.transaction.annotation.Transactional;
-
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.RequestScope;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -76,6 +68,7 @@ public class UserServiceExTest {
 
 	/**
 	 * Operation Unit Test
+	 * @throws AccountExistedException 
 	 * @generated
 	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
 	 * Generation of the entire file can be disabled on the Code Generation tab of the Spring DSL editor.
@@ -83,13 +76,13 @@ public class UserServiceExTest {
 	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
 	 */
 	@Test
-	public void login() {
-		// TODO: JUnit - Populate test inputs for operation: login 
-		String username = null;
-		String password = null;
-		Boolean response = null;
-		response = service.login(username, password);
-		// TODO: JUnit - Add assertions to test outputs of operation: login
+	public void register() throws AccountExistedException {
+		// TODO: JUnit - Populate test inputs for operation: register 
+		String username_2 = "nw";
+		String password_2 = "4869";
+		User response = null;
+		response = service.register(username_2, password_2);
+		// TODO: JUnit - Add assertions to test outputs of operation: register
 	}
 
 	/**
@@ -101,13 +94,105 @@ public class UserServiceExTest {
 	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
 	 */
 	@Test
-	public void register() {
-		// TODO: JUnit - Populate test inputs for operation: register 
-		String username_1 = null;
-		String password_1 = null;
+	public void logout() {
+		// TODO: JUnit - Populate test inputs for operation: logout 
+		Integer id = 0;
+		service.logout(id);
+	}
+
+	/**
+	 * Operation Unit Test
+	 * @throws UserNotFoundException
+	 * 
+	 * @generated
+	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
+	 * Generation of the entire file can be disabled on the Code Generation tab of the Spring DSL editor.
+	 * Alternately, you can add the NOT keyword after the @generated annotation above the class declaration.
+	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
+	 */
+	@Test
+	public void findUserById() throws com.nightwind.exception.UserNotFoundException {
+		// TODO: JUnit - Populate test inputs for operation: findUserById 
+		Integer id_1 = 0;
 		User response = null;
-		response = service.register(username_1, password_1);
-		// TODO: JUnit - Add assertions to test outputs of operation: register
+		response = service.findUserById(id_1);
+		// TODO: JUnit - Add assertions to test outputs of operation: findUserById
+	}
+
+	/**
+	 * Operation Unit Test
+	 * @throws UserNotFoundException
+	 * 
+	 * @generated
+	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
+	 * Generation of the entire file can be disabled on the Code Generation tab of the Spring DSL editor.
+	 * Alternately, you can add the NOT keyword after the @generated annotation above the class declaration.
+	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
+	 */
+	@Test
+	public void findUserByUsername() throws com.nightwind.exception.UserNotFoundException {
+		// TODO: JUnit - Populate test inputs for operation: findUserByUsername 
+		String username_1 = null;
+		User response = null;
+		response = service.findUserByUsername(username_1);
+		// TODO: JUnit - Add assertions to test outputs of operation: findUserByUsername
+	}
+
+	/**
+	 * Operation Unit Test
+	 * @throws AuthorizeException
+	 * @throws UserNotFoundException
+	 * 
+	 * @generated
+	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
+	 * Generation of the entire file can be disabled on the Code Generation tab of the Spring DSL editor.
+	 * Alternately, you can add the NOT keyword after the @generated annotation above the class declaration.
+	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
+	 */
+	@Test
+	public void login() throws com.nightwind.exception.AuthorizeException, com.nightwind.exception.UserNotFoundException {
+		// TODO: JUnit - Populate test inputs for operation: login 
+		String username = null;
+		String password = null;
+		User response = null;
+		response = service.login(username, password);
+		// TODO: JUnit - Add assertions to test outputs of operation: login
+	}
+
+	/**
+	 * Operation Unit Test
+	 * @throws UserNotFoundException
+	 * 
+	 * @generated
+	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
+	 * Generation of the entire file can be disabled on the Code Generation tab of the Spring DSL editor.
+	 * Alternately, you can add the NOT keyword after the @generated annotation above the class declaration.
+	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
+	 */
+	@Test
+	public void updateInfo() throws com.nightwind.exception.UserNotFoundException {
+		// TODO: JUnit - Populate test inputs for operation: updateInfo 
+		User user = new com.nightwind.bbs.domain.User();
+		User response = null;
+		response = service.updateInfo(user);
+		// TODO: JUnit - Add assertions to test outputs of operation: updateInfo
+	}
+
+	/**
+	 * Operation Unit Test
+	 * @generated
+	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
+	 * Generation of the entire file can be disabled on the Code Generation tab of the Spring DSL editor.
+	 * Alternately, you can add the NOT keyword after the @generated annotation above the class declaration.
+	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
+	 */
+	@Test
+	public void updatePassword() throws com.nightwind.exception.UserNotFoundException, com.nightwind.exception.AuthorizeException {
+		// TODO: JUnit - Populate test inputs for operation: updatePassword 
+		Integer id_2 = 0;
+		String password_1 = null;
+		String newPassword = null;
+		service.updatePassword(id_2, password_1, newPassword);
 	}
 
 	/**

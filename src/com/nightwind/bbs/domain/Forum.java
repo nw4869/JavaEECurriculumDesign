@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.*;
 import javax.persistence.*;
 
 /**
- * @ModelCoreReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/domain/Forum.datatype]
+ * 
  * @generated
  */
 
@@ -35,7 +35,7 @@ public class Forum implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/domain/Forum.datatype#//@fields%5Bname='id'%5D]
+	 * 
 	 */
 
 	@Column(name = "id", nullable = false)
@@ -45,7 +45,7 @@ public class Forum implements Serializable {
 	@XmlElement
 	Integer id;
 	/**
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/domain/Forum.datatype#//@fields%5Bname='title'%5D]
+	 * 
 	 */
 
 	@Column(name = "title", length = 45, nullable = false)
@@ -53,7 +53,7 @@ public class Forum implements Serializable {
 	@XmlElement
 	String title;
 	/**
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/domain/Forum.datatype#//@fields%5Bname='description'%5D]
+	 * 
 	 */
 
 	@Column(name = "description")
@@ -62,7 +62,7 @@ public class Forum implements Serializable {
 	String description;
 
 	/**
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/domain/Forum.datatype#//@relationships%5Bname='forumThreads'%5D]
+	 * 
 	 */
 	@OneToMany(mappedBy = "forum", cascade = { CascadeType.REMOVE }, fetch = FetchType.LAZY)
 	@XmlElement(name = "", namespace = "")

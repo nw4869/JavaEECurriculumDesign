@@ -12,7 +12,7 @@ import org.springframework.dao.DataAccessException;
 /**
  * DAO to manage ForumThread entities.
  * 
- * @ModelCoreReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/ForumThreadDAO/.properties.datastore]
+ * 
  * @generated
  * @AuxiliaryModelComponent
  */
@@ -21,113 +21,113 @@ public interface ForumThreadDAO extends JpaDao<ForumThread> {
 	/**
 	 * JPQL Query - findForumThreadById
 	 *
-	 * @ModelCoreReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/ForumThreadDAO/findForumThreadById.query]JPASelect
+	 * JPASelect
 	 */
-	public ForumThread findForumThreadById(Integer id) throws DataAccessException;
+	public ForumThread findForumThreadById(Integer id_1) throws DataAccessException;
 
 	/**
 	 * JPQL Query - findForumThreadById
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/ForumThreadDAO/findForumThreadById.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
-	public ForumThread findForumThreadById(Integer id, int startResult, int maxRows) throws DataAccessException;
+	public ForumThread findForumThreadById(Integer id_1, int startResult, int maxRows) throws DataAccessException;
 
 	/**
 	 * JPQL Query - findForumThreadByContent
 	 *
-	 * @ModelCoreReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/ForumThreadDAO/findForumThreadByContent.query]JPASelect
+	 * JPASelect
 	 */
 	public Set<ForumThread> findForumThreadByContent(String content1) throws DataAccessException;
 
 	/**
 	 * JPQL Query - findForumThreadByContent
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/ForumThreadDAO/findForumThreadByContent.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
 	public Set<ForumThread> findForumThreadByContent(String content1, int startResult, int maxRows) throws DataAccessException;
 
 	/**
 	 * JPQL Query - findForumThreadByTitle
 	 *
-	 * @ModelCoreReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/ForumThreadDAO/findForumThreadByTitle.query]JPASelect
+	 * JPASelect
 	 */
-	public Set<ForumThread> findForumThreadByTitle(String title) throws DataAccessException;
+	public Set<ForumThread> findForumThreadByTitle(String title_1) throws DataAccessException;
 
 	/**
 	 * JPQL Query - findForumThreadByTitle
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/ForumThreadDAO/findForumThreadByTitle.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
-	public Set<ForumThread> findForumThreadByTitle(String title, int startResult, int maxRows) throws DataAccessException;
+	public Set<ForumThread> findForumThreadByTitle(String title_1, int startResult, int maxRows) throws DataAccessException;
 
 	/**
 	 * JPQL Query - findForumThreadByTitleContaining
 	 *
-	 * @ModelCoreReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/ForumThreadDAO/findForumThreadByTitleContaining.query]JPASelect
+	 * JPASelect
 	 */
-	public Set<ForumThread> findForumThreadByTitleContaining(String title_1) throws DataAccessException;
+	public Set<ForumThread> findForumThreadByTitleContaining(String title) throws DataAccessException;
 
 	/**
 	 * JPQL Query - findForumThreadByTitleContaining
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/ForumThreadDAO/findForumThreadByTitleContaining.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
-	public Set<ForumThread> findForumThreadByTitleContaining(String title_1, int startResult, int maxRows) throws DataAccessException;
+	public Set<ForumThread> findForumThreadByTitleContaining(String title, int startResult, int maxRows) throws DataAccessException;
 
 	/**
 	 * JPQL Query - findForumThreadByCreateTime
 	 *
-	 * @ModelCoreReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/ForumThreadDAO/findForumThreadByCreateTime.query]JPASelect
+	 * JPASelect
 	 */
 	public Set<ForumThread> findForumThreadByCreateTime(java.util.Calendar createTime) throws DataAccessException;
 
 	/**
 	 * JPQL Query - findForumThreadByCreateTime
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/ForumThreadDAO/findForumThreadByCreateTime.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
 	public Set<ForumThread> findForumThreadByCreateTime(Calendar createTime, int startResult, int maxRows) throws DataAccessException;
 
 	/**
 	 * JPQL Query - findForumThreadByLastModified
 	 *
-	 * @ModelCoreReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/ForumThreadDAO/findForumThreadByLastModified.query]JPASelect
+	 * JPASelect
 	 */
 	public Set<ForumThread> findForumThreadByLastModified(java.util.Calendar lastModified) throws DataAccessException;
 
 	/**
 	 * JPQL Query - findForumThreadByLastModified
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/ForumThreadDAO/findForumThreadByLastModified.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
 	public Set<ForumThread> findForumThreadByLastModified(Calendar lastModified, int startResult, int maxRows) throws DataAccessException;
 
 	/**
 	 * JPQL Query - findAllForumThreads
 	 *
-	 * @ModelCoreReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/ForumThreadDAO/findAllForumThreads.query]JPASelect
+	 * JPASelect
 	 */
 	public Set<ForumThread> findAllForumThreads() throws DataAccessException;
 
 	/**
 	 * JPQL Query - findAllForumThreads
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/ForumThreadDAO/findAllForumThreads.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
 	public Set<ForumThread> findAllForumThreads(int startResult, int maxRows) throws DataAccessException;
 
 	/**
 	 * JPQL Query - findForumThreadByPrimaryKey
 	 *
-	 * @ModelCoreReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/ForumThreadDAO/findForumThreadByPrimaryKey.query]JPASelect
+	 * JPASelect
 	 */
-	public ForumThread findForumThreadByPrimaryKey(Integer id_1) throws DataAccessException;
+	public ForumThread findForumThreadByPrimaryKey(Integer id) throws DataAccessException;
 
 	/**
 	 * JPQL Query - findForumThreadByPrimaryKey
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/ForumThreadDAO/findForumThreadByPrimaryKey.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
-	public ForumThread findForumThreadByPrimaryKey(Integer id_1, int startResult, int maxRows) throws DataAccessException;
+	public ForumThread findForumThreadByPrimaryKey(Integer id, int startResult, int maxRows) throws DataAccessException;
 
 }

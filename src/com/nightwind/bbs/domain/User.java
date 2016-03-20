@@ -1,21 +1,37 @@
 package com.nightwind.bbs.domain;
 
 import java.io.Serializable;
-import java.lang.StringBuilder;
 import java.util.Calendar;
-import java.util.LinkedHashSet;
 import java.util.Set;
 
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.xml.bind.annotation.*;
-import javax.persistence.*;
+import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Range;
 
 /**
- * @ModelCoreReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/domain/User.datatype]
+ * 
  * @generated
  */
 
@@ -46,7 +62,7 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/domain/User.datatype#//@fields%5Bname='id'%5D]
+	 * 
 	 */
 
 	@Column(name = "id", nullable = false)
@@ -56,55 +72,61 @@ public class User implements Serializable {
 	@XmlElement
 	Integer id;
 	/**
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/domain/User.datatype#//@fields%5Bname='username'%5D]
+	 * 
 	 */
 
+	@Size(min=1, max=16)
 	@Column(name = "username", length = 16, nullable = false)
 	@Basic(fetch = FetchType.EAGER)
 	@XmlElement
 	String username;
 	/**
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/domain/User.datatype#//@fields%5Bname='password'%5D]
+	 * 
 	 */
 
+	@Size(min=1, max=32)
 	@Column(name = "password", length = 32, nullable = false)
 	@Basic(fetch = FetchType.EAGER)
 	@XmlElement
 	String password;
 	/**
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/domain/User.datatype#//@fields%5Bname='email'%5D]
+	 * 
 	 */
 
-	@Column(name = "email")
+	@Email()
+	@Column(name = "email", length = 32)
 	@Basic(fetch = FetchType.EAGER)
 	@XmlElement
 	String email;
 	/**
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/domain/User.datatype#//@fields%5Bname='avatar'%5D]
+	 * 
 	 */
 
-	@Column(name = "avatar")
+	@Max(255)
+	@Column(name = "avatar", length = 255)
 	@Basic(fetch = FetchType.EAGER)
 	@XmlElement
 	String avatar;
 	/**
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/domain/User.datatype#//@fields%5Bname='memberTitle'%5D]
+	 * 
 	 */
 
+	@Max(16)
 	@Column(name = "member_title", length = 16)
 	@Basic(fetch = FetchType.EAGER)
 	@XmlElement
 	String memberTitle;
 	/**
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/domain/User.datatype#//@fields%5Bname='signature'%5D]
+	 * 
 	 */
 
-	@Column(name = "signature")
+	@Max(255)
+	@Column(name = "signature", length = 255)
 	@Basic(fetch = FetchType.EAGER)
 	@XmlElement
 	String signature;
 	/**
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/domain/User.datatype#//@fields%5Bname='enabled'%5D]
+	 * 
 	 */
 
 	@Column(name = "enabled")
@@ -112,7 +134,7 @@ public class User implements Serializable {
 	@XmlElement
 	Boolean enabled;
 	/**
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/domain/User.datatype#//@fields%5Bname='createTime'%5D]
+	 * 
 	 */
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "create_time", insertable = false)
@@ -121,31 +143,30 @@ public class User implements Serializable {
 	Calendar createTime;
 
 	/**
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/domain/User.datatype#//@relationships%5Bname='authorities'%5D]
+	 * 
 	 */
 	@OneToMany(mappedBy = "user", cascade = { CascadeType.REMOVE }, fetch = FetchType.LAZY)
 	@XmlElement(name = "", namespace = "")
 	java.util.Set<com.nightwind.bbs.domain.Authority> authorities;
 	/**
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/domain/User.datatype#//@relationships%5Bname='forumThreads'%5D]
+	 * 
 	 */
 	@OneToMany(mappedBy = "user", cascade = { CascadeType.REMOVE }, fetch = FetchType.LAZY)
 	@XmlElement(name = "", namespace = "")
 	java.util.Set<com.nightwind.bbs.domain.ForumThread> forumThreads;
 	/**
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/domain/User.datatype#//@relationships%5Bname='comments'%5D]
+	 * 
 	 */
 	@OneToMany(mappedBy = "user", cascade = { CascadeType.REMOVE }, fetch = FetchType.LAZY)
 	@XmlElement(name = "", namespace = "")
 	java.util.Set<com.nightwind.bbs.domain.Comment> comments;
-	
+
 	@PrePersist
 	public void prePersist() {
 		if (enabled == null) {
 			enabled = true;
 		}
 	}
-	
 
 	/**
 	 * @generated

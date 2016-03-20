@@ -29,7 +29,7 @@ import org.springframework.web.servlet.ModelAndView;
 /**
  * Spring MVC controller that handles CRUD requests for Comment entities
  * 
- * @ModelCoreReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/CommentController/.properties.webcontroller]
+ * 
  * @generated
  */
 
@@ -39,7 +39,7 @@ public class CommentController {
 	/**
 	 * DAO injected by Spring that manages Comment entities
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/CommentController/.properties.webcontroller#//@variables%5Bname='commentDAO'%5D]
+	 * 
 	 */
 	@Autowired
 	private CommentDAO commentDAO;
@@ -47,7 +47,7 @@ public class CommentController {
 	/**
 	 * DAO injected by Spring that manages ForumThread entities
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/CommentController/.properties.webcontroller#//@variables%5Bname='forumThreadDAO'%5D]
+	 * 
 	 */
 	@Autowired
 	private ForumThreadDAO forumThreadDAO;
@@ -55,7 +55,7 @@ public class CommentController {
 	/**
 	 * DAO injected by Spring that manages User entities
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/CommentController/.properties.webcontroller#//@variables%5Bname='userDAO'%5D]
+	 * 
 	 */
 	@Autowired
 	private UserDAO userDAO;
@@ -63,7 +63,7 @@ public class CommentController {
 	/**
 	 * Service injected by Spring that provides CRUD operations for Comment entities
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/CommentController/.properties.webcontroller#//@variables%5Bname='commentService'%5D]
+	 * 
 	 */
 	@Autowired
 	private CommentService commentService;
@@ -71,7 +71,7 @@ public class CommentController {
 	/**
 	 * Show all User entities by Comment
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/CommentController/listCommentUser%7Be84f1c76-7975-4489-bef7-25040ed280d0%7D/.properties.swoperation]
+	 * 
 	 */
 	@RequestMapping("/listCommentUser")
 	public ModelAndView listCommentUser(@RequestParam Integer idKey) {
@@ -86,7 +86,7 @@ public class CommentController {
 	/**
 	 * Select an existing Comment entity
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/CommentController/selectComment%7Bdb98bb97-a47d-4c5a-a41f-f5c20e9e93b8%7D/.properties.swoperation]
+	 * 
 	 */
 	@RequestMapping("/selectComment")
 	public ModelAndView selectComment(@RequestParam Integer idKey) {
@@ -101,7 +101,7 @@ public class CommentController {
 	/**
 	 * Show all Comment entities
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/CommentController/listComments%7Bdc789ecc-7642-4ecf-b3b0-525181794bb7%7D/.properties.swoperation]
+	 * 
 	 */
 	@RequestMapping("/indexComment")
 	public ModelAndView listComments() {
@@ -117,7 +117,7 @@ public class CommentController {
 	/**
 	 * Delete an existing User entity
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/CommentController/deleteCommentUser%7B8501ff11-c387-43f0-ab85-35279e93c329%7D/.properties.swoperation]
+	 * 
 	 */
 	@RequestMapping("/deleteCommentUser")
 	public ModelAndView deleteCommentUser(@RequestParam Integer comment_id, @RequestParam Integer related_user_id) {
@@ -135,7 +135,7 @@ public class CommentController {
 	/**
 	 * Save an existing Comment entity
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/CommentController/saveComment%7B6fea4dcd-7505-4f4e-924d-98657d951fb6%7D/.properties.swoperation]
+	 * 
 	 */
 	@RequestMapping("/saveComment")
 	public String saveComment(@ModelAttribute Comment comment) {
@@ -146,7 +146,7 @@ public class CommentController {
 	/**
 	 * Edit an existing Comment entity
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/CommentController/editComment%7B446cf1eb-6a96-4ce1-a162-4fbd0f2b11a9%7D/.properties.swoperation]
+	 * 
 	 */
 	@RequestMapping("/editComment")
 	public ModelAndView editComment(@RequestParam Integer idKey) {
@@ -161,7 +161,7 @@ public class CommentController {
 	/**
 	 * View an existing User entity
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/CommentController/selectCommentUser%7B09a26c2d-7b90-4ae1-902b-b62e5cba5fa6%7D/.properties.swoperation]
+	 * 
 	 */
 	@RequestMapping("/selectCommentUser")
 	public ModelAndView selectCommentUser(@RequestParam Integer comment_id, @RequestParam Integer user_id) {
@@ -176,7 +176,7 @@ public class CommentController {
 	}
 
 	/**
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/CommentController/streamBinary%7Bed6f3f8f-6c5e-41ef-b185-9b000030eb5b%7D/.properties.swoperation]
+	 * 
 	 */
 	@RequestMapping("/commentController/binary.action")
 	public ModelAndView streamBinary(@ModelAttribute HttpServletRequest request, @ModelAttribute HttpServletResponse response) {
@@ -189,7 +189,7 @@ public class CommentController {
 	/**
 	 * Delete an existing Comment entity
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/CommentController/deleteComment%7B00412848-ed64-483c-8948-9ea665686336%7D/.properties.swoperation]
+	 * 
 	 */
 	@RequestMapping("/deleteComment")
 	public String deleteComment(@RequestParam Integer idKey) {
@@ -201,7 +201,7 @@ public class CommentController {
 	/**
 	 * Select the child ForumThread entity for display allowing the user to confirm that they would like to delete the entity
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/CommentController/confirmDeleteCommentForumThread%7B1f1cfec5-c4f9-402b-8910-e9c83bfd5f64%7D/.properties.swoperation]
+	 * 
 	 */
 	@RequestMapping("/confirmDeleteCommentForumThread")
 	public ModelAndView confirmDeleteCommentForumThread(@RequestParam Integer comment_id, @RequestParam Integer related_forumthread_id) {
@@ -217,7 +217,7 @@ public class CommentController {
 	/**
 	 * View an existing ForumThread entity
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/CommentController/selectCommentForumThread%7Bf93b2535-adf3-4ce5-a701-54fa08bfc35e%7D/.properties.swoperation]
+	 * 
 	 */
 	@RequestMapping("/selectCommentForumThread")
 	public ModelAndView selectCommentForumThread(@RequestParam Integer comment_id, @RequestParam Integer forumthread_id) {
@@ -234,7 +234,7 @@ public class CommentController {
 	/**
 	 * Create a new Comment entity
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/CommentController/newComment%7Be6223d17-e555-423b-adec-7aa7fdaf2d2e%7D/.properties.swoperation]
+	 * 
 	 */
 	@RequestMapping("/newComment")
 	public ModelAndView newComment() {
@@ -250,7 +250,7 @@ public class CommentController {
 	/**
 	 * Create a new User entity
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/CommentController/newCommentUser%7B582e6012-f06d-4f72-8817-1d6b14a755b4%7D/.properties.swoperation]
+	 * 
 	 */
 	@RequestMapping("/newCommentUser")
 	public ModelAndView newCommentUser(@RequestParam Integer comment_id) {
@@ -266,7 +266,7 @@ public class CommentController {
 	/**
 	 * Edit an existing User entity
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/CommentController/editCommentUser%7B19e60f09-a3b5-4ad5-9dbb-c070054c3196%7D/.properties.swoperation]
+	 * 
 	 */
 	@RequestMapping("/editCommentUser")
 	public ModelAndView editCommentUser(@RequestParam Integer comment_id, @RequestParam Integer user_id) {
@@ -283,7 +283,7 @@ public class CommentController {
 	/**
 	 * Select the child User entity for display allowing the user to confirm that they would like to delete the entity
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/CommentController/confirmDeleteCommentUser%7B879f0f94-4b44-42e6-a5ec-cc032c6be75e%7D/.properties.swoperation]
+	 * 
 	 */
 	@RequestMapping("/confirmDeleteCommentUser")
 	public ModelAndView confirmDeleteCommentUser(@RequestParam Integer comment_id, @RequestParam Integer related_user_id) {
@@ -299,7 +299,7 @@ public class CommentController {
 	/**
 	 * Register custom, context-specific property editors
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/CommentController/initBinder%7B1780d259-c1cc-47ba-ac13-16f84a476b9f%7D/.properties.swoperation]
+	 * 
 	 */
 	@InitBinder
 	public void initBinder(WebDataBinder binder, HttpServletRequest request) { // Register static property editors.
@@ -318,7 +318,7 @@ public class CommentController {
 	/**
 	 * Show all ForumThread entities by Comment
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/CommentController/listCommentForumThread%7B8a165b2a-c541-4444-b88f-74e555ef981b%7D/.properties.swoperation]
+	 * 
 	 */
 	@RequestMapping("/listCommentForumThread")
 	public ModelAndView listCommentForumThread(@RequestParam Integer idKey) {
@@ -333,7 +333,7 @@ public class CommentController {
 	/**
 	 * Entry point to show all Comment entities
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/CommentController/indexComment%7B29693c02-fb00-4282-9c1d-f42ab8a0f67c%7D/.properties.swoperation]
+	 * 
 	 */
 	public String indexComment() {
 		return "redirect:/indexComment";
@@ -342,7 +342,7 @@ public class CommentController {
 	/**
 	 * Save an existing ForumThread entity
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/CommentController/saveCommentForumThread%7B78377813-c1a0-4562-a7d1-9fa2d209bd6f%7D/.properties.swoperation]
+	 * 
 	 */
 	@RequestMapping("/saveCommentForumThread")
 	public ModelAndView saveCommentForumThread(@RequestParam Integer comment_id, @ModelAttribute ForumThread forumthread) {
@@ -359,7 +359,7 @@ public class CommentController {
 	/**
 	 * Edit an existing ForumThread entity
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/CommentController/editCommentForumThread%7B7fb14496-cc42-4764-819a-2a651a5fbec2%7D/.properties.swoperation]
+	 * 
 	 */
 	@RequestMapping("/editCommentForumThread")
 	public ModelAndView editCommentForumThread(@RequestParam Integer comment_id, @RequestParam Integer forumthread_id) {
@@ -376,7 +376,7 @@ public class CommentController {
 	/**
 	 * Save an existing User entity
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/CommentController/saveCommentUser%7Bc58cb468-078e-45da-9e1d-b36a5e3cd659%7D/.properties.swoperation]
+	 * 
 	 */
 	@RequestMapping("/saveCommentUser")
 	public ModelAndView saveCommentUser(@RequestParam Integer comment_id, @ModelAttribute User user) {
@@ -393,7 +393,7 @@ public class CommentController {
 	/**
 	 * Create a new ForumThread entity
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/CommentController/newCommentForumThread%7B18c86960-19ad-4ef1-973e-08101becb806%7D/.properties.swoperation]
+	 * 
 	 */
 	@RequestMapping("/newCommentForumThread")
 	public ModelAndView newCommentForumThread(@RequestParam Integer comment_id) {
@@ -409,7 +409,7 @@ public class CommentController {
 	/**
 	 * Delete an existing ForumThread entity
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/CommentController/deleteCommentForumThread%7B8933cd34-108f-4717-94ef-63c312bcc6c8%7D/.properties.swoperation]
+	 * 
 	 */
 	@RequestMapping("/deleteCommentForumThread")
 	public ModelAndView deleteCommentForumThread(@RequestParam Integer comment_id, @RequestParam Integer related_forumthread_id) {
@@ -427,7 +427,7 @@ public class CommentController {
 	/**
 	 * Select the Comment entity for display allowing the user to confirm that they would like to delete the entity
 	 * 
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/web/CommentController/confirmDeleteComment%7B35fa51ee-015f-47be-a35d-183894f5fe5e%7D/.properties.swoperation]
+	 * 
 	 */
 	@RequestMapping("/confirmDeleteComment")
 	public ModelAndView confirmDeleteComment(@RequestParam Integer idKey) {

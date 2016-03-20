@@ -111,8 +111,8 @@ public class AuthorityServiceTest {
 	@Test
 	public void saveAuthority() {
 		// TODO: JUnit - Populate test inputs for operation: saveAuthority 
-		Authority authority_1 = new com.nightwind.bbs.domain.Authority();
-		service.saveAuthority(authority_1);
+		Authority authority = new com.nightwind.bbs.domain.Authority();
+		service.saveAuthority(authority);
 	}
 
 	/**
@@ -166,8 +166,8 @@ public class AuthorityServiceTest {
 	@Test
 	public void deleteAuthority() {
 		// TODO: JUnit - Populate test inputs for operation: deleteAuthority 
-		Authority authority = new com.nightwind.bbs.domain.Authority();
-		service.deleteAuthority(authority);
+		Authority authority_1 = new com.nightwind.bbs.domain.Authority();
+		service.deleteAuthority(authority_1);
 	}
 
 	/**

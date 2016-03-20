@@ -1,22 +1,60 @@
 package com.nightwind.bbs.service;
 
 import com.nightwind.bbs.domain.User;
+import com.nightwind.exception.AccountExistedException;
+import com.nightwind.exception.AuthorizeException;
+import com.nightwind.exception.UserNotFoundException;
 
 /**
- * @ModelCoreReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/service/UserServiceEx/.properties.srv]
+ * 
  * @generated
  * @AuxiliaryModelComponent
  */
 public interface UserServiceEx {
 
 	/**
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/service/UserServiceEx/login%7B58d4023a-6abb-4254-ad52-a672305dd482%7D/.properties.swoperation]
+	 * @throws AuthorizeException
+	 * @throws UserNotFoundException
+	 * 
+	 * 
 	 */
-	public Boolean login(String username, String password);
+	public User login(String username, String password) throws com.nightwind.exception.AuthorizeException, com.nightwind.exception.UserNotFoundException;
 
 	/**
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/service/UserServiceEx/register%7B54ec143f-58af-4b7e-a028-d418ae62a5d1%7D/.properties.swoperation]
+	 * @throws AccountExistedException 
+	 * 
 	 */
-	public User register(String username_1, String password_1);
+	public User register(String username_2, String password_2) throws AccountExistedException;
+
+	/**
+	 * 
+	 */
+	public void logout(Integer id);
+
+	/**
+	 * @throws UserNotFoundException
+	 * 
+	 * 
+	 */
+	public User findUserByUsername(String username_1) throws com.nightwind.exception.UserNotFoundException;
+
+	/**
+	 * @throws UserNotFoundException
+	 * 
+	 * 
+	 */
+	public User findUserById(Integer id_1) throws com.nightwind.exception.UserNotFoundException;
+
+	/**
+	 * @throws UserNotFoundException
+	 * 
+	 * 
+	 */
+	public User updateInfo(User user) throws com.nightwind.exception.UserNotFoundException;
+
+	/**
+	 * 
+	 */
+	public void updatePassword(Integer id_2, String password_1, String newPassword) throws com.nightwind.exception.UserNotFoundException, com.nightwind.exception.AuthorizeException;
 
 }

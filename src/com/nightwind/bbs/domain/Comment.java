@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.*;
 import javax.persistence.*;
 
 /**
- * @ModelCoreReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/domain/Comment.datatype]
+ * 
  * @generated
  */
 
@@ -36,7 +36,7 @@ public class Comment implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/domain/Comment.datatype#//@fields%5Bname='id'%5D]
+	 * 
 	 */
 
 	@Column(name = "id", nullable = false)
@@ -46,7 +46,7 @@ public class Comment implements Serializable {
 	@XmlElement
 	Integer id;
 	/**
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/domain/Comment.datatype#//@fields%5Bname='title'%5D]
+	 * 
 	 */
 
 	@Column(name = "title", length = 45, nullable = false)
@@ -54,7 +54,7 @@ public class Comment implements Serializable {
 	@XmlElement
 	String title;
 	/**
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/domain/Comment.datatype#//@fields%5Bname='content'%5D]
+	 * 
 	 */
 
 	@Column(name = "content", nullable = false, columnDefinition = "MEDIUMTEXT")
@@ -63,7 +63,7 @@ public class Comment implements Serializable {
 	@XmlElement
 	String content;
 	/**
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/domain/Comment.datatype#//@fields%5Bname='createTime'%5D]
+	 * 
 	 */
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "create_time", insertable = false)
@@ -72,14 +72,14 @@ public class Comment implements Serializable {
 	Calendar createTime;
 
 	/**
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/domain/Comment.datatype#//@relationships%5Bname='user'%5D]
+	 * 
 	 */
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumns({ @JoinColumn(name = "user_id", referencedColumnName = "id") })
 	@XmlTransient
 	User user;
 	/**
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/domain/Comment.datatype#//@relationships%5Bname='forumThread'%5D]
+	 * 
 	 */
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumns({ @JoinColumn(name = "thread_id", referencedColumnName = "id", nullable = false) })

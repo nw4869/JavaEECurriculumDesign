@@ -11,17 +11,7 @@
 			</arguments>
 		</buildCommand>
 		<buildCommand>
-			<name>org.skyway.core.builder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
-		<buildCommand>
 			<name>org.eclipse.jdt.core.javabuilder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
-		<buildCommand>
-			<name>com.skyway.integration.java.spring.codetomodel.builder</name>
 			<arguments>
 			</arguments>
 		</buildCommand>

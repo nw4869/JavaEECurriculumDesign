@@ -23,7 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * DAO to manage Comment entities.
  * 
- * @ModelCoreReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/CommentDAO/.properties.datastore]
+ * 
  * @generated
  */
 @Repository("CommentDAO")
@@ -76,7 +76,7 @@ public class CommentDAOImpl extends AbstractJpaDao<Comment> implements
 	/**
 	 * JPQL Query - findCommentById
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/CommentDAO/findCommentById.query]JPASelect
+	 * JPASelect
 	 */
 	@Transactional
 	public Comment findCommentById(Integer id) throws DataAccessException {
@@ -87,7 +87,7 @@ public class CommentDAOImpl extends AbstractJpaDao<Comment> implements
 	/**
 	 * JPQL Query - findCommentById
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/CommentDAO/findCommentById.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
 
 	@Transactional
@@ -103,7 +103,7 @@ public class CommentDAOImpl extends AbstractJpaDao<Comment> implements
 	/**
 	 * JPQL Query - findCommentByPrimaryKey
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/CommentDAO/findCommentByPrimaryKey.query]JPASelect
+	 * JPASelect
 	 */
 	@Transactional
 	public Comment findCommentByPrimaryKey(Integer id) throws DataAccessException {
@@ -114,7 +114,7 @@ public class CommentDAOImpl extends AbstractJpaDao<Comment> implements
 	/**
 	 * JPQL Query - findCommentByPrimaryKey
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/CommentDAO/findCommentByPrimaryKey.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
 
 	@Transactional
@@ -130,7 +130,7 @@ public class CommentDAOImpl extends AbstractJpaDao<Comment> implements
 	/**
 	 * JPQL Query - findAllComments
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/CommentDAO/findAllComments.query]JPASelect
+	 * JPASelect
 	 */
 	@Transactional
 	public Set<Comment> findAllComments() throws DataAccessException {
@@ -141,7 +141,7 @@ public class CommentDAOImpl extends AbstractJpaDao<Comment> implements
 	/**
 	 * JPQL Query - findAllComments
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/CommentDAO/findAllComments.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
 
 	@SuppressWarnings("unchecked")
@@ -154,7 +154,7 @@ public class CommentDAOImpl extends AbstractJpaDao<Comment> implements
 	/**
 	 * JPQL Query - findCommentByTitle
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/CommentDAO/findCommentByTitle.query]JPASelect
+	 * JPASelect
 	 */
 	@Transactional
 	public Set<Comment> findCommentByTitle(String title) throws DataAccessException {
@@ -165,7 +165,7 @@ public class CommentDAOImpl extends AbstractJpaDao<Comment> implements
 	/**
 	 * JPQL Query - findCommentByTitle
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/CommentDAO/findCommentByTitle.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
 
 	@SuppressWarnings("unchecked")
@@ -178,7 +178,7 @@ public class CommentDAOImpl extends AbstractJpaDao<Comment> implements
 	/**
 	 * JPQL Query - findCommentByTitleContaining
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/CommentDAO/findCommentByTitleContaining.query]JPASelect
+	 * JPASelect
 	 */
 	@Transactional
 	public Set<Comment> findCommentByTitleContaining(String title) throws DataAccessException {
@@ -189,7 +189,7 @@ public class CommentDAOImpl extends AbstractJpaDao<Comment> implements
 	/**
 	 * JPQL Query - findCommentByTitleContaining
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/CommentDAO/findCommentByTitleContaining.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
 
 	@SuppressWarnings("unchecked")
@@ -202,7 +202,7 @@ public class CommentDAOImpl extends AbstractJpaDao<Comment> implements
 	/**
 	 * JPQL Query - findCommentByContent
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/CommentDAO/findCommentByContent.query]JPASelect
+	 * JPASelect
 	 */
 	@Transactional
 	public Set<Comment> findCommentByContent(String content1) throws DataAccessException {
@@ -213,7 +213,7 @@ public class CommentDAOImpl extends AbstractJpaDao<Comment> implements
 	/**
 	 * JPQL Query - findCommentByContent
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/CommentDAO/findCommentByContent.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
 
 	@SuppressWarnings("unchecked")
@@ -226,7 +226,7 @@ public class CommentDAOImpl extends AbstractJpaDao<Comment> implements
 	/**
 	 * JPQL Query - findCommentByCreateTime
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/CommentDAO/findCommentByCreateTime.query]JPASelect
+	 * JPASelect
 	 */
 	@Transactional
 	public Set<Comment> findCommentByCreateTime(java.util.Calendar createTime) throws DataAccessException {
@@ -237,7 +237,7 @@ public class CommentDAOImpl extends AbstractJpaDao<Comment> implements
 	/**
 	 * JPQL Query - findCommentByCreateTime
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/CommentDAO/findCommentByCreateTime.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
 
 	@SuppressWarnings("unchecked")

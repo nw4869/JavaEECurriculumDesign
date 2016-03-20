@@ -57,54 +57,54 @@ public class UserDAOTest {
 	 *
 	 * @generated
 	 */
-//	@Ignore
+	//	@Ignore
 	@Rollback(false)
 	@Test
 	public void User() {
 		User instance = new User();
 
 		// Test create				
-		// TODO: Populate instance for create.  The store will fail if the primary key fields are blank.	
-		instance.setUsername(UUID.randomUUID().toString().substring(0, 16));
-		instance.setPassword("pwd");
+		// TODO: Populate instance for create.  The store will fail if the primary key fields are blank.				
 
 		// store the object
-		instance = dataStore.store(instance);
+		dataStore.store(instance);
 
 		// Test update
 		// TODO: Modify non-key domain object values for update
 
 		// update the object
-//		dataStore.store(instance);
+		dataStore.store(instance);
 
 		// Test delete
 		dataStore.remove(instance);
 
 	}
-	
+
 	@Test
 	public void executeFind() {
 		System.out.println("executeFind()");
 		List<com.nightwind.bbs.domain.User> result = dataStore.executeQuery("SELECT u from User u WHERE u.id > ?1", 3);
-		for (User user: result) {
+		for (User user : result) {
 			System.out.println(user.getUsername());
 		}
 		User user = (com.nightwind.bbs.domain.User) dataStore.executeQuerySingleResult("select u from User u where u.id = 11");
 		System.out.println("user  : " + user.getUsername());
 	}
-	
+
 	@Test
 	public void findUser() {
-		User user = dataStore.findUserByUsername("nw").iterator().next();
-		System.out.println("user " + user);
+		//		User user = dataStore.findUserByUsername("nw").iterator().next();
+		//		System.out.println("user " + user);
+		dataStore.findUserByUsername("nw1").iterator().next();
 	}
-	
+
 	@Test
 	public void insertUser() {
 		User user = new User();
-		user.setUsername(UUID.randomUUID().toString().substring(0, 16));
+		//		user.setUsername(UUID.randomUUID().toString().substring(0, 16));
+		user.setUsername("nw");
 		user.setPassword("pwd");
-		// !! store调用merge()，返回一个managed状态的新实体！！
+		// !! store??????merge()???????????????managed????????????????????????
 		user = dataStore.store(user);
 		System.out.println("user id = " + user.getId() + " enabled = " + user.getEnabled());
 		dataStore.remove(user);

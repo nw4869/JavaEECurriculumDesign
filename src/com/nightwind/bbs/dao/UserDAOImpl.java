@@ -23,7 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * DAO to manage User entities.
  * 
- * @ModelCoreReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/UserDAO/.properties.datastore]
+ * 
  * @generated
  */
 @Repository("UserDAO")
@@ -75,7 +75,7 @@ public class UserDAOImpl extends AbstractJpaDao<User> implements UserDAO {
 	/**
 	 * JPQL Query - findUserByMemberTitleContaining
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/UserDAO/findUserByMemberTitleContaining.query]JPASelect
+	 * JPASelect
 	 */
 	@Transactional
 	public Set<User> findUserByMemberTitleContaining(String memberTitle) throws DataAccessException {
@@ -86,7 +86,7 @@ public class UserDAOImpl extends AbstractJpaDao<User> implements UserDAO {
 	/**
 	 * JPQL Query - findUserByMemberTitleContaining
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/UserDAO/findUserByMemberTitleContaining.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
 
 	@SuppressWarnings("unchecked")
@@ -99,7 +99,7 @@ public class UserDAOImpl extends AbstractJpaDao<User> implements UserDAO {
 	/**
 	 * JPQL Query - findUserByUsernameContaining
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/UserDAO/findUserByUsernameContaining.query]JPASelect
+	 * JPASelect
 	 */
 	@Transactional
 	public Set<User> findUserByUsernameContaining(String username) throws DataAccessException {
@@ -110,7 +110,7 @@ public class UserDAOImpl extends AbstractJpaDao<User> implements UserDAO {
 	/**
 	 * JPQL Query - findUserByUsernameContaining
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/UserDAO/findUserByUsernameContaining.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
 
 	@SuppressWarnings("unchecked")
@@ -123,7 +123,7 @@ public class UserDAOImpl extends AbstractJpaDao<User> implements UserDAO {
 	/**
 	 * JPQL Query - findUserByPassword
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/UserDAO/findUserByPassword.query]JPASelect
+	 * JPASelect
 	 */
 	@Transactional
 	public Set<User> findUserByPassword(String password) throws DataAccessException {
@@ -134,7 +134,7 @@ public class UserDAOImpl extends AbstractJpaDao<User> implements UserDAO {
 	/**
 	 * JPQL Query - findUserByPassword
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/UserDAO/findUserByPassword.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
 
 	@SuppressWarnings("unchecked")
@@ -147,7 +147,7 @@ public class UserDAOImpl extends AbstractJpaDao<User> implements UserDAO {
 	/**
 	 * JPQL Query - findUserBySignatureContaining
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/UserDAO/findUserBySignatureContaining.query]JPASelect
+	 * JPASelect
 	 */
 	@Transactional
 	public Set<User> findUserBySignatureContaining(String signature) throws DataAccessException {
@@ -158,7 +158,7 @@ public class UserDAOImpl extends AbstractJpaDao<User> implements UserDAO {
 	/**
 	 * JPQL Query - findUserBySignatureContaining
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/UserDAO/findUserBySignatureContaining.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
 
 	@SuppressWarnings("unchecked")
@@ -171,7 +171,7 @@ public class UserDAOImpl extends AbstractJpaDao<User> implements UserDAO {
 	/**
 	 * JPQL Query - findUserByCreateTime
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/UserDAO/findUserByCreateTime.query]JPASelect
+	 * JPASelect
 	 */
 	@Transactional
 	public Set<User> findUserByCreateTime(java.util.Calendar createTime) throws DataAccessException {
@@ -182,7 +182,7 @@ public class UserDAOImpl extends AbstractJpaDao<User> implements UserDAO {
 	/**
 	 * JPQL Query - findUserByCreateTime
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/UserDAO/findUserByCreateTime.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
 
 	@SuppressWarnings("unchecked")
@@ -195,7 +195,7 @@ public class UserDAOImpl extends AbstractJpaDao<User> implements UserDAO {
 	/**
 	 * JPQL Query - findUserByAvatarContaining
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/UserDAO/findUserByAvatarContaining.query]JPASelect
+	 * JPASelect
 	 */
 	@Transactional
 	public Set<User> findUserByAvatarContaining(String avatar) throws DataAccessException {
@@ -206,7 +206,7 @@ public class UserDAOImpl extends AbstractJpaDao<User> implements UserDAO {
 	/**
 	 * JPQL Query - findUserByAvatarContaining
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/UserDAO/findUserByAvatarContaining.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
 
 	@SuppressWarnings("unchecked")
@@ -219,7 +219,7 @@ public class UserDAOImpl extends AbstractJpaDao<User> implements UserDAO {
 	/**
 	 * JPQL Query - findUserByUsername
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/UserDAO/findUserByUsername.query]JPASelect
+	 * JPASelect
 	 */
 	@Transactional
 	public Set<User> findUserByUsername(String username) throws DataAccessException {
@@ -230,7 +230,7 @@ public class UserDAOImpl extends AbstractJpaDao<User> implements UserDAO {
 	/**
 	 * JPQL Query - findUserByUsername
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/UserDAO/findUserByUsername.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
 
 	@SuppressWarnings("unchecked")
@@ -243,7 +243,7 @@ public class UserDAOImpl extends AbstractJpaDao<User> implements UserDAO {
 	/**
 	 * JPQL Query - findUserByPrimaryKey
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/UserDAO/findUserByPrimaryKey.query]JPASelect
+	 * JPASelect
 	 */
 	@Transactional
 	public User findUserByPrimaryKey(Integer id) throws DataAccessException {
@@ -254,7 +254,7 @@ public class UserDAOImpl extends AbstractJpaDao<User> implements UserDAO {
 	/**
 	 * JPQL Query - findUserByPrimaryKey
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/UserDAO/findUserByPrimaryKey.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
 
 	@Transactional
@@ -270,7 +270,7 @@ public class UserDAOImpl extends AbstractJpaDao<User> implements UserDAO {
 	/**
 	 * JPQL Query - findUserById
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/UserDAO/findUserById.query]JPASelect
+	 * JPASelect
 	 */
 	@Transactional
 	public User findUserById(Integer id) throws DataAccessException {
@@ -281,7 +281,7 @@ public class UserDAOImpl extends AbstractJpaDao<User> implements UserDAO {
 	/**
 	 * JPQL Query - findUserById
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/UserDAO/findUserById.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
 
 	@Transactional
@@ -297,7 +297,7 @@ public class UserDAOImpl extends AbstractJpaDao<User> implements UserDAO {
 	/**
 	 * JPQL Query - findUserByEnabled
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/UserDAO/findUserByEnabled.query]JPASelect
+	 * JPASelect
 	 */
 	@Transactional
 	public Set<User> findUserByEnabled(Boolean enabled) throws DataAccessException {
@@ -308,7 +308,7 @@ public class UserDAOImpl extends AbstractJpaDao<User> implements UserDAO {
 	/**
 	 * JPQL Query - findUserByEnabled
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/UserDAO/findUserByEnabled.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
 
 	@SuppressWarnings("unchecked")
@@ -321,7 +321,7 @@ public class UserDAOImpl extends AbstractJpaDao<User> implements UserDAO {
 	/**
 	 * JPQL Query - findUserByAvatar
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/UserDAO/findUserByAvatar.query]JPASelect
+	 * JPASelect
 	 */
 	@Transactional
 	public Set<User> findUserByAvatar(String avatar) throws DataAccessException {
@@ -332,7 +332,7 @@ public class UserDAOImpl extends AbstractJpaDao<User> implements UserDAO {
 	/**
 	 * JPQL Query - findUserByAvatar
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/UserDAO/findUserByAvatar.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
 
 	@SuppressWarnings("unchecked")
@@ -345,7 +345,7 @@ public class UserDAOImpl extends AbstractJpaDao<User> implements UserDAO {
 	/**
 	 * JPQL Query - findAllUsers
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/UserDAO/findAllUsers.query]JPASelect
+	 * JPASelect
 	 */
 	@Transactional
 	public Set<User> findAllUsers() throws DataAccessException {
@@ -356,7 +356,7 @@ public class UserDAOImpl extends AbstractJpaDao<User> implements UserDAO {
 	/**
 	 * JPQL Query - findAllUsers
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/UserDAO/findAllUsers.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
 
 	@SuppressWarnings("unchecked")
@@ -369,7 +369,7 @@ public class UserDAOImpl extends AbstractJpaDao<User> implements UserDAO {
 	/**
 	 * JPQL Query - findUserByEmailContaining
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/UserDAO/findUserByEmailContaining.query]JPASelect
+	 * JPASelect
 	 */
 	@Transactional
 	public Set<User> findUserByEmailContaining(String email) throws DataAccessException {
@@ -380,7 +380,7 @@ public class UserDAOImpl extends AbstractJpaDao<User> implements UserDAO {
 	/**
 	 * JPQL Query - findUserByEmailContaining
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/UserDAO/findUserByEmailContaining.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
 
 	@SuppressWarnings("unchecked")
@@ -393,7 +393,7 @@ public class UserDAOImpl extends AbstractJpaDao<User> implements UserDAO {
 	/**
 	 * JPQL Query - findUserByEmail
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/UserDAO/findUserByEmail.query]JPASelect
+	 * JPASelect
 	 */
 	@Transactional
 	public Set<User> findUserByEmail(String email) throws DataAccessException {
@@ -404,7 +404,7 @@ public class UserDAOImpl extends AbstractJpaDao<User> implements UserDAO {
 	/**
 	 * JPQL Query - findUserByEmail
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/UserDAO/findUserByEmail.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
 
 	@SuppressWarnings("unchecked")
@@ -417,7 +417,7 @@ public class UserDAOImpl extends AbstractJpaDao<User> implements UserDAO {
 	/**
 	 * JPQL Query - findUserByMemberTitle
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/UserDAO/findUserByMemberTitle.query]JPASelect
+	 * JPASelect
 	 */
 	@Transactional
 	public Set<User> findUserByMemberTitle(String memberTitle) throws DataAccessException {
@@ -428,7 +428,7 @@ public class UserDAOImpl extends AbstractJpaDao<User> implements UserDAO {
 	/**
 	 * JPQL Query - findUserByMemberTitle
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/UserDAO/findUserByMemberTitle.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
 
 	@SuppressWarnings("unchecked")
@@ -441,7 +441,7 @@ public class UserDAOImpl extends AbstractJpaDao<User> implements UserDAO {
 	/**
 	 * JPQL Query - findUserBySignature
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/UserDAO/findUserBySignature.query]JPASelect
+	 * JPASelect
 	 */
 	@Transactional
 	public Set<User> findUserBySignature(String signature) throws DataAccessException {
@@ -452,7 +452,7 @@ public class UserDAOImpl extends AbstractJpaDao<User> implements UserDAO {
 	/**
 	 * JPQL Query - findUserBySignature
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/UserDAO/findUserBySignature.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
 
 	@SuppressWarnings("unchecked")
@@ -465,7 +465,7 @@ public class UserDAOImpl extends AbstractJpaDao<User> implements UserDAO {
 	/**
 	 * JPQL Query - findUserByPasswordContaining
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/UserDAO/findUserByPasswordContaining.query]JPASelect
+	 * JPASelect
 	 */
 	@Transactional
 	public Set<User> findUserByPasswordContaining(String password) throws DataAccessException {
@@ -476,7 +476,7 @@ public class UserDAOImpl extends AbstractJpaDao<User> implements UserDAO {
 	/**
 	 * JPQL Query - findUserByPasswordContaining
 	 *
-	 * @ModelReference [platform:/resource/bbs/.springDSL/com/nightwind/bbs/dao/UserDAO/findUserByPasswordContaining.query]JPASelectWithPagination
+	 * JPASelectWithPagination
 	 */
 
 	@SuppressWarnings("unchecked")

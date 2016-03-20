@@ -65,7 +65,6 @@ public class ForumDAOTest {
 	@Test
 	public void Forum() {
 		Forum instance = new Forum();
-		instance.setTitle("hello world");
 
 		// Test create				
 		// TODO: Populate instance for create.  The store will fail if the primary key fields are blank.				
