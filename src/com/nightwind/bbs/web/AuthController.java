@@ -35,7 +35,7 @@ public class AuthController {
 	public ModelAndView displayLogin(User user, ModelMap model) {
 		ModelAndView mav = new ModelAndView();
 		if (model.get("crtUser") != null) {
-			mav.setViewName("redirect:../index.jsp");
+			mav.setViewName("redirect:/");
 		} else {
 			mav.setViewName("auth/login.jsp");
 			mav.addObject("userForm", user);	
@@ -58,7 +58,8 @@ public class AuthController {
 		try {
 			user = userServiceEx.login(user.getUsername(), user.getPassword());
 			mav.addObject("crtUser", user);
-			mav.setViewName("auth/login-success.jsp");
+//			mav.setViewName("auth/login-success.jsp");
+			mav.setViewName("redirect:/");
 		} catch (AuthorizeException e) {
 			bindingResult.rejectValue("password","auth.wrongPassword", "wrong password!");
 			mav.setViewName("auth/login.jsp");
@@ -72,7 +73,8 @@ public class AuthController {
 
 	@RequestMapping(value="logout.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView logout(@RequestHeader(value = "referer") String referer, SessionStatus sessionStatus) {
-		ModelAndView mav = new ModelAndView("auth/logout-success.jsp");
+//		ModelAndView mav = new ModelAndView("auth/logout-success.jsp");
+		ModelAndView mav = new ModelAndView("redirect:/");
 		mav.addObject("referer", referer);
 		mav.addObject("crtUser", null);
 		sessionStatus.setComplete();
@@ -84,7 +86,7 @@ public class AuthController {
 	{
 		ModelAndView mav = new ModelAndView();
 		if (model.get("crtUser") != null) {
-			mav.setViewName("redirect:../index.jsp");
+			mav.setViewName("redirect:/");
 		} else {
 			mav.addObject("userForm", user);
 			mav.setViewName("auth/register.jsp");
@@ -97,10 +99,16 @@ public class AuthController {
 			BindingResult result, Model model) {
 		ModelAndView mav = new ModelAndView();
 		
+		if (result.hasErrors()) {
+			mav.setViewName("auth/register.jsp");
+			return mav;
+		}
+		
 		try {
 			user = userServiceEx.register(user.getUsername(), user.getPassword());
 			mav.addObject("crtUser", user);
-			mav.setViewName("auth/register-success.jsp");
+//			mav.setViewName("auth/register-success.jsp");
+			mav.setViewName("redirect:/");
 		} catch (AccountExistedException e) {
 			result.rejectValue("username", "userExisting", "user existing");
 			mav.setViewName("auth/register.jsp");

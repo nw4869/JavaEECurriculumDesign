@@ -66,7 +66,7 @@ public class UserController {
 			user.setEmail(crtUser.getEmail());
 		}
 		if (user.getSignature() == null || user.getEmail().length() == 0) {
-			user.setEmail(crtUser.getSignature());
+			user.setSignature(crtUser.getSignature());
 		}
 		mav.addObject("userForm", user);
 		return mav;

@@ -152,11 +152,12 @@ public class UserServiceExTest {
 	@Test
 	public void login() throws com.nightwind.exception.AuthorizeException, com.nightwind.exception.UserNotFoundException {
 		// TODO: JUnit - Populate test inputs for operation: login 
-		String username = null;
-		String password = null;
+		String username = "nw";
+		String password = "4869";
 		User response = null;
 		response = service.login(username, password);
 		// TODO: JUnit - Add assertions to test outputs of operation: login
+		System.out.println("response: " + response);
 	}
 
 	/**
