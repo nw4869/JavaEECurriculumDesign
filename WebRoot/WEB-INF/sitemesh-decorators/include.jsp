@@ -13,6 +13,6 @@
 <%-- <c:set var="_req" value="${pageContext.request }"/> --%>
 <%-- <c:set var="_basePath" value="${_req.scheme}://${_req.serverName}:${_req.serverPort}${_req.contextPath}/" /> --%>
 <c:set var="homePath" value="${pageContext.request.contextPath }/" />
-<c:set var="loginPath" value="${pageContext.request.contextPath }/auth/login.do"></c:set>
-<c:set var="logoutPath" value="${pageContext.request.contextPath }/auth/logout.do"></c:set>
-<c:set var="registerPath" value="${pageContext.request.contextPath }/auth/register.do"></c:set>
+<c:set var="loginPath" value="${pageContext.request.contextPath }/auth/login"></c:set>
+<c:set var="logoutPath" value="${pageContext.request.contextPath }/auth/logout"></c:set>
+<c:set var="registerPath" value="${pageContext.request.contextPath }/auth/register"></c:set>

@@ -2,21 +2,19 @@ package com.nightwind.bbs.web;
 
 import javax.validation.Valid;
 
-import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.nightwind.bbs.domain.User;
 import com.nightwind.bbs.service.UserServiceEx;
-import com.nightwind.exception.AccountExistedException;
 import com.nightwind.exception.UserNotFoundException;
 
 @SessionAttributes("crtUser")
@@ -27,31 +25,30 @@ public class UserController {
 	@Autowired
 	private UserServiceEx userServiceEx;
 
-	@RequestMapping(value = "/info.do", method = RequestMethod.GET)
-	public ModelAndView info(@RequestParam(required=false) Integer id, ModelMap model) {
+	@RequestMapping(value = {"/{id}"}, method = RequestMethod.GET)
+	public ModelAndView info(@PathVariable("id")  Integer id, ModelMap model) throws UserNotFoundException {
 		ModelAndView mav = new ModelAndView();
+		
+//		System.out.println("path Id = " + id);
 		
 		User user = (User) model.get("crtUser");
 		if (id == null) {
 			if (user == null) {
-				throw new ResourceNotFoundException("User not found");
+				throw new UserNotFoundException(id);
 			} else {
 				id = user.getId();
 			}
 		} 
 		
-		try {
-			mav.addObject("user", userServiceEx.findUserById(id));
-		} catch (UserNotFoundException e) {
-			throw new ResourceNotFoundException("User not found"); 
-		}
+		mav.addObject("user", userServiceEx.findUserById(id));
+
 		
 		mav.setViewName("user/info.jsp");
 		return mav;
 	}
 	
 
-	@RequestMapping(value = "/update.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public ModelAndView displayUpdateInfo(User user, ModelMap model) {
 		ModelAndView mav = new ModelAndView("user/update.jsp");
 		
@@ -60,7 +57,7 @@ public class UserController {
 		System.out.println("user: " + user);
 		if (crtUser == null) {
 			// not login
-			mav.setViewName("redirect:/auth/login.do");
+			mav.setViewName("redirect:/auth/login");
 		}
 		if (user.getEmail() == null || user.getEmail().length() == 0) {
 			user.setEmail(crtUser.getEmail());
@@ -72,28 +69,26 @@ public class UserController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/update.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public ModelAndView updateInfo(@Valid @ModelAttribute("userForm") User user,
-			BindingResult result, ModelMap model) throws AccountExistedException {
+			BindingResult result, ModelMap model) throws UserNotFoundException {
 		ModelAndView mav = new ModelAndView("user/update.jsp");
 
 		User crtUser = (User) model.get("crtUser");
 		if (crtUser == null) {
 			// not login
-			mav.setViewName("redirect:/auth/login.do");
+			mav.setViewName("redirect:/auth/login");
 		}
 		
 		if (result.hasErrors()) {
 			return mav;
 		}
 
-		try {
-			user.setId(crtUser.getId());
-			userServiceEx.updateInfo(user);
-			mav.addObject("message", "update success");
-		} catch (UserNotFoundException e) {
-			throw new ResourceNotFoundException("User not found");
-		}
+		user.setId(crtUser.getId());
+		crtUser = userServiceEx.updateInfo(user);
+		mav.addObject("crtUser", crtUser);
+		mav.addObject("message", "update success");
+
 		
 		return mav;
 	}

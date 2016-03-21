@@ -113,8 +113,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- 						<span>邮箱地址 <label>*</label></span> <input type="text"> -->
 <!-- 					</div> -->
 					<div class="clearfix"></div>
-					<a class="news-letter" href="#"> <label class="checkbox"><input
-							type="checkbox" name="checkbox" checked=""> <i> </i><!-- 注册通讯 --></label>
+					<a class="news-letter" href="#"> <!-- <label class="checkbox"><input
+							type="checkbox" name="checkbox" checked=""> <i> </i>注册通讯</label> -->
 					</a>
 				</div>
 				<div class="register-bottom-grid">

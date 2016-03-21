@@ -65,7 +65,7 @@
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>bbs Servlet</servlet-name>
-		<url-pattern>*.do</url-pattern>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>bbs Servlet</servlet-name>
@@ -491,7 +491,7 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:applicationContext.xml</param-value>
 	</context-param>
-	<welcome-file-list>
+<!-- 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
-	</welcome-file-list>
+	</welcome-file-list> -->
 </web-app>

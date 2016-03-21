@@ -1382,6 +1382,22 @@ a.forgot {
 	font-size: 1em;
 	padding: 0.5em;
 }
+
+.register form input[type="submit"] {
+	background: #1BBC9B;
+	color: #FFF;
+	font-size: 1em;
+	padding: 0.7em 1.2em;
+	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	display: inline-block;
+	text-transform: uppercase;
+	border:none;
+	outline:none;
+}
+
 .checkbox {
 	margin-bottom: 4px;
 	padding-left: 27px;
@@ -2833,7 +2849,7 @@ span.menu {
 	.bolg-posts {
 		padding: 4em 0;
 	}
-	.contact-form input[type="text"] {;
+	.contact-form input[type="text"] {
 		width: 31.6%;
 	}
 	.map iframe {

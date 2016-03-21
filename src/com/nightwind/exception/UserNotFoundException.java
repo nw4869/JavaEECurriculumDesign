@@ -1,21 +1,22 @@
 package com.nightwind.exception;
 
-import java.lang.Exception;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
-/**
- * 
- * @generated
- */
+
+@ResponseStatus(value = HttpStatus.NOT_FOUND)
 public class UserNotFoundException extends Exception {
 
 	private static final long serialVersionUID = 1L;
+	
+	private static final String DEFAULT_MSG = "User Not Found";
 
 	/**
 	 * Default Constructor
 	 * @generated
 	 */
 	public UserNotFoundException() {
-		super();
+		super(DEFAULT_MSG);
 	}
 
 	/**
@@ -40,6 +41,10 @@ public class UserNotFoundException extends Exception {
 	 */
 	public UserNotFoundException(String message, Throwable t) {
 		super(message, t);
+	}
+
+	public UserNotFoundException(Integer userId) {
+		super(DEFAULT_MSG + ": userId=" + userId);
 	}
 
 }

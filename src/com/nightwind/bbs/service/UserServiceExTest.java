@@ -2,6 +2,7 @@ package com.nightwind.bbs.service;
 
 import com.nightwind.bbs.domain.User;
 import com.nightwind.exception.AccountExistedException;
+import com.nightwind.exception.UserNotFoundException;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -205,6 +206,12 @@ public class UserServiceExTest {
 		String password_1 = null;
 		String newPassword = null;
 		service.updatePassword(id_2, password_1, newPassword);
+	}
+	
+	@Test
+	public void getAuthorize() throws UserNotFoundException {
+		User user = service.findUserById(1);
+		System.out.println(user.getAuthorities());
 	}
 
 	/**

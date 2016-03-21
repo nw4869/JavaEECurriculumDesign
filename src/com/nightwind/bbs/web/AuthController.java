@@ -31,7 +31,7 @@ public class AuthController {
 	@Autowired
 	private UserServiceEx userServiceEx;
 
-	@RequestMapping(value = "/login.do", method = { RequestMethod.GET })
+	@RequestMapping(value = "/login", method = { RequestMethod.GET })
 	public ModelAndView displayLogin(User user, ModelMap model) {
 		ModelAndView mav = new ModelAndView();
 		if (model.get("crtUser") != null) {
@@ -43,7 +43,7 @@ public class AuthController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView login(@Valid @ModelAttribute("userForm") User user,
 			BindingResult bindingResult, ModelMap model) {
 		ModelAndView mav = new ModelAndView();
@@ -71,7 +71,7 @@ public class AuthController {
 		return mav;
 	}
 
-	@RequestMapping(value="logout.do", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="logout", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView logout(@RequestHeader(value = "referer") String referer, SessionStatus sessionStatus) {
 //		ModelAndView mav = new ModelAndView("auth/logout-success.jsp");
 		ModelAndView mav = new ModelAndView("redirect:/");
@@ -81,7 +81,7 @@ public class AuthController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/register.do", method=RequestMethod.GET)
+	@RequestMapping(value="/register", method=RequestMethod.GET)
 	public ModelAndView displayRegister(User user, ModelMap model)
 	{
 		ModelAndView mav = new ModelAndView();
@@ -94,7 +94,7 @@ public class AuthController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/register.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ModelAndView register(@Valid @ModelAttribute("userForm") User user,
 			BindingResult result, Model model) {
 		ModelAndView mav = new ModelAndView();

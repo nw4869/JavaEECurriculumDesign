@@ -2,10 +2,14 @@ package com.nightwind.exception;
 
 import java.lang.Exception;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
 /**
  * 
  * @generated
  */
+@ResponseStatus(value=HttpStatus.FORBIDDEN)
 @javax.xml.ws.WebFault(targetNamespace = "bbs/com/nightwind/bbs/service/UserServiceEx", name = "AuthorizeException")
 public class AuthorizeException extends Exception {
 

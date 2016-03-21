@@ -1,5 +1,8 @@
 package com.nightwind.bbs.service;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -77,10 +80,29 @@ public class UserServiceExImpl implements UserServiceEx {
 	}
 
 	/**
-	 * 
+	 * MD5
 	 */
 	protected String encriptPassword(String plainPwd) {
-		return plainPwd;
+//		return plainPwd;
+		try {
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			md.update(plainPwd.getBytes("UTF-8"));
+			return bytes2Hex(md.digest());
+		} catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return "";
+		}
+	}
+	
+	static protected String bytes2Hex(byte[] raw) {
+		final char[] HEX = "0123456789ABCDEF".toCharArray();
+
+		StringBuilder hex = new StringBuilder(2 * raw.length);
+		for (byte b: raw) {
+			hex.append(HEX[ (b & 0xF0) >> 4 ])
+				.append(HEX[ (b & 0x0F) ]);
+		}
+		return hex.toString();
 	}
 
 	/**
