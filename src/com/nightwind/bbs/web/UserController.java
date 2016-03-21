@@ -24,24 +24,22 @@ public class UserController {
 
 	@Autowired
 	private UserServiceEx userServiceEx;
+	
+	@RequestMapping(value = {"", "/"}, method= RequestMethod.GET)
+	public String index(ModelMap model) throws UserNotFoundException {
+		User user = (User) model.get("crtUser");
+		if (user != null && user.getId() != null) {
+			return "redirect:/user/" + user.getId();
+		} else {
+			throw new UserNotFoundException();
+		}
+	}
 
 	@RequestMapping(value = {"/{id}"}, method = RequestMethod.GET)
-	public ModelAndView info(@PathVariable("id")  Integer id, ModelMap model) throws UserNotFoundException {
+	public ModelAndView info(@PathVariable(value = "id")  Integer id, ModelMap model) throws UserNotFoundException {
 		ModelAndView mav = new ModelAndView();
 		
-//		System.out.println("path Id = " + id);
-		
-		User user = (User) model.get("crtUser");
-		if (id == null) {
-			if (user == null) {
-				throw new UserNotFoundException(id);
-			} else {
-				id = user.getId();
-			}
-		} 
-		
 		mav.addObject("user", userServiceEx.findUserById(id));
-
 		
 		mav.setViewName("user/info.jsp");
 		return mav;
@@ -58,6 +56,7 @@ public class UserController {
 		if (crtUser == null) {
 			// not login
 			mav.setViewName("redirect:/auth/login");
+			return mav;
 		}
 		if (user.getEmail() == null || user.getEmail().length() == 0) {
 			user.setEmail(crtUser.getEmail());

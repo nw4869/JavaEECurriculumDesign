@@ -16,3 +16,7 @@
 <c:set var="loginPath" value="${pageContext.request.contextPath }/auth/login"></c:set>
 <c:set var="logoutPath" value="${pageContext.request.contextPath }/auth/logout"></c:set>
 <c:set var="registerPath" value="${pageContext.request.contextPath }/auth/register"></c:set>
+<c:set var="forumBasePath" value="${pageContext.request.contextPath }/forum/"></c:set>
+<c:set var="topicBasePath" value="${pageContext.request.contextPath }/topic/"></c:set>
+<c:set var="replyBasePath" value="${pageContext.request.contextPath }/reply/"></c:set>
+

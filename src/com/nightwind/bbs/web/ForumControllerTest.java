@@ -25,7 +25,7 @@ import org.springframework.web.context.request.SessionScope;
 /**
  * Unit test for the <code>ForumController</code> controller.
  *
- * @see com.nightwind.bbs.web.ForumController
+ * @see com.nightwind.bbs.web.ForumCURDController
  * @generated
  * @AuxiliaryModelComponent
  */
@@ -60,7 +60,7 @@ public class ForumControllerTest {
 		MockHttpServletResponse response = getMockHttpServletResponse();
 
 		// Get the singleton controller instance
-		ForumController controller = (ForumController) context.getBean("ForumController");
+		ForumCURDController controller = (ForumCURDController) context.getBean("ForumController");
 
 		// TODO Invoke method and Assert return values
 
@@ -83,7 +83,7 @@ public class ForumControllerTest {
 		MockHttpServletResponse response = getMockHttpServletResponse();
 
 		// Get the singleton controller instance
-		ForumController controller = (ForumController) context.getBean("ForumController");
+		ForumCURDController controller = (ForumCURDController) context.getBean("ForumController");
 
 		// TODO Invoke method and Assert return values
 
@@ -106,7 +106,7 @@ public class ForumControllerTest {
 		MockHttpServletResponse response = getMockHttpServletResponse();
 
 		// Get the singleton controller instance
-		ForumController controller = (ForumController) context.getBean("ForumController");
+		ForumCURDController controller = (ForumCURDController) context.getBean("ForumController");
 
 		// TODO Invoke method and Assert return values
 
@@ -129,7 +129,7 @@ public class ForumControllerTest {
 		MockHttpServletResponse response = getMockHttpServletResponse();
 
 		// Get the singleton controller instance
-		ForumController controller = (ForumController) context.getBean("ForumController");
+		ForumCURDController controller = (ForumCURDController) context.getBean("ForumController");
 
 		// TODO Invoke method and Assert return values
 
@@ -152,7 +152,7 @@ public class ForumControllerTest {
 		MockHttpServletResponse response = getMockHttpServletResponse();
 
 		// Get the singleton controller instance
-		ForumController controller = (ForumController) context.getBean("ForumController");
+		ForumCURDController controller = (ForumCURDController) context.getBean("ForumController");
 
 		// TODO Invoke method and Assert return values
 
@@ -175,7 +175,7 @@ public class ForumControllerTest {
 		MockHttpServletResponse response = getMockHttpServletResponse();
 
 		// Get the singleton controller instance
-		ForumController controller = (ForumController) context.getBean("ForumController");
+		ForumCURDController controller = (ForumCURDController) context.getBean("ForumController");
 
 		// TODO Invoke method and Assert return values
 
@@ -198,7 +198,7 @@ public class ForumControllerTest {
 		MockHttpServletResponse response = getMockHttpServletResponse();
 
 		// Get the singleton controller instance
-		ForumController controller = (ForumController) context.getBean("ForumController");
+		ForumCURDController controller = (ForumCURDController) context.getBean("ForumController");
 
 		// TODO Invoke method and Assert return values
 
@@ -221,7 +221,7 @@ public class ForumControllerTest {
 		MockHttpServletResponse response = getMockHttpServletResponse();
 
 		// Get the singleton controller instance
-		ForumController controller = (ForumController) context.getBean("ForumController");
+		ForumCURDController controller = (ForumCURDController) context.getBean("ForumController");
 
 		// TODO Invoke method and Assert return values
 
@@ -244,7 +244,7 @@ public class ForumControllerTest {
 		MockHttpServletResponse response = getMockHttpServletResponse();
 
 		// Get the singleton controller instance
-		ForumController controller = (ForumController) context.getBean("ForumController");
+		ForumCURDController controller = (ForumCURDController) context.getBean("ForumController");
 
 		// TODO Invoke method and Assert return values
 
@@ -267,7 +267,7 @@ public class ForumControllerTest {
 		MockHttpServletResponse response = getMockHttpServletResponse();
 
 		// Get the singleton controller instance
-		ForumController controller = (ForumController) context.getBean("ForumController");
+		ForumCURDController controller = (ForumCURDController) context.getBean("ForumController");
 
 		// TODO Invoke method and Assert return values
 
@@ -290,7 +290,7 @@ public class ForumControllerTest {
 		MockHttpServletResponse response = getMockHttpServletResponse();
 
 		// Get the singleton controller instance
-		ForumController controller = (ForumController) context.getBean("ForumController");
+		ForumCURDController controller = (ForumCURDController) context.getBean("ForumController");
 
 		// TODO Invoke method and Assert return values
 
@@ -313,7 +313,7 @@ public class ForumControllerTest {
 		MockHttpServletResponse response = getMockHttpServletResponse();
 
 		// Get the singleton controller instance
-		ForumController controller = (ForumController) context.getBean("ForumController");
+		ForumCURDController controller = (ForumCURDController) context.getBean("ForumController");
 
 		// TODO Invoke method and Assert return values
 
@@ -336,7 +336,7 @@ public class ForumControllerTest {
 		MockHttpServletResponse response = getMockHttpServletResponse();
 
 		// Get the singleton controller instance
-		ForumController controller = (ForumController) context.getBean("ForumController");
+		ForumCURDController controller = (ForumCURDController) context.getBean("ForumController");
 
 		// TODO Invoke method and Assert return values
 
@@ -359,7 +359,7 @@ public class ForumControllerTest {
 		MockHttpServletResponse response = getMockHttpServletResponse();
 
 		// Get the singleton controller instance
-		ForumController controller = (ForumController) context.getBean("ForumController");
+		ForumCURDController controller = (ForumCURDController) context.getBean("ForumController");
 
 		// TODO Invoke method and Assert return values
 
@@ -382,7 +382,7 @@ public class ForumControllerTest {
 		MockHttpServletResponse response = getMockHttpServletResponse();
 
 		// Get the singleton controller instance
-		ForumController controller = (ForumController) context.getBean("ForumController");
+		ForumCURDController controller = (ForumCURDController) context.getBean("ForumController");
 
 		// TODO Invoke method and Assert return values
 
