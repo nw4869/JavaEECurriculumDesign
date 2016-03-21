@@ -33,7 +33,9 @@
 	<br />
 	<ul>
 		<c:forEach var="topic" items="${forum.forumThreads }">
-			<li><a href="${topicBasePath }${topic.id}">${topic.title }</a>&nbsp; <!-- ${topic.createTime } --></li>
+			<li><a href="${topicBasePath }${topic.id}">${topic.title }</a>
+			<a href="${userBasePath }${topic.user.id}">${topic.user.username }</a>
+				 ${topic.createTime.time } </li>
 		</c:forEach>
 	</ul>
 </body>

@@ -62,7 +62,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<li><a href="${homePath }">主页</a></li>
 										<li class="dropdown1"><a  href="">最新热帖</a>
 										</li>     
-										<li class="dropdown1"><a  href=" ">话题分类</a>
+										<li class="dropdown1"><a  href="${forumBastPath } ">话题分类</a>
 										</li>  
 										<li class="dropdown1"><a  href="">求职招聘</a>
 										</li> 

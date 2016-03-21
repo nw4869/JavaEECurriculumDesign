@@ -138,7 +138,7 @@ public class User implements Serializable {
 	 * 
 	 */
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "create_time", insertable = false)
+	@Column(name = "create_time", insertable = false, updatable = false)
 	@Basic(fetch = FetchType.EAGER)
 	@XmlElement
 	Calendar createTime;

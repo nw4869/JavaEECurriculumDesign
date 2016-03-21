@@ -96,7 +96,7 @@ public class AuthController {
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ModelAndView register(@Valid @ModelAttribute("userForm") User user,
-			BindingResult result, Model model) {
+			BindingResult result, Model model) throws UserNotFoundException {
 		ModelAndView mav = new ModelAndView();
 		
 		if (result.hasErrors()) {
@@ -105,7 +105,13 @@ public class AuthController {
 		}
 		
 		try {
-			user = userServiceEx.register(user.getUsername(), user.getPassword());
+			User userSaved = userServiceEx.register(user.getUsername(), user.getPassword());
+			System.out.println("new user:" + userSaved);
+			user.setId(userSaved.getId());
+			// update basic info
+			user = userServiceEx.updateInfo(user);
+			System.out.println("updated user:" + user);
+			
 			mav.addObject("crtUser", user);
 //			mav.setViewName("auth/register-success.jsp");
 			mav.setViewName("redirect:/");

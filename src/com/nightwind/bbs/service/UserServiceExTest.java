@@ -1,5 +1,7 @@
 package com.nightwind.bbs.service;
 
+import java.util.UUID;
+
 import com.nightwind.bbs.domain.User;
 import com.nightwind.exception.AccountExistedException;
 import com.nightwind.exception.UserNotFoundException;
@@ -70,6 +72,7 @@ public class UserServiceExTest {
 	/**
 	 * Operation Unit Test
 	 * @throws AccountExistedException 
+	 * @throws UserNotFoundException 
 	 * @generated
 	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
 	 * Generation of the entire file can be disabled on the Code Generation tab of the Spring DSL editor.
@@ -77,13 +80,22 @@ public class UserServiceExTest {
 	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
 	 */
 	@Test
-	public void register() throws AccountExistedException {
+	public void register() throws AccountExistedException, UserNotFoundException {
 		// TODO: JUnit - Populate test inputs for operation: register 
-		String username_2 = "nw";
+		String username_2 = UUID.randomUUID().toString().substring(0, 16);
 		String password_2 = "4869";
 		User response = null;
 		response = service.register(username_2, password_2);
 		// TODO: JUnit - Add assertions to test outputs of operation: register
+		System.out.println(response);
+		User user = new User();
+		user.setId(response.getId());
+		user.setEmail("nw4869@test.com");
+		user = service.updateInfo(user);
+		System.out.println("updated user: " + user);
+		user = service.findUserById(user.getId());
+		System.out.println("find user: " + user);
+		// TODO: to fix 创建时间为空
 	}
 
 	/**

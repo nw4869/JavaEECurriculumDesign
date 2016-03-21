@@ -21,7 +21,7 @@ public class TopicController {
 		ModelAndView mav = new ModelAndView("/topic/show.jsp");
 		ForumThread topic = forumThreadService.findForumThreadByPrimaryKey(id);
 		mav.addObject("topic", topic);
-		System.out.println(topic.getComments());
+//		System.out.println(topic.getComments());
 		return mav;
 	}
 }
