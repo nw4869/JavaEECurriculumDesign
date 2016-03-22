@@ -29,7 +29,7 @@
 	all forums:<br/>
 	<ul>
 		<c:forEach var="forum" items="${forums }">
-			<li> <a href="${forumBasePath }${forum.id}">${forum.title }</a>  </li>
+			<li> <a href="${forumBasePath }${forum.id}">${forum.title }</a> ${fn:length(forum.forumThreads)} topic(s) </li>
 		</c:forEach>
 	</ul>
 </body>

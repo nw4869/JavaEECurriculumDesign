@@ -35,7 +35,7 @@
 		<c:forEach var="topic" items="${forum.forumThreads }">
 			<li><a href="${topicBasePath }${topic.id}">${topic.title }</a> <a
 				href="${userBasePath }${topic.user.id}">${topic.user.username }</a>
-				${topic.createTime.time }</li>
+				<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${topic.createTime.time }" /></li>
 		</c:forEach>
 	</ul>
 	<c:if test="${crtUser != null }">

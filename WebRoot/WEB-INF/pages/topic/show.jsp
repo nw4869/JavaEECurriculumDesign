@@ -35,7 +35,7 @@
 		<c:forEach var="reply" items="${topic.comments }">
 			<li>${reply.title }&nbsp; <a
 				href="${userBasePath }${reply.user.id}">${reply.user.username }</a>
-				${reply.createTime.time }
+				<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${reply.createTime.time }" />
 				<ul>
 					<li>${reply.content }</li>
 				</ul>
