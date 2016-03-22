@@ -83,7 +83,7 @@ public class UserServiceExTest {
 	public void register() throws AccountExistedException, UserNotFoundException {
 		// TODO: JUnit - Populate test inputs for operation: register 
 		String username_2 = UUID.randomUUID().toString().substring(0, 16);
-		String password_2 = "4869";
+		String password_2 = "123";
 		User response = null;
 		response = service.register(username_2, password_2);
 		// TODO: JUnit - Add assertions to test outputs of operation: register
@@ -165,8 +165,8 @@ public class UserServiceExTest {
 	@Test
 	public void login() throws com.nightwind.exception.AuthorizeException, com.nightwind.exception.UserNotFoundException {
 		// TODO: JUnit - Populate test inputs for operation: login 
-		String username = "nw";
-		String password = "4869";
+		String username = "lh";
+		String password = "123";
 		User response = null;
 		response = service.login(username, password);
 		// TODO: JUnit - Add assertions to test outputs of operation: login
@@ -188,7 +188,8 @@ public class UserServiceExTest {
 		// TODO: JUnit - Populate test inputs for operation: updateInfo 
 		User user = new User();
 		user.copy(service.findUserById(2));
-//		user.setId(2);
+		user.setId(3);
+//		user.setCreateTime(null);
 		
 		user.setUsername("asdfasdfasdf");
 		user.setPassword("new password??");

@@ -87,10 +87,11 @@ public interface ForumThreadService {
 
 	/**
 	 * Save an existing ForumThread entity
+	 * @return 
 	 * 
 	 * 
 	 */
-	public void saveForumThread(ForumThread forumthread);
+	public ForumThread saveForumThread(ForumThread forumthread);
 
 	/**
 	 * Save an existing Comment entity

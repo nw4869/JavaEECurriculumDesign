@@ -261,7 +261,7 @@ public class ForumThreadServiceImpl implements ForumThreadService {
 	 * 
 	 */
 	@Transactional
-	public void saveForumThread(ForumThread forumthread) {
+	public ForumThread saveForumThread(ForumThread forumthread) {
 		ForumThread existingForumThread = forumThreadDAO.findForumThreadByPrimaryKey(forumthread.getId());
 
 		if (existingForumThread != null) {
@@ -276,7 +276,9 @@ public class ForumThreadServiceImpl implements ForumThreadService {
 		} else {
 			forumthread = forumThreadDAO.store(forumthread);
 		}
-		forumThreadDAO.flush();
+//		forumThreadDAO.flush();
+		forumThreadDAO.refresh(forumthread);
+		return forumthread;
 	}
 
 	/**

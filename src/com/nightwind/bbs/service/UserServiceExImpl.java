@@ -137,7 +137,8 @@ public class UserServiceExImpl implements UserServiceEx {
 			user.setUsername(username);
 			user.setPassword(encriptPassword(password));
 			user = userDAO.store(user);
-			userDAO.flush();
+//			userDAO.flush();
+			userDAO.refresh(user);
 			return user;
 		} catch (PersistenceException | UnexpectedRollbackException e) {
 			throw new AccountExistedException();

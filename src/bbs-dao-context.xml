@@ -57,6 +57,7 @@
 		<bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager">
 			<property name="transactionManager" ref="atomikosTransactionManager" />
 			<property name="userTransaction" ref="atomikosUserTransaction" />
+<!-- 			<property name="transactionSynchronizationName" value="SYNCHRONIZATION_ALWAYS" /> -->
 			<property name="transactionSynchronizationName" value="SYNCHRONIZATION_ON_ACTUAL_TRANSACTION" />
 		</bean>
 	

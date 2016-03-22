@@ -42,5 +42,8 @@
 			</li>
 		</c:forEach>
 	</ul>
+	<c:if test="${crtUser != null }">
+		<jsp:include page="/WEB-INF/pages/topic/newReply.jsp" />
+	</c:if>
 </body>
 </html>
