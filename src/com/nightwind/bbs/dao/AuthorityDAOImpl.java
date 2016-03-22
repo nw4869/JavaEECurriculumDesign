@@ -23,8 +23,6 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * DAO to manage Authority entities.
  * 
- * 
- * @generated
  */
 @Repository("AuthorityDAO")
 @Transactional
@@ -34,22 +32,19 @@ public class AuthorityDAOImpl extends AbstractJpaDao<Authority> implements
 	/**
 	 * Set of entity classes managed by this DAO.  Typically a DAO manages a single entity.
 	 *
-	 * @generated
 	 */
 	private final static Set<Class<?>> dataTypes = new HashSet<Class<?>>(Arrays.asList(new Class<?>[] { Authority.class }));
 
 	/**
-	 * EntityManager injected by Spring for persistence unit MySql_bbs
+	 * EntityManager injected by Spring for persistence unit Mysql_bbs
 	 *
-	 * @generated
 	 */
-	@PersistenceContext(unitName = "MySql_bbs")
+	@PersistenceContext(unitName = "Mysql_bbs")
 	private EntityManager entityManager;
 
 	/**
 	 * Instantiates a new AuthorityDAOImpl
 	 *
-	 * @generated
 	 */
 	public AuthorityDAOImpl() {
 		super();
@@ -58,7 +53,6 @@ public class AuthorityDAOImpl extends AbstractJpaDao<Authority> implements
 	/**
 	 * Get the entity manager that manages persistence unit 
 	 *
-	 * @generated
 	 */
 	public EntityManager getEntityManager() {
 		return entityManager;
@@ -67,7 +61,6 @@ public class AuthorityDAOImpl extends AbstractJpaDao<Authority> implements
 	/**
 	 * Returns the set of entity classes managed by this DAO.
 	 *
-	 * @generated
 	 */
 	public Set<Class<?>> getTypes() {
 		return dataTypes;
@@ -76,7 +69,6 @@ public class AuthorityDAOImpl extends AbstractJpaDao<Authority> implements
 	/**
 	 * JPQL Query - findAuthorityByAuthorityFieldContaining
 	 *
-	 * JPASelect
 	 */
 	@Transactional
 	public Set<Authority> findAuthorityByAuthorityFieldContaining(String authorityField) throws DataAccessException {
@@ -87,7 +79,6 @@ public class AuthorityDAOImpl extends AbstractJpaDao<Authority> implements
 	/**
 	 * JPQL Query - findAuthorityByAuthorityFieldContaining
 	 *
-	 * JPASelectWithPagination
 	 */
 
 	@SuppressWarnings("unchecked")
@@ -98,9 +89,30 @@ public class AuthorityDAOImpl extends AbstractJpaDao<Authority> implements
 	}
 
 	/**
+	 * JPQL Query - findAuthorityByAuthorityField
+	 *
+	 */
+	@Transactional
+	public Set<Authority> findAuthorityByAuthorityField(String authorityField) throws DataAccessException {
+
+		return findAuthorityByAuthorityField(authorityField, -1, -1);
+	}
+
+	/**
+	 * JPQL Query - findAuthorityByAuthorityField
+	 *
+	 */
+
+	@SuppressWarnings("unchecked")
+	@Transactional
+	public Set<Authority> findAuthorityByAuthorityField(String authorityField, int startResult, int maxRows) throws DataAccessException {
+		Query query = createNamedQuery("findAuthorityByAuthorityField", startResult, maxRows, authorityField);
+		return new LinkedHashSet<Authority>(query.getResultList());
+	}
+
+	/**
 	 * JPQL Query - findAuthorityByPrimaryKey
 	 *
-	 * JPASelect
 	 */
 	@Transactional
 	public Authority findAuthorityByPrimaryKey(Integer userId, String authorityField) throws DataAccessException {
@@ -111,7 +123,6 @@ public class AuthorityDAOImpl extends AbstractJpaDao<Authority> implements
 	/**
 	 * JPQL Query - findAuthorityByPrimaryKey
 	 *
-	 * JPASelectWithPagination
 	 */
 
 	@Transactional
@@ -127,7 +138,6 @@ public class AuthorityDAOImpl extends AbstractJpaDao<Authority> implements
 	/**
 	 * JPQL Query - findAllAuthoritys
 	 *
-	 * JPASelect
 	 */
 	@Transactional
 	public Set<Authority> findAllAuthoritys() throws DataAccessException {
@@ -138,7 +148,6 @@ public class AuthorityDAOImpl extends AbstractJpaDao<Authority> implements
 	/**
 	 * JPQL Query - findAllAuthoritys
 	 *
-	 * JPASelectWithPagination
 	 */
 
 	@SuppressWarnings("unchecked")
@@ -151,7 +160,6 @@ public class AuthorityDAOImpl extends AbstractJpaDao<Authority> implements
 	/**
 	 * JPQL Query - findAuthorityByUserId
 	 *
-	 * JPASelect
 	 */
 	@Transactional
 	public Set<Authority> findAuthorityByUserId(Integer userId) throws DataAccessException {
@@ -162,7 +170,6 @@ public class AuthorityDAOImpl extends AbstractJpaDao<Authority> implements
 	/**
 	 * JPQL Query - findAuthorityByUserId
 	 *
-	 * JPASelectWithPagination
 	 */
 
 	@SuppressWarnings("unchecked")
@@ -173,35 +180,10 @@ public class AuthorityDAOImpl extends AbstractJpaDao<Authority> implements
 	}
 
 	/**
-	 * JPQL Query - findAuthorityByAuthorityField
-	 *
-	 * JPASelect
-	 */
-	@Transactional
-	public Set<Authority> findAuthorityByAuthorityField(String authorityField) throws DataAccessException {
-
-		return findAuthorityByAuthorityField(authorityField, -1, -1);
-	}
-
-	/**
-	 * JPQL Query - findAuthorityByAuthorityField
-	 *
-	 * JPASelectWithPagination
-	 */
-
-	@SuppressWarnings("unchecked")
-	@Transactional
-	public Set<Authority> findAuthorityByAuthorityField(String authorityField, int startResult, int maxRows) throws DataAccessException {
-		Query query = createNamedQuery("findAuthorityByAuthorityField", startResult, maxRows, authorityField);
-		return new LinkedHashSet<Authority>(query.getResultList());
-	}
-
-	/**
 	 * Used to determine whether or not to merge the entity or persist the entity when calling Store
 	 * @see store
 	 * 
 	 *
-	 * @generated
 	 */
 	public boolean canBeMerged(Authority entity) {
 		return true;

@@ -5,7 +5,7 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<jsp:directive.include file="/WEB-INF/sitemesh-decorators/include.jsp" />
+<jsp:directive.include file="/WEB-INF/common/include.jsp" />
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -32,10 +32,10 @@
 	<br /> all reply:
 	<br />
 	<ul>
-		<c:forEach var="reply" items="${topic.comments }">
+		<c:forEach var="reply" items="${topic.replies }">
 			<li>${reply.title }&nbsp; <a
 				href="${userBasePath }${reply.user.id}">${reply.user.username }</a>
-				<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${reply.createTime.time }" />
+				<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${reply.createTime }" />
 				<ul>
 					<li>${reply.content }</li>
 				</ul>

@@ -57,7 +57,6 @@
 		<bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager">
 			<property name="transactionManager" ref="atomikosTransactionManager" />
 			<property name="userTransaction" ref="atomikosUserTransaction" />
-<!-- 			<property name="transactionSynchronizationName" value="SYNCHRONIZATION_ALWAYS" /> -->
 			<property name="transactionSynchronizationName" value="SYNCHRONIZATION_ON_ACTUAL_TRANSACTION" />
 		</bean>
 	
@@ -69,13 +68,13 @@
 	
 	
 				<!-- Using Apache DBCP Data Sources -->
-				<bean name="MySql_bbsDS" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" >
-					<property name="driverClassName" value="${MySql_bbs.connection.driver_class}" />
-					<property name="username" value="${MySql_bbs.connection.username}" />
-					<property name="password" value="${MySql_bbs.connection.password}" />
-					<property name="url" value="${MySql_bbs.connection.url}" />
-					<property name="maxIdle" value="${MySql_bbs.minPoolSize}" />
-					<property name="maxActive" value="${MySql_bbs.maxPoolSize}" />
+				<bean name="Mysql_bbsDS" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" >
+					<property name="driverClassName" value="${Mysql_bbs.connection.driver_class}" />
+					<property name="username" value="${Mysql_bbs.connection.username}" />
+					<property name="password" value="${Mysql_bbs.connection.password}" />
+					<property name="url" value="${Mysql_bbs.connection.url}" />
+					<property name="maxIdle" value="${Mysql_bbs.minPoolSize}" />
+					<property name="maxActive" value="${Mysql_bbs.maxPoolSize}" />
 				</bean>
 		
 	
@@ -87,16 +86,16 @@
 
 	
 				<!-- Configure a JPA vendor adapter -->
-				<bean id="MySql_bbsJPAVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-					<property name="showSql" value="${MySql_bbs.show_sql}" />
-					<property name="generateDdl" value="${MySql_bbs.generateDdl}" />
-					<property name="databasePlatform" value="${MySql_bbs.dialect}" />
+				<bean id="Mysql_bbsJPAVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+					<property name="showSql" value="${Mysql_bbs.show_sql}" />
+					<property name="generateDdl" value="${Mysql_bbs.generateDdl}" />
+					<property name="databasePlatform" value="${Mysql_bbs.dialect}" />
 				</bean>
 				<!-- EntityManager Factory that brings together the persistence unit, datasource, and JPA Vendor -->
-				<bean id="MySql_bbs" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-					<property name="dataSource" ref="MySql_bbsDS" />
-					<property name="persistenceUnitName" value="MySql_bbs" />
-					<property name="jpaVendorAdapter" ref="MySql_bbsJPAVendorAdapter" />
+				<bean id="Mysql_bbs" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+					<property name="dataSource" ref="Mysql_bbsDS" />
+					<property name="persistenceUnitName" value="Mysql_bbs" />
+					<property name="jpaVendorAdapter" ref="Mysql_bbsJPAVendorAdapter" />
 						<property name="jpaPropertyMap">
 							<map>
 										<entry key="hibernate.transaction.manager_lookup_class" value="com.atomikos.icatch.jta.hibernate3.TransactionManagerLookup" />

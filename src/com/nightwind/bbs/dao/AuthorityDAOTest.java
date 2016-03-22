@@ -25,8 +25,6 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * Class used to test the basic Data Store Functionality
  *
- * @generated
- * @AuxiliaryModelComponent
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -44,14 +42,12 @@ public class AuthorityDAOTest {
 	/**
 	 * The DAO being tested, injected by Spring
 	 *
-	 * @generated
 	 */
 	private AuthorityDAO dataStore;
 
 	/**
 	 * Instantiates a new AuthorityDAOTest.
 	 *
-	 * @generated
 	 */
 	public AuthorityDAOTest() {
 	}
@@ -59,7 +55,6 @@ public class AuthorityDAOTest {
 	/**
 	 * Method to test Authority domain object.
 	 *
-	 * @generated
 	 */
 	@Rollback(false)
 	@Test
@@ -86,7 +81,6 @@ public class AuthorityDAOTest {
 	/**
 	 * Method to allow Spring to inject the DAO that will be tested
 	 *
-	 * @generated
 	 */
 	@Autowired
 	public void setDataStore(AuthorityDAO dataStore) {

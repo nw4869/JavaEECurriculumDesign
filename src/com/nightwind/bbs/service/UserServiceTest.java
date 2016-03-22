@@ -1,37 +1,23 @@
 package com.nightwind.bbs.service;
 
-import com.nightwind.bbs.domain.Authority;
-import com.nightwind.bbs.domain.Comment;
-import com.nightwind.bbs.domain.ForumThread;
-import com.nightwind.bbs.domain.User;
+import java.util.UUID;
 
-import java.util.List;
-import java.util.Set;
+import com.nightwind.bbs.domain.User;
+import com.nightwind.bbs.exception.*;
 
 import org.junit.Test;
-
 import org.junit.runner.RunWith;
-
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
-
 import org.springframework.context.ApplicationContext;
-
 import org.springframework.mock.web.MockHttpServletRequest;
-
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
-
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
-
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
-
 import org.springframework.transaction.annotation.Transactional;
-
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.RequestScope;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -74,7 +60,7 @@ public class UserServiceTest {
 	protected UserService service;
 
 	/**
-	 * Instantiates a new UserServiceTest.
+	 * Instantiates a new UserServiceExTest.
 	 *
 	 * @generated
 	 */
@@ -84,8 +70,8 @@ public class UserServiceTest {
 
 	/**
 	 * Operation Unit Test
-	 * Delete an existing User entity
-	 * 
+	 * @throws AccountExistedException 
+	 * @throws UserNotFoundException 
 	 * @generated
 	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
 	 * Generation of the entire file can be disabled on the Code Generation tab of the Spring DSL editor.
@@ -93,56 +79,26 @@ public class UserServiceTest {
 	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
 	 */
 	@Test
-	public void deleteUser() {
-		// TODO: JUnit - Populate test inputs for operation: deleteUser 
-		User user = new com.nightwind.bbs.domain.User();
-		service.deleteUser(user);
-	}
-
-	/**
-	 * Operation Unit Test
-	 * Return all User entity
-	 * 
-	 * @generated
-	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
-	 * Generation of the entire file can be disabled on the Code Generation tab of the Spring DSL editor.
-	 * Alternately, you can add the NOT keyword after the @generated annotation above the class declaration.
-	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
-	 */
-	@Test
-	public void findAllUsers() {
-		// TODO: JUnit - Populate test inputs for operation: findAllUsers 
-		Integer startResult = 0;
-		Integer maxRows = 0;
-		List<User> response = null;
-		response = service.findAllUsers(startResult, maxRows);
-		// TODO: JUnit - Add assertions to test outputs of operation: findAllUsers
-	}
-
-	/**
-	 * Operation Unit Test
-	 * Delete an existing ForumThread entity
-	 * 
-	 * @generated
-	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
-	 * Generation of the entire file can be disabled on the Code Generation tab of the Spring DSL editor.
-	 * Alternately, you can add the NOT keyword after the @generated annotation above the class declaration.
-	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
-	 */
-	@Test
-	public void deleteUserForumThreads() {
-		// TODO: JUnit - Populate test inputs for operation: deleteUserForumThreads 
-		Integer user_id_1 = 0;
-		Integer related_forumthreads_id = 0;
+	public void register() throws AccountExistedException, UserNotFoundException {
+		// TODO: JUnit - Populate test inputs for operation: register 
+		String username_2 = UUID.randomUUID().toString().substring(0, 16);
+		String password_2 = "123";
 		User response = null;
-		response = service.deleteUserForumThreads(user_id_1, related_forumthreads_id);
-		// TODO: JUnit - Add assertions to test outputs of operation: deleteUserForumThreads
+		response = service.register(username_2, password_2);
+		// TODO: JUnit - Add assertions to test outputs of operation: register
+		System.out.println(response);
+		User user = new User();
+		user.setId(response.getId());
+		user.setEmail("nw4869@test.com");
+		user = service.updateInfo(user);
+		System.out.println("updated user: " + user);
+		user = service.findUserById(user.getId());
+		System.out.println("find user: " + user);
+		// TODO: to fix 创建时间为空
 	}
 
 	/**
 	 * Operation Unit Test
-	 * Save an existing ForumThread entity
-	 * 
 	 * @generated
 	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
 	 * Generation of the entire file can be disabled on the Code Generation tab of the Spring DSL editor.
@@ -150,55 +106,15 @@ public class UserServiceTest {
 	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
 	 */
 	@Test
-	public void saveUserForumThreads() {
-		// TODO: JUnit - Populate test inputs for operation: saveUserForumThreads 
-		Integer id_2 = 0;
-		ForumThread related_forumthreads = new com.nightwind.bbs.domain.ForumThread();
-		User response = null;
-		response = service.saveUserForumThreads(id_2, related_forumthreads);
-		// TODO: JUnit - Add assertions to test outputs of operation: saveUserForumThreads
-	}
-
-	/**
-	 * Operation Unit Test
-	 * Save an existing User entity
-	 * 
-	 * @generated
-	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
-	 * Generation of the entire file can be disabled on the Code Generation tab of the Spring DSL editor.
-	 * Alternately, you can add the NOT keyword after the @generated annotation above the class declaration.
-	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
-	 */
-	@Test
-	public void saveUser() {
-		// TODO: JUnit - Populate test inputs for operation: saveUser 
-		User user_1 = new com.nightwind.bbs.domain.User();
-		service.saveUser(user_1);
-	}
-
-	/**
-	 * Operation Unit Test
-	 * Save an existing Authority entity
-	 * 
-	 * @generated
-	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
-	 * Generation of the entire file can be disabled on the Code Generation tab of the Spring DSL editor.
-	 * Alternately, you can add the NOT keyword after the @generated annotation above the class declaration.
-	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
-	 */
-	@Test
-	public void saveUserAuthorities() {
-		// TODO: JUnit - Populate test inputs for operation: saveUserAuthorities 
+	public void logout() {
+		// TODO: JUnit - Populate test inputs for operation: logout 
 		Integer id = 0;
-		Authority related_authorities = new com.nightwind.bbs.domain.Authority();
-		User response = null;
-		response = service.saveUserAuthorities(id, related_authorities);
-		// TODO: JUnit - Add assertions to test outputs of operation: saveUserAuthorities
+		service.logout(id);
 	}
 
 	/**
 	 * Operation Unit Test
-	 * Delete an existing Authority entity
+	 * @throws UserNotFoundException
 	 * 
 	 * @generated
 	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
@@ -207,19 +123,17 @@ public class UserServiceTest {
 	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
 	 */
 	@Test
-	public void deleteUserAuthorities() {
-		// TODO: JUnit - Populate test inputs for operation: deleteUserAuthorities 
-		Integer user_id_2 = 0;
-		Integer related_authorities_userId = 0;
-		String related_authorities_authorityField = null;
+	public void findUserById() throws UserNotFoundException {
+		// TODO: JUnit - Populate test inputs for operation: findUserById 
+		Integer id_1 = 1;
 		User response = null;
-		response = service.deleteUserAuthorities(user_id_2, related_authorities_userId, related_authorities_authorityField);
-		// TODO: JUnit - Add assertions to test outputs of operation: deleteUserAuthorities
+		response = service.findUserById(id_1);
+		// TODO: JUnit - Add assertions to test outputs of operation: findUserById
 	}
 
 	/**
 	 * Operation Unit Test
-	 * Return a count of all User entity
+	 * @throws UserNotFoundException
 	 * 
 	 * @generated
 	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
@@ -228,15 +142,18 @@ public class UserServiceTest {
 	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
 	 */
 	@Test
-	public void countUsers() {
-		Integer response = null;
-		response = service.countUsers();
-		// TODO: JUnit - Add assertions to test outputs of operation: countUsers
+	public void findUserByUsername() throws UserNotFoundException {
+		// TODO: JUnit - Populate test inputs for operation: findUserByUsername 
+		String username_1 = null;
+		User response = null;
+		response = service.findUserByUsername(username_1);
+		// TODO: JUnit - Add assertions to test outputs of operation: findUserByUsername
 	}
 
 	/**
 	 * Operation Unit Test
-	 * Load an existing User entity
+	 * @throws AuthorizeException
+	 * @throws UserNotFoundException
 	 * 
 	 * @generated
 	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
@@ -245,15 +162,19 @@ public class UserServiceTest {
 	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
 	 */
 	@Test
-	public void loadUsers() {
-		Set<User> response = null;
-		response = service.loadUsers();
-		// TODO: JUnit - Add assertions to test outputs of operation: loadUsers
+	public void login() throws AuthorizeException, UserNotFoundException {
+		// TODO: JUnit - Populate test inputs for operation: login 
+		String username = "lh";
+		String password = "123";
+		User response = null;
+		response = service.login(username, password);
+		// TODO: JUnit - Add assertions to test outputs of operation: login
+		System.out.println("response: " + response);
 	}
 
 	/**
 	 * Operation Unit Test
-	 * Save an existing Comment entity
+	 * @throws UserNotFoundException
 	 * 
 	 * @generated
 	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
@@ -262,33 +183,24 @@ public class UserServiceTest {
 	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
 	 */
 	@Test
-	public void saveUserComments() {
-		// TODO: JUnit - Populate test inputs for operation: saveUserComments 
-		Integer id_1 = 0;
-		Comment related_comments = new com.nightwind.bbs.domain.Comment();
+	public void updateInfo() throws UserNotFoundException {
+		// TODO: JUnit - Populate test inputs for operation: updateInfo 
+		User user = new User();
+		user.copy(service.findUserById(2));
+		user.setId(3);
+//		user.setCreateTime(null);
+		
+		user.setUsername("asdfasdfasdf");
+		user.setPassword("new password??");
+		
+		user.setEmail("test@test.com");
+		user.setAvatar("/avatar/test.jpg");
+		user.setSignature("my signature");
+		
 		User response = null;
-		response = service.saveUserComments(id_1, related_comments);
-		// TODO: JUnit - Add assertions to test outputs of operation: saveUserComments
-	}
-
-	/**
-	 * Operation Unit Test
-	 * Delete an existing Comment entity
-	 * 
-	 * @generated
-	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
-	 * Generation of the entire file can be disabled on the Code Generation tab of the Spring DSL editor.
-	 * Alternately, you can add the NOT keyword after the @generated annotation above the class declaration.
-	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
-	 */
-	@Test
-	public void deleteUserComments() {
-		// TODO: JUnit - Populate test inputs for operation: deleteUserComments 
-		Integer user_id = 0;
-		Integer related_comments_id = 0;
-		User response = null;
-		response = service.deleteUserComments(user_id, related_comments_id);
-		// TODO: JUnit - Add assertions to test outputs of operation: deleteUserComments
+		response = service.updateInfo(user);
+		// TODO: JUnit - Add assertions to test outputs of operation: updateInfo
+		System.out.println("update user: " + response);
 	}
 
 	/**
@@ -300,12 +212,18 @@ public class UserServiceTest {
 	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
 	 */
 	@Test
-	public void findUserByPrimaryKey() {
-		// TODO: JUnit - Populate test inputs for operation: findUserByPrimaryKey 
-		Integer id_3 = 0;
-		User response = null;
-		response = service.findUserByPrimaryKey(id_3);
-		// TODO: JUnit - Add assertions to test outputs of operation: findUserByPrimaryKey
+	public void updatePassword() throws UserNotFoundException, AuthorizeException {
+		// TODO: JUnit - Populate test inputs for operation: updatePassword 
+		Integer id_2 = 0;
+		String password_1 = null;
+		String newPassword = null;
+		service.updatePassword(id_2, password_1, newPassword);
+	}
+	
+	@Test
+	public void getAuthorize() throws UserNotFoundException {
+		User user = service.findUserById(1);
+		System.out.println(user.getAuthorities());
 	}
 
 	/**

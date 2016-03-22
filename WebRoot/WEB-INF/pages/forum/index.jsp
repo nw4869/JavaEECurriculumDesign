@@ -5,7 +5,7 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<jsp:directive.include file="/WEB-INF/sitemesh-decorators/include.jsp" />
+<jsp:directive.include file="/WEB-INF/common/include.jsp" />
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -29,7 +29,7 @@
 	all forums:<br/>
 	<ul>
 		<c:forEach var="forum" items="${forums }">
-			<li> <a href="${forumBasePath }${forum.id}">${forum.title }</a> ${fn:length(forum.forumThreads)} topic(s) </li>
+			<li> <a href="${forumBasePath }${forum.id}">${forum.title }</a> ${fn:length(forum.topics)} topic(s) </li>
 		</c:forEach>
 	</ul>
 </body>

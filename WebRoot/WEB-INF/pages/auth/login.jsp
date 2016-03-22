@@ -1,6 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<jsp:directive.include file="/WEB-INF/sitemesh-decorators/include.jsp" />
-<fmt:setBundle basename="bundles.auth-resources"/>
+<jsp:directive.include file="/WEB-INF/common/include.jsp" />
 
 <%
 	String path = request.getContextPath();

@@ -5,8 +5,7 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<jsp:directive.include file="/WEB-INF/sitemesh-decorators/include.jsp" />
-<fmt:setBundle basename="bundles.auth-resources" />
+<jsp:directive.include file="/WEB-INF/common/include.jsp" />
 
 <!DOCTYPE HTML>
 <html>

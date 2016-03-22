@@ -6,16 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.nightwind.bbs.domain.User;
-import com.nightwind.bbs.service.UserServiceEx;
-import com.nightwind.exception.UserNotFoundException;
+import com.nightwind.bbs.service.UserService;
+import com.nightwind.bbs.exception.UserNotFoundException;
 
 @SessionAttributes("crtUser")
 @Controller("UserController")
@@ -23,7 +26,7 @@ import com.nightwind.exception.UserNotFoundException;
 public class UserController {
 
 	@Autowired
-	private UserServiceEx userServiceEx;
+	private UserService userService;
 	
 	@RequestMapping(value = {"", "/"}, method= RequestMethod.GET)
 	public String index(ModelMap model) throws UserNotFoundException {
@@ -39,7 +42,7 @@ public class UserController {
 	public ModelAndView info(@PathVariable(value = "id")  Integer id, ModelMap model) throws UserNotFoundException {
 		ModelAndView mav = new ModelAndView();
 		
-		mav.addObject("user", userServiceEx.findUserById(id));
+		mav.addObject("user", userService.findUserById(id));
 		
 		mav.setViewName("user/info.jsp");
 		return mav;
@@ -70,7 +73,7 @@ public class UserController {
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public ModelAndView updateInfo(@Valid @ModelAttribute("userForm") User user,
-			BindingResult result, ModelMap model) throws UserNotFoundException {
+			BindingResult result, ModelMap model, RedirectAttributes redirectAttributes) throws UserNotFoundException {
 		ModelAndView mav = new ModelAndView("user/update.jsp");
 
 		User crtUser = (User) model.get("crtUser");
@@ -79,12 +82,15 @@ public class UserController {
 			mav.setViewName("redirect:/auth/login");
 		}
 		
-		if (result.hasErrors()) {
-			return mav;
+		for (FieldError err: result.getFieldErrors()) {
+			if (!err.getField().equals("username") || !err.getField().equals("password")) {
+				redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userForm", result);
+				return mav;
+			}
 		}
 
 		user.setId(crtUser.getId());
-		crtUser = userServiceEx.updateInfo(user);
+		crtUser = userService.updateInfo(user);
 		mav.addObject("crtUser", crtUser);
 		mav.addObject("message", "update success");
 

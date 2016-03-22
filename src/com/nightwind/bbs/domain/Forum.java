@@ -10,12 +10,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.*;
 import javax.persistence.*;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
+
 /**
- * 
- * @generated
  */
 
 @Entity
@@ -35,25 +37,24 @@ public class Forum implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * 
 	 */
 
 	@Column(name = "id", nullable = false)
 	@Basic(fetch = FetchType.EAGER)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Id
 	@XmlElement
 	Integer id;
 	/**
-	 * 
 	 */
-
+	
+	@NotBlank
+	@Length(max=45)
 	@Column(name = "title", length = 45, nullable = false)
 	@Basic(fetch = FetchType.EAGER)
 	@XmlElement
 	String title;
 	/**
-	 * 
 	 */
 
 	@Column(name = "description")
@@ -62,73 +63,83 @@ public class Forum implements Serializable {
 	String description;
 
 	/**
-	 * 
 	 */
 	@OneToMany(mappedBy = "forum", cascade = { CascadeType.REMOVE }, fetch = FetchType.LAZY)
 	@XmlElement(name = "", namespace = "")
-	java.util.Set<com.nightwind.bbs.domain.ForumThread> forumThreads;
+	java.util.Set<com.nightwind.bbs.domain.Authority> authorities;
+	/**
+	 */
+	@OneToMany(mappedBy = "forum", cascade = { CascadeType.REMOVE }, fetch = FetchType.LAZY)
+	@XmlElement(name = "", namespace = "")
+	java.util.Set<com.nightwind.bbs.domain.Topic> topics;
 
 	/**
-	 * @generated
 	 */
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
 	/**
-	 * @generated
 	 */
 	public Integer getId() {
 		return this.id;
 	}
 
 	/**
-	 * @generated
 	 */
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
 	/**
-	 * @generated
 	 */
 	public String getTitle() {
 		return this.title;
 	}
 
 	/**
-	 * @generated
 	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
 	/**
-	 * @generated
 	 */
 	public String getDescription() {
 		return this.description;
 	}
 
 	/**
-	 * @generated
 	 */
-	public void setForumThreads(Set<ForumThread> forumThreads) {
-		this.forumThreads = forumThreads;
+	public void setAuthorities(Set<Authority> authorities) {
+		this.authorities = authorities;
 	}
 
 	/**
-	 * @generated
 	 */
-	public Set<ForumThread> getForumThreads() {
-		if (forumThreads == null) {
-			forumThreads = new java.util.LinkedHashSet<com.nightwind.bbs.domain.ForumThread>();
+	public Set<Authority> getAuthorities() {
+		if (authorities == null) {
+			authorities = new java.util.LinkedHashSet<com.nightwind.bbs.domain.Authority>();
 		}
-		return forumThreads;
+		return authorities;
 	}
 
 	/**
-	 * @generated
+	 */
+	public void setTopics(Set<Topic> topics) {
+		this.topics = topics;
+	}
+
+	/**
+	 */
+	public Set<Topic> getTopics() {
+		if (topics == null) {
+			topics = new java.util.LinkedHashSet<com.nightwind.bbs.domain.Topic>();
+		}
+		return topics;
+	}
+
+	/**
 	 */
 	public Forum() {
 	}
@@ -136,19 +147,18 @@ public class Forum implements Serializable {
 	/**
 	 * Copies the contents of the specified bean into this bean.
 	 *
-	 * @generated
 	 */
 	public void copy(Forum that) {
 		setId(that.getId());
 		setTitle(that.getTitle());
 		setDescription(that.getDescription());
-		setForumThreads(new java.util.LinkedHashSet<com.nightwind.bbs.domain.ForumThread>(that.getForumThreads()));
+		setAuthorities(new java.util.LinkedHashSet<com.nightwind.bbs.domain.Authority>(that.getAuthorities()));
+		setTopics(new java.util.LinkedHashSet<com.nightwind.bbs.domain.Topic>(that.getTopics()));
 	}
 
 	/**
 	 * Returns a textual representation of a bean.
 	 *
-	 * @generated
 	 */
 	public String toString() {
 
@@ -162,8 +172,6 @@ public class Forum implements Serializable {
 	}
 
 	/**
-	 * @generated
-	 * @AuxiliaryModelComponent
 	 */
 	@Override
 	public int hashCode() {
@@ -174,8 +182,6 @@ public class Forum implements Serializable {
 	}
 
 	/**
-	 * @generated
-	 * @AuxiliaryModelComponent
 	 */
 	public boolean equals(Object obj) {
 		if (obj == this)

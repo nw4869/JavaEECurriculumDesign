@@ -15,8 +15,6 @@ import javax.xml.bind.annotation.*;
 import javax.persistence.*;
 
 /**
- * 
- * @generated
  */
 @IdClass(com.nightwind.bbs.domain.AuthorityPK.class)
 @Entity
@@ -33,7 +31,6 @@ public class Authority implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * 
 	 */
 
 	@Column(name = "user_id", nullable = false)
@@ -42,7 +39,6 @@ public class Authority implements Serializable {
 	@XmlElement
 	Integer userId;
 	/**
-	 * 
 	 */
 
 	@Column(name = "authority", length = 45, nullable = false)
@@ -52,57 +48,67 @@ public class Authority implements Serializable {
 	String authorityField;
 
 	/**
-	 * 
 	 */
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumns({ @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false) })
 	@XmlTransient
 	User user;
+	/**
+	 */
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumns({ @JoinColumn(name = "forum_id", referencedColumnName = "id") })
+	@XmlTransient
+	Forum forum;
 
 	/**
-	 * @generated
 	 */
 	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
 
 	/**
-	 * @generated
 	 */
 	public Integer getUserId() {
 		return this.userId;
 	}
 
 	/**
-	 * @generated
 	 */
 	public void setAuthorityField(String authorityField) {
 		this.authorityField = authorityField;
 	}
 
 	/**
-	 * @generated
 	 */
 	public String getAuthorityField() {
 		return this.authorityField;
 	}
 
 	/**
-	 * @generated
 	 */
 	public void setUser(User user) {
 		this.user = user;
 	}
 
 	/**
-	 * @generated
 	 */
 	public User getUser() {
 		return user;
 	}
 
 	/**
-	 * @generated
+	 */
+	public void setForum(Forum forum) {
+		this.forum = forum;
+	}
+
+	/**
+	 */
+	public Forum getForum() {
+		return forum;
+	}
+
+	/**
 	 */
 	public Authority() {
 	}
@@ -110,18 +116,17 @@ public class Authority implements Serializable {
 	/**
 	 * Copies the contents of the specified bean into this bean.
 	 *
-	 * @generated
 	 */
 	public void copy(Authority that) {
 		setUserId(that.getUserId());
 		setAuthorityField(that.getAuthorityField());
 		setUser(that.getUser());
+		setForum(that.getForum());
 	}
 
 	/**
 	 * Returns a textual representation of a bean.
 	 *
-	 * @generated
 	 */
 	public String toString() {
 
@@ -134,8 +139,6 @@ public class Authority implements Serializable {
 	}
 
 	/**
-	 * @generated
-	 * @AuxiliaryModelComponent
 	 */
 	@Override
 	public int hashCode() {
@@ -147,8 +150,6 @@ public class Authority implements Serializable {
 	}
 
 	/**
-	 * @generated
-	 * @AuxiliaryModelComponent
 	 */
 	public boolean equals(Object obj) {
 		if (obj == this)

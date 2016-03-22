@@ -9,9 +9,6 @@
 	<configs>
 		<config>src/applicationContext.xml</config>
 		<config>src/bbs-dao-context.xml</config>
-		<config>src/bbs-security-context.xml</config>
-		<config>src/bbs-service-context.xml</config>
-		<config>src/bbs-web-context.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

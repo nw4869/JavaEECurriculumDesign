@@ -1,27 +1,24 @@
 package com.nightwind.bbs.service;
 
-import com.nightwind.bbs.dao.AuthorityDAO;
-import com.nightwind.bbs.dao.CommentDAO;
-import com.nightwind.bbs.dao.ForumThreadDAO;
-import com.nightwind.bbs.dao.UserDAO;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
-import com.nightwind.bbs.domain.Authority;
-import com.nightwind.bbs.domain.Comment;
-import com.nightwind.bbs.domain.ForumThread;
-import com.nightwind.bbs.domain.User;
+import javax.persistence.PersistenceException;
 
-import java.util.List;
-import java.util.Set;
-
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Service;
-
+import org.springframework.transaction.UnexpectedRollbackException;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.nightwind.bbs.dao.UserDAO;
+import com.nightwind.bbs.domain.User;
+import com.nightwind.bbs.exception.*;
+
 /**
- * Spring service that handles CRUD requests for User entities
- * 
  * 
  * @generated
  */
@@ -31,39 +28,14 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserServiceImpl implements UserService {
 
 	/**
-	 * DAO injected by Spring that manages Authority entities
-	 * 
-	 * 
-	 */
-	@Autowired
-	private AuthorityDAO authorityDAO;
-
-	/**
-	 * DAO injected by Spring that manages Comment entities
-	 * 
-	 * 
-	 */
-	@Autowired
-	private CommentDAO commentDAO;
-
-	/**
-	 * DAO injected by Spring that manages ForumThread entities
-	 * 
-	 * 
-	 */
-	@Autowired
-	private ForumThreadDAO forumThreadDAO;
-
-	/**
-	 * DAO injected by Spring that manages User entities
-	 * 
 	 * 
 	 */
 	@Autowired
 	private UserDAO userDAO;
 
+
 	/**
-	 * Instantiates a new UserServiceImpl.
+	 * Instantiates a new UserServiceExImpl.
 	 *
 	 * 
 	 * @AuxiliaryModelComponent
@@ -72,234 +44,144 @@ public class UserServiceImpl implements UserService {
 	}
 
 	/**
-	 * Delete an existing User entity
+	 * @throws UserNotFoundException
 	 * 
 	 * 
 	 */
-	@Transactional
-	public void deleteUser(User user) {
-		userDAO.remove(user);
-		userDAO.flush();
-	}
-
-	/**
-	 * Return all User entity
-	 * 
-	 * 
-	 */
-	@Transactional
-	public List<User> findAllUsers(Integer startResult, Integer maxRows) {
-		return new java.util.ArrayList<User>(userDAO.findAllUsers(startResult, maxRows));
-	}
-
-	/**
-	 * Delete an existing ForumThread entity
-	 * 
-	 * 
-	 */
-	@Transactional
-	public User deleteUserForumThreads(Integer user_id, Integer related_forumthreads_id) {
-		ForumThread related_forumthreads = forumThreadDAO.findForumThreadByPrimaryKey(related_forumthreads_id, -1, -1);
-
-		User user = userDAO.findUserByPrimaryKey(user_id, -1, -1);
-
-		related_forumthreads.setUser(null);
-		user.getForumThreads().remove(related_forumthreads);
-
-		forumThreadDAO.remove(related_forumthreads);
-		forumThreadDAO.flush();
-
-		return user;
-	}
-
-	/**
-	 * Save an existing ForumThread entity
-	 * 
-	 * 
-	 */
-	@Transactional
-	public User saveUserForumThreads(Integer id, ForumThread related_forumthreads) {
-		User user = userDAO.findUserByPrimaryKey(id, -1, -1);
-		ForumThread existingforumThreads = forumThreadDAO.findForumThreadByPrimaryKey(related_forumthreads.getId());
-
-		// copy into the existing record to preserve existing relationships
-		if (existingforumThreads != null) {
-			existingforumThreads.setId(related_forumthreads.getId());
-			existingforumThreads.setTitle(related_forumthreads.getTitle());
-			existingforumThreads.setContent(related_forumthreads.getContent());
-			existingforumThreads.setCreateTime(related_forumthreads.getCreateTime());
-			existingforumThreads.setLastModified(related_forumthreads.getLastModified());
-			related_forumthreads = existingforumThreads;
-		} else {
-			related_forumthreads = forumThreadDAO.store(related_forumthreads);
-			forumThreadDAO.flush();
+	@Override
+	public User findUserById(Integer id) throws UserNotFoundException {
+		User user = userDAO.findUserById(id);
+		if (user == null) {
+			throw new UserNotFoundException();
 		}
-
-		related_forumthreads.setUser(user);
-		user.getForumThreads().add(related_forumthreads);
-		related_forumthreads = forumThreadDAO.store(related_forumthreads);
-		forumThreadDAO.flush();
-
-		user = userDAO.store(user);
-		userDAO.flush();
-
 		return user;
 	}
 
 	/**
-	 * Save an existing User entity
+	 * @throws UserNotFoundException
 	 * 
 	 * 
 	 */
-	@Transactional
-	public void saveUser(User user) {
-		User existingUser = userDAO.findUserByPrimaryKey(user.getId());
-
-		if (existingUser != null) {
-			if (existingUser != user) {
-				existingUser.setId(user.getId());
-				existingUser.setUsername(user.getUsername());
-				existingUser.setPassword(user.getPassword());
-				existingUser.setEmail(user.getEmail());
-				existingUser.setAvatar(user.getAvatar());
-				existingUser.setMemberTitle(user.getMemberTitle());
-				existingUser.setSignature(user.getSignature());
-				existingUser.setEnabled(user.getEnabled());
-				existingUser.setCreateTime(user.getCreateTime());
-			}
-			user = userDAO.store(existingUser);
+	@Override
+	public User findUserByUsername(String username) throws UserNotFoundException {
+		Iterator<User> iterator = userDAO.findUserByUsername(username).iterator();
+		if (iterator.hasNext()) {
+			return iterator.next();
 		} else {
+			throw new UserNotFoundException();
+		}
+	}
+
+	/**
+	 * MD5
+	 */
+	protected String encriptPassword(String plainPwd) {
+//		return plainPwd;
+		try {
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			md.update(plainPwd.getBytes("UTF-8"));
+			return bytes2Hex(md.digest());
+		} catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return "";
+		}
+	}
+	
+	static protected String bytes2Hex(byte[] raw) {
+		final char[] HEX = "0123456789ABCDEF".toCharArray();
+
+		StringBuilder hex = new StringBuilder(2 * raw.length);
+		for (byte b: raw) {
+			hex.append(HEX[ (b & 0xF0) >> 4 ])
+				.append(HEX[ (b & 0x0F) ]);
+		}
+		return hex.toString();
+	}
+
+	/**
+	 * @throws AuthorizeException
+	 * @throws UserNotFoundException
+	 * 
+	 * 
+	 */
+	@Override
+	public User login(String username, String password) throws AuthorizeException, UserNotFoundException {
+		User user = findUserByUsername(username);
+		if (user.getPassword().equals(encriptPassword(password))) {
+			return user;
+		} else {
+			throw new AuthorizeException();
+		}
+	}
+
+	/**
+	 * @throws AccountExistedException 
+	 * 
+	 */
+	@Transactional
+	@Override
+	public User register(String username, String password) throws AccountExistedException {
+		if (!userDAO.findUserByUsername(username).isEmpty()) {
+			throw new AccountExistedException();
+		}
+		
+		User user = new User();
+		try {
+			user.setUsername(username);
+			user.setPassword(encriptPassword(password));
 			user = userDAO.store(user);
+//			userDAO.flush();
+			userDAO.refresh(user);
+			return user;
+		} catch (PersistenceException | UnexpectedRollbackException e) {
+			throw new AccountExistedException();
 		}
-		userDAO.flush();
 	}
 
 	/**
-	 * Save an existing Authority entity
+	 * 
+	 */
+	@Transactional
+	@Override
+	public void logout(Integer id) {
+	}
+
+	/**
+	 * @throws UserNotFoundException
 	 * 
 	 * 
 	 */
 	@Transactional
-	public User saveUserAuthorities(Integer id, Authority related_authorities) {
-		User user = userDAO.findUserByPrimaryKey(id, -1, -1);
-		Authority existingauthorities = authorityDAO.findAuthorityByPrimaryKey(related_authorities.getUserId(), related_authorities.getAuthorityField());
-
-		// copy into the existing record to preserve existing relationships
-		if (existingauthorities != null) {
-			existingauthorities.setUserId(related_authorities.getUserId());
-			existingauthorities.setAuthorityField(related_authorities.getAuthorityField());
-			related_authorities = existingauthorities;
-		}
-
-		related_authorities.setUser(user);
-		user.getAuthorities().add(related_authorities);
-		related_authorities = authorityDAO.store(related_authorities);
-		authorityDAO.flush();
-
-		user = userDAO.store(user);
-		userDAO.flush();
-
-		return user;
-	}
-
-	/**
-	 * Delete an existing Authority entity
-	 * 
-	 * 
-	 */
-	@Transactional
-	public User deleteUserAuthorities(Integer user_id, Integer related_authorities_userId, String related_authorities_authorityField) {
-		Authority related_authorities = authorityDAO.findAuthorityByPrimaryKey(related_authorities_userId, related_authorities_authorityField, -1, -1);
-
-		User user = userDAO.findUserByPrimaryKey(user_id, -1, -1);
-
-		related_authorities.setUser(null);
-		user.getAuthorities().remove(related_authorities);
-
-		authorityDAO.remove(related_authorities);
-		authorityDAO.flush();
-
-		return user;
-	}
-
-	/**
-	 * Return a count of all User entity
-	 * 
-	 * 
-	 */
-	@Transactional
-	public Integer countUsers() {
-		return ((Long) userDAO.createQuerySingleResult("select count(o) from User o").getSingleResult()).intValue();
-	}
-
-	/**
-	 * Load an existing User entity
-	 * 
-	 * 
-	 */
-	@Transactional
-	public Set<User> loadUsers() {
-		return userDAO.findAllUsers();
-	}
-
-	/**
-	 * Save an existing Comment entity
-	 * 
-	 * 
-	 */
-	@Transactional
-	public User saveUserComments(Integer id, Comment related_comments) {
-		User user = userDAO.findUserByPrimaryKey(id, -1, -1);
-		Comment existingcomments = commentDAO.findCommentByPrimaryKey(related_comments.getId());
-
-		// copy into the existing record to preserve existing relationships
-		if (existingcomments != null) {
-			existingcomments.setId(related_comments.getId());
-			existingcomments.setTitle(related_comments.getTitle());
-			existingcomments.setContent(related_comments.getContent());
-			existingcomments.setCreateTime(related_comments.getCreateTime());
-			related_comments = existingcomments;
+	@Override
+	public User updateInfo(User user) throws UserNotFoundException {
+		User existingUser = null;
+		if (user.getId() != null) {
+			existingUser = findUserById(user.getId());
+		} else if (user.getUsername() != null || user.getUsername().trim().length() > 0) {
+			existingUser = findUserByUsername(user.getUsername());
 		} else {
-			related_comments = commentDAO.store(related_comments);
-			commentDAO.flush();
+			throw new UserNotFoundException();
 		}
-
-		related_comments.setUser(user);
-		user.getComments().add(related_comments);
-		related_comments = commentDAO.store(related_comments);
-		commentDAO.flush();
-
-		user = userDAO.store(user);
+		existingUser.setEmail(user.getEmail());
+		existingUser.setAvatar(user.getAvatar());
+		existingUser.setMemberTitle(user.getMemberTitle());
+		existingUser.setSignature(user.getSignature());
+		userDAO.store(existingUser);
 		userDAO.flush();
-
-		return user;
-	}
-
-	/**
-	 * Delete an existing Comment entity
-	 * 
-	 * 
-	 */
-	@Transactional
-	public User deleteUserComments(Integer user_id, Integer related_comments_id) {
-		Comment related_comments = commentDAO.findCommentByPrimaryKey(related_comments_id, -1, -1);
-
-		User user = userDAO.findUserByPrimaryKey(user_id, -1, -1);
-
-		related_comments.setUser(null);
-		user.getComments().remove(related_comments);
-
-		commentDAO.remove(related_comments);
-		commentDAO.flush();
-
-		return user;
+		return existingUser;
 	}
 
 	/**
 	 * 
 	 */
 	@Transactional
-	public User findUserByPrimaryKey(Integer id) {
-		return userDAO.findUserByPrimaryKey(id);
+	@Override
+	public void updatePassword(Integer id, String password, String newPassword) throws UserNotFoundException, AuthorizeException {
+		User user = findUserById(id);
+		if (!user.getPassword().equals(password)) {
+			throw new AuthorizeException();
+		}
+		user.setPassword(encriptPassword(newPassword));
+		userDAO.flush();
 	}
 }

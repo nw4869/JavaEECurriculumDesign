@@ -1,7 +1,6 @@
 #org.skyway.core settings
-#Sat Mar 19 18:09:49 CST 2016
+#Tue Mar 22 15:42:22 CST 2016
 version=11.0.1.me201405280815
 default.top.level.package=com.nightwind.bbs
 models.folder.name=.springDSL
-hide.dsl=false
 initialized=true

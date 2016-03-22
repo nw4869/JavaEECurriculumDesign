@@ -3,7 +3,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<jsp:directive.include file="/WEB-INF/sitemesh-decorators/include.jsp"/>
+<jsp:directive.include file="/WEB-INF/common/include.jsp"/>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>

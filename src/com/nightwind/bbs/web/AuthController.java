@@ -1,6 +1,5 @@
 package com.nightwind.bbs.web;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +16,10 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.nightwind.bbs.domain.User;
-import com.nightwind.bbs.service.UserServiceEx;
-import com.nightwind.exception.AccountExistedException;
-import com.nightwind.exception.AuthorizeException;
-import com.nightwind.exception.UserNotFoundException;
+import com.nightwind.bbs.exception.AccountExistedException;
+import com.nightwind.bbs.exception.AuthorizeException;
+import com.nightwind.bbs.exception.UserNotFoundException;
+import com.nightwind.bbs.service.UserService;
 
 
 @SessionAttributes("crtUser")
@@ -29,7 +28,7 @@ import com.nightwind.exception.UserNotFoundException;
 public class AuthController {
 
 	@Autowired
-	private UserServiceEx userServiceEx;
+	private UserService userService;
 
 	@RequestMapping(value = "/login", method = { RequestMethod.GET })
 	public ModelAndView displayLogin(User user, ModelMap model) {
@@ -56,7 +55,7 @@ public class AuthController {
 		}
 
 		try {
-			user = userServiceEx.login(user.getUsername(), user.getPassword());
+			user = userService.login(user.getUsername(), user.getPassword());
 			mav.addObject("crtUser", user);
 //			mav.setViewName("auth/login-success.jsp");
 			mav.setViewName("redirect:/");
@@ -105,11 +104,11 @@ public class AuthController {
 		}
 		
 		try {
-			User userSaved = userServiceEx.register(user.getUsername(), user.getPassword());
+			User userSaved = userService.register(user.getUsername(), user.getPassword());
 			System.out.println("new user:" + userSaved);
 			user.setId(userSaved.getId());
 			// update basic info
-			user = userServiceEx.updateInfo(user);
+			user = userService.updateInfo(user);
 			System.out.println("updated user:" + user);
 			
 			mav.addObject("crtUser", user);

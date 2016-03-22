@@ -5,7 +5,7 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<jsp:directive.include file="/WEB-INF/sitemesh-decorators/include.jsp" />
+<jsp:directive.include file="/WEB-INF/common/include.jsp" />
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -32,10 +32,10 @@
 	<br /> all topics:
 	<br />
 	<ul>
-		<c:forEach var="topic" items="${forum.forumThreads }">
+		<c:forEach var="topic" items="${forum.topics }">
 			<li><a href="${topicBasePath }${topic.id}">${topic.title }</a> <a
 				href="${userBasePath }${topic.user.id}">${topic.user.username }</a>
-				<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${topic.createTime.time }" /></li>
+				<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${topic.createTime }" /></li>
 		</c:forEach>
 	</ul>
 	<c:if test="${crtUser != null }">

@@ -3,8 +3,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<jsp:directive.include file="/WEB-INF/sitemesh-decorators/include.jsp"/>
-<fmt:setBundle basename="bundles.auth-resources"/>
+<jsp:directive.include file="/WEB-INF/common/include.jsp"/>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -37,7 +36,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   Username: ${crtUser.username } <br>
   
 	<form:form name='updateForm' modelAttribute="userForm"
-		action="user/update.do" method='POST'>
+		action="user/update" method='POST'>
 		<spring:bind path="username">
 			<div class="form-group ${status.error ? 'has-error' : ''}">
 				<form:label path="email">email</form:label>

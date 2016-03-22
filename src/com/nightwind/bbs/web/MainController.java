@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class MainController {
 
-	@RequestMapping(value = {"/", "/index.jsp"}, method=RequestMethod.GET)
+	@RequestMapping(value = {"/", "/index"}, method=RequestMethod.GET)
 	public ModelAndView index() {
 		ModelAndView mav = new ModelAndView("index.jsp");
 		return mav;

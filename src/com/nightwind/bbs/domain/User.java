@@ -1,39 +1,25 @@
 package com.nightwind.bbs.domain;
 
 import java.io.Serializable;
+import java.lang.StringBuilder;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.PrePersist;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
+import javax.persistence.*;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.Range;
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
- * 
- * @generated
  */
 
 @Entity
@@ -63,71 +49,64 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * 
 	 */
 
 	@Column(name = "id", nullable = false)
 	@Basic(fetch = FetchType.EAGER)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Id
 	@XmlElement
 	Integer id;
 	/**
-	 * 
 	 */
 
-	@Size(min=1, max=16)
+	@NotBlank
+	@Length(max=16)
 	@Column(name = "username", length = 16, nullable = false)
 	@Basic(fetch = FetchType.EAGER)
 	@XmlElement
 	String username;
 	/**
-	 * 
 	 */
 
-	@Size(min=1, max=32)
+	@NotBlank
+	@Length(max=32)
 	@Column(name = "password", length = 32, nullable = false)
 	@Basic(fetch = FetchType.EAGER)
 	@XmlElement
 	String password;
 	/**
-	 * 
 	 */
 
-	@Email()
-	@Column(name = "email", length = 32)
+	@Email
+	@Column(name = "email")
 	@Basic(fetch = FetchType.EAGER)
 	@XmlElement
 	String email;
 	/**
-	 * 
 	 */
 
-	@Length(max=255)
-	@Column(name = "avatar", length = 255)
+	@Column(name = "avatar")
 	@Basic(fetch = FetchType.EAGER)
 	@XmlElement
 	String avatar;
 	/**
-	 * 
 	 */
 
-	@Max(16)
+	@Length(max=16)
 	@Column(name = "member_title", length = 16)
 	@Basic(fetch = FetchType.EAGER)
 	@XmlElement
 	String memberTitle;
 	/**
-	 * 
 	 */
 
 	@Length(max=255)
-	@Column(name = "signature", length = 255)
+	@Column(name = "signature")
 	@Basic(fetch = FetchType.EAGER)
 	@XmlElement
 	String signature;
 	/**
-	 * 
 	 */
 
 	@Column(name = "enabled")
@@ -135,175 +114,144 @@ public class User implements Serializable {
 	@XmlElement
 	Boolean enabled;
 	/**
-	 * 
 	 */
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "create_time", insertable = false, updatable = false)
+	@Column(name = "create_time")
 	@Basic(fetch = FetchType.EAGER)
 	@XmlElement
-	Calendar createTime;
+	Date createTime;
 
 	/**
-	 * 
 	 */
 	@OneToMany(mappedBy = "user", cascade = { CascadeType.REMOVE }, fetch = FetchType.LAZY)
 	@XmlElement(name = "", namespace = "")
 	java.util.Set<com.nightwind.bbs.domain.Authority> authorities;
 	/**
-	 * 
 	 */
 	@OneToMany(mappedBy = "user", cascade = { CascadeType.REMOVE }, fetch = FetchType.LAZY)
 	@XmlElement(name = "", namespace = "")
-	java.util.Set<com.nightwind.bbs.domain.ForumThread> forumThreads;
+	java.util.Set<com.nightwind.bbs.domain.Topic> topics;
 	/**
-	 * 
 	 */
 	@OneToMany(mappedBy = "user", cascade = { CascadeType.REMOVE }, fetch = FetchType.LAZY)
 	@XmlElement(name = "", namespace = "")
-	java.util.Set<com.nightwind.bbs.domain.Comment> comments;
-
-	@PrePersist
-	public void prePersist() {
-		if (enabled == null) {
-			enabled = true;
-		}
-	}
+	java.util.Set<com.nightwind.bbs.domain.Reply> replies;
 
 	/**
-	 * @generated
 	 */
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
 	/**
-	 * @generated
 	 */
 	public Integer getId() {
 		return this.id;
 	}
 
 	/**
-	 * @generated
 	 */
 	public void setUsername(String username) {
 		this.username = username;
 	}
 
 	/**
-	 * @generated
 	 */
 	public String getUsername() {
 		return this.username;
 	}
 
 	/**
-	 * @generated
 	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
 	/**
-	 * @generated
 	 */
 	public String getPassword() {
 		return this.password;
 	}
 
 	/**
-	 * @generated
 	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
 	/**
-	 * @generated
 	 */
 	public String getEmail() {
 		return this.email;
 	}
 
 	/**
-	 * @generated
 	 */
 	public void setAvatar(String avatar) {
 		this.avatar = avatar;
 	}
 
 	/**
-	 * @generated
 	 */
 	public String getAvatar() {
 		return this.avatar;
 	}
 
 	/**
-	 * @generated
 	 */
 	public void setMemberTitle(String memberTitle) {
 		this.memberTitle = memberTitle;
 	}
 
 	/**
-	 * @generated
 	 */
 	public String getMemberTitle() {
 		return this.memberTitle;
 	}
 
 	/**
-	 * @generated
 	 */
 	public void setSignature(String signature) {
 		this.signature = signature;
 	}
 
 	/**
-	 * @generated
 	 */
 	public String getSignature() {
 		return this.signature;
 	}
 
 	/**
-	 * @generated
 	 */
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 	}
 
 	/**
-	 * @generated
 	 */
 	public Boolean getEnabled() {
 		return this.enabled;
 	}
 
 	/**
-	 * @generated
 	 */
-	public void setCreateTime(Calendar createTime) {
+	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
 
 	/**
-	 * @generated
 	 */
-	public Calendar getCreateTime() {
+	public Date getCreateTime() {
 		return this.createTime;
 	}
 
 	/**
-	 * @generated
 	 */
 	public void setAuthorities(Set<Authority> authorities) {
 		this.authorities = authorities;
 	}
 
 	/**
-	 * @generated
 	 */
 	public Set<Authority> getAuthorities() {
 		if (authorities == null) {
@@ -313,49 +261,47 @@ public class User implements Serializable {
 	}
 
 	/**
-	 * @generated
 	 */
-	public void setForumThreads(Set<ForumThread> forumThreads) {
-		this.forumThreads = forumThreads;
+	public void setTopics(Set<Topic> topics) {
+		this.topics = topics;
 	}
 
 	/**
-	 * @generated
 	 */
-	public Set<ForumThread> getForumThreads() {
-		if (forumThreads == null) {
-			forumThreads = new java.util.LinkedHashSet<com.nightwind.bbs.domain.ForumThread>();
+	public Set<Topic> getTopics() {
+		if (topics == null) {
+			topics = new java.util.LinkedHashSet<com.nightwind.bbs.domain.Topic>();
 		}
-		return forumThreads;
+		return topics;
 	}
 
 	/**
-	 * @generated
 	 */
-	public void setComments(Set<Comment> comments) {
-		this.comments = comments;
+	public void setReplies(Set<Reply> replies) {
+		this.replies = replies;
 	}
 
 	/**
-	 * @generated
 	 */
-	public Set<Comment> getComments() {
-		if (comments == null) {
-			comments = new java.util.LinkedHashSet<com.nightwind.bbs.domain.Comment>();
+	public Set<Reply> getReplies() {
+		if (replies == null) {
+			replies = new java.util.LinkedHashSet<com.nightwind.bbs.domain.Reply>();
 		}
-		return comments;
+		return replies;
 	}
 
 	/**
-	 * @generated
 	 */
 	public User() {
+	}
+
+	public User(int userId) {
+		id = userId;
 	}
 
 	/**
 	 * Copies the contents of the specified bean into this bean.
 	 *
-	 * @generated
 	 */
 	public void copy(User that) {
 		setId(that.getId());
@@ -368,14 +314,13 @@ public class User implements Serializable {
 		setEnabled(that.getEnabled());
 		setCreateTime(that.getCreateTime());
 		setAuthorities(new java.util.LinkedHashSet<com.nightwind.bbs.domain.Authority>(that.getAuthorities()));
-		setForumThreads(new java.util.LinkedHashSet<com.nightwind.bbs.domain.ForumThread>(that.getForumThreads()));
-		setComments(new java.util.LinkedHashSet<com.nightwind.bbs.domain.Comment>(that.getComments()));
+		setTopics(new java.util.LinkedHashSet<com.nightwind.bbs.domain.Topic>(that.getTopics()));
+		setReplies(new java.util.LinkedHashSet<com.nightwind.bbs.domain.Reply>(that.getReplies()));
 	}
 
 	/**
 	 * Returns a textual representation of a bean.
 	 *
-	 * @generated
 	 */
 	public String toString() {
 
@@ -395,8 +340,6 @@ public class User implements Serializable {
 	}
 
 	/**
-	 * @generated
-	 * @AuxiliaryModelComponent
 	 */
 	@Override
 	public int hashCode() {
@@ -407,8 +350,6 @@ public class User implements Serializable {
 	}
 
 	/**
-	 * @generated
-	 * @AuxiliaryModelComponent
 	 */
 	public boolean equals(Object obj) {
 		if (obj == this)

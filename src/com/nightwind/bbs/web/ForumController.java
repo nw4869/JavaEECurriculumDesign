@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.nightwind.bbs.domain.Forum;
-import com.nightwind.bbs.domain.ForumThread;
+import com.nightwind.bbs.domain.Topic;
 import com.nightwind.bbs.domain.User;
+import com.nightwind.bbs.exception.AuthorizeException;
 import com.nightwind.bbs.service.ForumService;
 
 @SessionAttributes("crtUser")
@@ -35,15 +36,28 @@ public class ForumController {
 	}
 
 	@RequestMapping( value = {"/{id}"})
-	public ModelAndView show(@PathVariable Integer id, ModelMap model) {
+	public ModelAndView show(@PathVariable Integer id, ModelMap model) throws AuthorizeException {
 		ModelAndView mav = new ModelAndView("/forum/show.jsp");
 		mav.addObject("forum", forumService.findForumByPrimaryKey(id));
 		
 		// setup new topic form
-		ForumThread topic = new ForumThread();
+		Topic topic = (Topic) model.get("topicForm");
+		if (topic == null) {
+			topic = new Topic();	
+		}
+		
 		topic.setForum(forumService.findForumByPrimaryKey(id));
 		topic.setUser((User) model.get("crtUser"));
 		mav.addObject("topicForm", topic);
+		
+		return mav;
+	}
+	
+	@RequestMapping("/new")
+	public ModelAndView newForum() {
+		ModelAndView mav = new ModelAndView("/forum/new.jsp");
+		
+		// TODO 
 		
 		return mav;
 	}

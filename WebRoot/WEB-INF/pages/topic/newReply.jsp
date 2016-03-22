@@ -5,7 +5,7 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<jsp:directive.include file="/WEB-INF/sitemesh-decorators/include.jsp" />
+<jsp:directive.include file="/WEB-INF/common/include.jsp" />
 
 <div id="new_topic">
 
@@ -28,7 +28,7 @@
 					<form:label path="content">content</form:label>
 					<form:input id="content" name="content" path="content" />
 					<form:errors path="content" />
-					<form:hidden path="forumThread.id" />
+					<form:hidden path="topic.id" />
 					<form:hidden path="user.id" />
 					<br> <input type="submit" value="Submit" />
 				</div>

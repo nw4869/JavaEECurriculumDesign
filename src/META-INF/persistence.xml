@@ -1,17 +1,19 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<persistence xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
-<persistence-unit name="MySql_bbs" transaction-type="JTA">
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+	
+	
+		<persistence-unit name="Mysql_bbs" transaction-type="JTA" >
 			<description>generated-persistence-unit</description>
 					<provider>org.hibernate.ejb.HibernatePersistence</provider>
-      			<class>com.nightwind.bbs.domain.User</class>
-      			<class>com.nightwind.bbs.domain.ForumThread</class>
-      			<class>com.nightwind.bbs.domain.Authority</class>
-      			<class>com.nightwind.bbs.domain.Comment</class>
       			<class>com.nightwind.bbs.domain.Forum</class>
+      			<class>com.nightwind.bbs.domain.Reply</class>
+      			<class>com.nightwind.bbs.domain.User</class>
+      			<class>com.nightwind.bbs.domain.Authority</class>
+      			<class>com.nightwind.bbs.domain.Topic</class>
    			<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		</persistence-unit>
-	
-	
 
 	
 </persistence>

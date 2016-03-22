@@ -25,8 +25,6 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * Class used to test the basic Data Store Functionality
  *
- * @generated
- * @AuxiliaryModelComponent
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -44,14 +42,12 @@ public class ForumDAOTest {
 	/**
 	 * The DAO being tested, injected by Spring
 	 *
-	 * @generated
 	 */
 	private ForumDAO dataStore;
 
 	/**
 	 * Instantiates a new ForumDAOTest.
 	 *
-	 * @generated
 	 */
 	public ForumDAOTest() {
 	}
@@ -59,7 +55,6 @@ public class ForumDAOTest {
 	/**
 	 * Method to test Forum domain object.
 	 *
-	 * @generated
 	 */
 	@Rollback(false)
 	@Test
@@ -86,7 +81,6 @@ public class ForumDAOTest {
 	/**
 	 * Method to allow Spring to inject the DAO that will be tested
 	 *
-	 * @generated
 	 */
 	@Autowired
 	public void setDataStore(ForumDAO dataStore) {

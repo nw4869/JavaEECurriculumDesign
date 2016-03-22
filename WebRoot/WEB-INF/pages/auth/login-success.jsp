@@ -1,5 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="US-ASCII"%>
-<jsp:directive.include file="/WEB-INF/sitemesh-decorators/include.jsp"/>
+<jsp:directive.include file="/WEB-INF/common/include.jsp"/>
 
 <%
 String path = request.getContextPath();

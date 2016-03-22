@@ -7,21 +7,16 @@ import javax.persistence.Id;
 import javax.persistence.*;
 
 /**
- * 
- * @generated
- * @AuxiliaryModelComponent
  */
 public class AuthorityPK implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * @generated
 	 */
 	public AuthorityPK() {
 	}
 
 	/**
-	 * 
 	 */
 
 	@Column(name = "user_id", nullable = false)
@@ -29,7 +24,6 @@ public class AuthorityPK implements Serializable {
 	@Id
 	public Integer userId;
 	/**
-	 * 
 	 */
 
 	@Column(name = "authority", length = 45, nullable = false)
@@ -38,36 +32,30 @@ public class AuthorityPK implements Serializable {
 	public String authorityField;
 
 	/**
-	 * @generated
 	 */
 	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
 
 	/**
-	 * @generated
 	 */
 	public Integer getUserId() {
 		return this.userId;
 	}
 
 	/**
-	 * @generated
 	 */
 	public void setAuthorityField(String authorityField) {
 		this.authorityField = authorityField;
 	}
 
 	/**
-	 * @generated
 	 */
 	public String getAuthorityField() {
 		return this.authorityField;
 	}
 
 	/**
-	 * @generated
-	 * @AuxiliaryModelComponent
 	 */
 	@Override
 	public int hashCode() {
@@ -79,8 +67,6 @@ public class AuthorityPK implements Serializable {
 	}
 
 	/**
-	 * @generated
-	 * @AuxiliaryModelComponent
 	 */
 	public boolean equals(Object obj) {
 		if (obj == this)
