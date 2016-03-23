@@ -48,6 +48,28 @@ label{
 	width: 20%;
 	margin-top: 8px;
 }
+
+.liuyan-box{}
+.liuyan-content{
+ width:1000px;
+ height:300px;
+ border:1px #999
+ solid;}
+.liuyan-box input[type=submit]{
+background: #1BBC9B;
+    color: #FFF;
+    font-size: 1.2em;
+    padding: 0.6em 2em;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    display: inline-block;
+    text-transform: uppercase;
+    border: none;
+    outline: none;
+	}
+
 .navigation{
 	width: 100%;
 	text-align: center;

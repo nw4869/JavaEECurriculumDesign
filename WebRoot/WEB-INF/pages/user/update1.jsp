@@ -1,17 +1,16 @@
-<%@ page language="java" import="java.util.*" pageEncoding="US-ASCII"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <jsp:directive.include file="/WEB-INF/common/include.jsp"/>
-<fmt:setBundle basename="bundles.auth-resources"/>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
     <base href="<%=basePath%>">
     
-    <title>Register</title>
+    <title>My JSP 'update.jsp' starting page</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -25,25 +24,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-
-	<form:form name='registerForm' modelAttribute="userForm"
-		action="auth/register.do" method='POST'>
+  
+  
+  <c:if test="${message != null }">
+  <div>
+  message: ${message }
+  </div>
+  </c:if>
+  
+  
+  Username: ${crtUser.username } <br>
+  
+	<form:form name='updateForm' modelAttribute="userForm"
+		action="user/update" method='POST'>
 		<spring:bind path="username">
 			<div class="form-group ${status.error ? 'has-error' : ''}">
-				<form:label path="username">username</form:label>
-				<form:input id="username" name="username" path="username" />
-				<form:errors path="username" />
+				<form:label path="email">email</form:label>
+				<form:input id="email" name="email" path="email"  />
+				<form:errors path="email" />
 				<p/>
-				<form:label path="password">password</form:label>
-				<form:password id="password" name="password" path="password" />
-				<form:errors path="password" />
-				<p/>
-				<label>password2</label>
-				<input type="password" id="password2" name="password2"  />
+				<form:label path="signature">signature</form:label>
+				<form:input id="signature" name="signature" path="signature"  />
+				<form:errors path="signature" />
 				<br> <input type="submit" value="Submit" />
 			</div>
 		</spring:bind>
 	</form:form>
+
 
   </body>
 </html>

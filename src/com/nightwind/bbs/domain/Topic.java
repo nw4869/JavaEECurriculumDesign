@@ -20,6 +20,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -103,14 +104,27 @@ public class Topic implements Serializable {
 	@Column(name = "clicks")
 	@Basic(fetch = FetchType.EAGER)
 	@XmlElement
-	Integer clicks;
+	Integer clicks = 0;
 	/**
 	 */
 
 	@Column(name = "pin")
 	@Basic(fetch = FetchType.EAGER)
 	@XmlElement
-	Boolean pin;
+	Integer pin = 0;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "last_active_time", nullable = false)
+	@Basic(fetch = FetchType.EAGER)
+	@XmlElement
+	Date lastActiveTime;
+	
+	/**
+	 */
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumns({ @JoinColumn(name = "last_active_user_id", referencedColumnName = "id") })
+	@XmlTransient
+	User lastActiveUser;
 
 	/**
 	 */
@@ -127,6 +141,7 @@ public class Topic implements Serializable {
 	/**
 	 */
 	@OneToMany(mappedBy = "topic", cascade = { CascadeType.REMOVE }, fetch = FetchType.LAZY)
+	@OrderBy("createTime desc")
 	@XmlElement(name = "", namespace = "")
 	java.util.Set<com.nightwind.bbs.domain.Reply> replies;
 
@@ -204,13 +219,13 @@ public class Topic implements Serializable {
 
 	/**
 	 */
-	public void setPin(Boolean pin) {
+	public void setPin(Integer pin) {
 		this.pin = pin;
 	}
 
 	/**
 	 */
-	public Boolean getPin() {
+	public Integer getPin() {
 		return this.pin;
 	}
 
@@ -236,6 +251,23 @@ public class Topic implements Serializable {
 	 */
 	public Forum getForum() {
 		return forum;
+	}
+	
+
+	public Date getLastActiveTime() {
+		return lastActiveTime;
+	}
+
+	public void setLastActiveTime(Date lastActiveTime) {
+		this.lastActiveTime = lastActiveTime;
+	}
+
+	public User getLastActiveUser() {
+		return lastActiveUser;
+	}
+
+	public void setLastActiveUser(User lastActiveUser) {
+		this.lastActiveUser = lastActiveUser;
 	}
 
 	/**
@@ -276,6 +308,8 @@ public class Topic implements Serializable {
 		setPin(that.getPin());
 		setUser(that.getUser());
 		setForum(that.getForum());
+		setLastActiveUser(that.getLastActiveUser());
+		setLastActiveTime(that.getLastActiveTime());
 		setReplies(new java.util.LinkedHashSet<com.nightwind.bbs.domain.Reply>(that.getReplies()));
 	}
 
@@ -294,6 +328,8 @@ public class Topic implements Serializable {
 		buffer.append("lastModified=[").append(lastModified).append("] ");
 		buffer.append("clicks=[").append(clicks).append("] ");
 		buffer.append("pin=[").append(pin).append("] ");
+		buffer.append("lastActiveTime=[").append(lastActiveTime).append("] ");
+		buffer.append("lastActiveUser=[").append(lastActiveUser).append("] ");
 
 		return buffer.toString();
 	}

@@ -13,4 +13,5 @@
 <c:set var="forumBasePath" value="${pageContext.request.contextPath }/forum/"></c:set>
 <c:set var="topicBasePath" value="${pageContext.request.contextPath }/topic/"></c:set>
 <c:set var="replyBasePath" value="${pageContext.request.contextPath }/reply/"></c:set>
+<c:set var="hotTopicPath" value="${pageContext.request.contextPath }/topic/hot"></c:set>
 

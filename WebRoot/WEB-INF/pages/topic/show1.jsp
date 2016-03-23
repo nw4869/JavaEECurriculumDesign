@@ -1,19 +1,18 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<jsp:directive.include file="/WEB-INF/common/include.jsp" />
-
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
+<jsp:directive.include file="/WEB-INF/common/include.jsp" />
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
 <base href="<%=basePath%>">
 
-<title>My JSP 'login.jsp' starting page</title>
+<title>My JSP 'info.jsp' starting page</title>
 
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -27,22 +26,24 @@
 </head>
 
 <body>
-
-	<form:form name='loginForm' modelAttribute="userForm"
-		action="auth/login.do" method='POST'>
-		<spring:bind path="username">
-			<div class="form-group ${status.error ? 'has-error' : ''}">
-				<form:label path="username">username</form:label>
-				<form:input id="username" name="username" path="username" />
-				<form:errors path="username" />
-				<p/>
-				<form:label path="username">password</form:label>
-				<form:password id="password" name="password" path="password" />
-				<form:errors path="password" />
-				<br> <input type="submit" value="Submit" />
-			</div>
-		</spring:bind>
-	</form:form>
-
+	<h2>${topic.title }</h2>
+	<div>${topic.content }</div>
+	<br />
+	<br /> all reply:
+	<br />
+	<ul>
+		<c:forEach var="reply" items="${topic.replies }">
+			<li>${reply.title }&nbsp; <a
+				href="${userBasePath }${reply.user.id}">${reply.user.username }</a>
+				<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${reply.createTime }" />
+				<ul>
+					<li>${reply.content }</li>
+				</ul>
+			</li>
+		</c:forEach>
+	</ul>
+	<c:if test="${crtUser != null }">
+		<jsp:include page="/WEB-INF/pages/topic/newReply.jsp" />
+	</c:if>
 </body>
 </html>

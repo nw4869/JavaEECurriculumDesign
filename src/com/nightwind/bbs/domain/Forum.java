@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OrderBy;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.*;
 import javax.persistence.*;
@@ -70,6 +71,7 @@ public class Forum implements Serializable {
 	/**
 	 */
 	@OneToMany(mappedBy = "forum", cascade = { CascadeType.REMOVE }, fetch = FetchType.LAZY)
+	@OrderBy("lastActiveTime desc")
 	@XmlElement(name = "", namespace = "")
 	java.util.Set<com.nightwind.bbs.domain.Topic> topics;
 

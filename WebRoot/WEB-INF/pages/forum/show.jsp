@@ -33,9 +33,11 @@
 	<br />
 	<ul>
 		<c:forEach var="topic" items="${forum.topics }">
-			<li><a href="${topicBasePath }${topic.id}">${topic.title }</a> <a
-				href="${userBasePath }${topic.user.id}">${topic.user.username }</a>
-				<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${topic.createTime }" /></li>
+			<li><a href="${topicBasePath }${topic.id}">${topic.title }</a>
+			<a href="${userBasePath }${topic.user.id}">${topic.user.username }</a>
+			<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${topic.createTime }" />
+			<span>(${topic.clicks } clicks, ${fn:length(topic.replies)  } replies)</span>  
+			</li>
 		</c:forEach>
 	</ul>
 	<c:if test="${crtUser != null }">

@@ -184,4 +184,14 @@ public class UserServiceImpl implements UserService {
 		user.setPassword(encriptPassword(newPassword));
 		userDAO.flush();
 	}
+	
+	@Transactional
+	@Override
+	public String updateAvatar(Integer id, String avatar) throws UserNotFoundException {
+		User user = findUserById(id);
+		user.setAvatar(avatar);
+		userDAO.store(user);
+		userDAO.flush();
+		return avatar;
+	}
 }

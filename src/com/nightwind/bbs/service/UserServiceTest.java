@@ -2,6 +2,8 @@ package com.nightwind.bbs.service;
 
 import java.util.UUID;
 
+import javax.servlet.ServletContext;
+
 import com.nightwind.bbs.domain.User;
 import com.nightwind.bbs.exception.*;
 
@@ -58,7 +60,7 @@ public class UserServiceTest {
 	 */
 	@Autowired
 	protected UserService service;
-
+	
 	/**
 	 * Instantiates a new UserServiceExTest.
 	 *
@@ -226,6 +228,11 @@ public class UserServiceTest {
 		System.out.println(user.getAuthorities());
 	}
 
+	@Test
+	public void uploadAvatar() {
+	}
+	
+	
 	/**
 	 * Autowired to set the Spring application context.
 	 *

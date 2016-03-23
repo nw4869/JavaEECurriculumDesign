@@ -55,4 +55,6 @@ public interface UserService {
 	 */
 	public void updatePassword(Integer id_2, String password_1, String newPassword) throws UserNotFoundException, AuthorizeException;
 
+	String updateAvatar(Integer id, String avatar) throws UserNotFoundException;
+
 }

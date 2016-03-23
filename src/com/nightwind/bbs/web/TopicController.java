@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -17,6 +18,7 @@ import com.nightwind.bbs.domain.Reply;
 import com.nightwind.bbs.domain.Topic;
 import com.nightwind.bbs.domain.User;
 import com.nightwind.bbs.exception.AuthorizeException;
+import com.nightwind.bbs.exception.TopicNotFoundException;
 import com.nightwind.bbs.service.ReplyService;
 import com.nightwind.bbs.service.TopicService;
 
@@ -31,11 +33,13 @@ public class TopicController {
 	@Autowired
 	private ReplyService replyService;
 	
-	@RequestMapping("/{id}")
-	public ModelAndView show(@PathVariable Integer id, ModelMap model) {
+	@RequestMapping("/{id:\\d+}")
+	public ModelAndView show(@PathVariable("id") Integer id, ModelMap model) throws TopicNotFoundException {
 //		System.out.println(model);
 		ModelAndView mav = new ModelAndView("/topic/show.jsp");
 		Topic topic = topicService.findTopicByPrimaryKey(id);
+		topicService.increaseClick(id);
+		System.out.println("clicks: " + topic.getClicks());
 		mav.addObject("topic", topic);
 		
 		// setup new reply form
@@ -43,9 +47,31 @@ public class TopicController {
 		if (replyForm == null) {
 			replyForm = new Reply();
 		}
-		replyForm.setTopic(topicService.findTopicByPrimaryKey(id));
+		replyForm.setTopic(topic);
 		replyForm.setUser((User) model.get("crtUser"));
 		mav.addObject("replyForm", replyForm);
+		
+		return mav;
+	}
+	
+	@RequestMapping("/hot")
+	public ModelAndView hot(Integer startIndex, Integer maxCount, Integer page, ModelMap model) {
+		ModelAndView mav = new ModelAndView("topic/hot.jsp");
+
+		if (maxCount == null) {
+			maxCount = 4;
+		}
+		
+		if (startIndex == null) {
+			startIndex = 0;
+		}
+		
+		if (page != null) {
+			startIndex = maxCount * page;
+		}
+
+		mav.addObject("totalCount", topicService.countTopics(-1));
+		mav.addObject("topics", topicService.findHotTopicsByClicks(startIndex, maxCount ));
 		
 		return mav;
 	}
@@ -67,6 +93,7 @@ public class TopicController {
 			throw new AuthorizeException();
 		}
 		
+		topic.setUser(user);
 		topic = topicService.newTopic(topic);
 		return "redirect:/topic/" + topic.getId();
 	}
@@ -89,6 +116,7 @@ public class TopicController {
 		}
 		
 //		topicService.newTopicReply(id, user.getId(), reply);
+		reply.setUser(user);
 		reply = replyService.newReply(reply);
 		return mav;
 	}

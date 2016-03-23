@@ -1,18 +1,17 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<jsp:directive.include file="/WEB-INF/common/include.jsp" />
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
-	+ request.getServerName() + ":" + request.getServerPort()
-	+ path + "/";
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
 %>
-<jsp:directive.include file="/WEB-INF/common/include.jsp" />
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
 <html>
 <head>
+<title>Blog</title>
 <base href="<%=basePath%>">
-
-<title>Single</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords"
@@ -22,15 +21,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 	
 	
-	
-	
-	
-	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
-
-
-
-
 
 
 
@@ -79,9 +70,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<ul class="nav banner-nav">
 					<li><a href="${homePath }">主页</a></li>
 					<li class="dropdown1"><a href="${userBasePath }">我的贴吧</a></li>
-					<li class="dropdown1"><a href="${hotTopicPath }">最新热帖</a></li>
-					<li class="dropdown1"><a class="down-scroll active"
-						href="${forumBasePath }">话题分类</a></li>
+					<li class="dropdown1"><a class="active"
+						href="${hotTopicPath }">最新热帖</a></li>
+					<li class="dropdown1"><a href="${forumBasePath }">话题分类</a></li>
 					<li class="dropdown1"><a href="">团队</a></li>
 					<c:choose>
 						<c:when test="${crtUser == null }">
@@ -92,7 +83,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</c:otherwise>
 					</c:choose>
 				</ul>
-
 				<script>
 					$("span.menu").click(function() {
 						$(" ul.nav").slideToggle("slow", function() {
@@ -108,8 +98,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div id="breadcrumb_wrapper">
 		<div class="container">
 
-			<h3>趣帖</h3>
-			<h6>莫愁前路无知己，贴贴相逢终有遇</h6>
+			<h3>热帖</h3>
+			<h6>万千网友相聚，终有一贴钟情</h6>
 
 			<div class="clearfix"></div>
 		</div>
@@ -119,100 +109,90 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- Header Ends Here -->
 <div class="bolg-posts">
 	<div class="container">
-		<div class="single">
-			<div class="single-top">
-				<img src="images/single-post-img.jpg" alt="" />
-			</div>
-			<div class="top-single">
-				<h2>${topic.title }</h2>
-				<div class="grid-single">
-					<div class="single-one">
-						<span><i></i>${topic.createTime }</span>
-					</div>
-					</li>
-					<div class="single-one">
-						<span><i class="com"> </i>${fn:length(topic.replies) }</span>
-					</div>
-					<div class="single-one">
-						<span><i class="four"> </i> </span>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-				<p class="eget">${topic.content }</p>
-
-				<div class="single-middle">
-					<ul class="social-share">
-						<li><span>分享至</span></li>
-						<li><a href="#"><i> </i></a></li>
-						<li><a href="#"><i class="tin"> </i></a></li>
-						<li><a href="#"><i class="message"> </i></a></li>
-					</ul>
-					<i class="arrow"> </i>
-					<div class="clearfix"></div>
-				</div>
-				<div class="top-comments">
-					<h3>${fn:length(topic.replies)  }评论</h3>
-
-					<c:forEach var="reply" items="${topic.replies }">
-
-						<div class="met">
-							<div class="code-in">
-								<p class="smith">
-									<a href="${userBasePath }${reply.user.id}">${reply.user.username }</a>
-									<span><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss"
-											value="${reply.createTime }" /></span>
-								</p>
-								<p class="reply">
-									<a href=""><i> </i>撤销</a>
-								</p>
-								<div class="clearfix"></div>
-							</div>
-							<div class="comments-top-top">
-								<div class="men">
-									<img src="images/men.png" alt="">
-								</div>
-								<p class="men-it">${reply.content }</p>
+		<div class="blog">
+		
+			<c:forEach var="topic" items="${topics }">
+			
+				<div class="col-md-6 blog-top">
+					<div class="blog-in">
+						<a href="${topicBasePath }${topic.id}"><img src="images/b3.jpg" alt=" "></a>
+						<div class="blog-grid">
+							<h3>
+								<a href="${topicBasePath }${topic.id}">${topic.title }</a>
+							</h3>
+							<p>
+								${fn:substring(topic.content, 0, 100) }
+							</p>
+							<a href="${topicBasePath }${topic.id}" class="more">更多</a>
+							<div class="date">
+								<span class="date-in"><i> </i><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${topic.lastActiveTime }" /></span>
+								 <a href="${topicBasePath }${topic.id}"
+									class="comments"><i></i>${fn:length(topic.replies) }</a>
 								<div class="clearfix"></div>
 							</div>
 						</div>
-
-					</c:forEach>
-
-					<div class="leave">
-						<h3>回复</h3>
-						<form:form name='replyForm' modelAttribute="replyForm"
-							action="topic/${topic.id }/reply" method='POST'>
-							<div class="single-grid">
-								<div class="clearfix"></div>
-							</div>
-							<div class="single-grid">
-								<div class="col-md-6 single-us">工具栏</div>
-								<div class="clearfix"></div>
-							</div>
-							<div class="text-top">
-								<div class="col-md-8 text-in">
-									<!--  <textarea value=" " onfocus="this.value='';"
-										onblur="if (this.value == '') {this.value = 'Comment';}">评价</textarea> -->
-									<form:textarea id="content" name="content" path="content" />
-									<form:errors path="content" />
-									<form:hidden path="topic.id" />
-								</div>
-								<div class="col-md-4 text-in">
-									<input type="submit" value="发 送">
-								</div>
-								<div class="clearfix"></div>
-							</div>
-						</form:form>
-
 					</div>
+					<i class="black"> </i>
 				</div>
-			</div>
+			
+			</c:forEach>
+
+
+			<div class="clearfix"></div>
+			<ul class="start">
+				<li><span class="prev">&lt;上一页</span></li>
+				<li><span>1</span></li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li><a href="#">4</a></li>
+				<li><a href="#">5</a></li>
+				<li><a href="#">6</a></li>
+				<li><a href="#">7</a></li>
+				<li><a href="#">8</a></li>
+				<li><span>.....</span></li>
+				<li><a href="#">12</a></li>
+				<li><a href="#" class="next">下一页&gt;</a></li>
+			</ul>
 		</div>
 	</div>
+
 </div>
+
+
+
+<!-- #SendMessage -->
+<div class="container">
+	<div class="register">
+		<form>
+			<div class="register-top-grid">
+				<h3>发帖</h3>
+				<div class="wow fadeInLeft" data-wow-delay="0.4s">
+					<span>标题 <label>*</label></span> <input type="text">
+				</div>
+				<div class="wow fadeInRight" data-wow-delay="0.4s">
+					<span>类别 <label>*</label></span> <input type="text">
+				</div>
+
+				<div class="register-bottom-grid">
+
+					<div class="wow fadeInRight">
+						<div class="liuyan-box">
+							<textarea class="liuyan-content" name="board.msg"></textarea>
+							<input type="submit" value="发 帖" />
+						</div>
+					</div>
+		</form>
+	</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- #SendMessage -->
+
 <!-- #Footer -->
 <footer>
-<div class="container">
 	<div class="container">
 		<div class="row" style="text-align:center">
 			©版权所有：桂林电子科技大学 校址：中国广西桂林金鸡路1号 邮编：541004 传真：0773-2290083 <br>
@@ -225,18 +205,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		<hr>
 	</div>
-	<hr>
-</div>
-<div class="copyrights">
-	<div class="container">
-		<p>
-			Copyright &copy; 2015.Company name All rights reserved.More Templates
-			<a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a>
-			- Collect from <a href="http://www.cssmoban.com/" title="网页模板"
-				target="_blank">网页模板</a>
-		</p>
+	<div class="copyrights">
+		<div class="container">
+			<p>
+				Copyright &copy; 2015.Company name All rights reserved.More
+				Templates <a href="http://www.cssmoban.com/" target="_blank"
+					title="模板之家">模板之家</a> - Collect from <a
+					href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
+			</p>
+		</div>
 	</div>
-</div>
 </footer>
 <!-- /#Footer -->
 <!-- here stars scrolling icon -->

@@ -2,6 +2,9 @@ package com.nightwind.bbs.service;
 
 import static org.junit.Assert.fail;
 
+import java.util.Date;
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +43,24 @@ public class TopicServiceTest {
 	@Test
 	public void testNewTopic() {
 		fail("Not yet implemented");
+	}
+	
+	@Test
+	public void testFindHotTopic() {
+		List<Topic> topics = topicService.findHotTopicsByClicks(-1, -1);
+		System.out.println(topics);
+	}
+	
+	@Test
+	public void testGetLastActive() {
+		Date time = topicService.findTopicByPrimaryKey(1).getLastActiveTime();
+		System.out.println(time);
+	}
+	
+	@Test
+	public void testCount() {
+		Long count = topicService.countTopics(1);
+		System.out.println(count);
 	}
 
 //	@Test
