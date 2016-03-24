@@ -76,6 +76,20 @@ public class AuthorityDAOTest {
 		dataStore.remove(instance);
 	}
 	
+	@Test
+	public void testAdmin() {
+		Authority au = new Authority(); 
+		au.setUser(new User(1));
+		au.setAuthorityField("ROLE_ADMIN");
+		
+		au = dataStore.store(au);
+		dataStore.flush();
+		dataStore.refresh(au);
+//		System.out.println(au);
+//		System.out.println(au.getForum());
+		assertEquals(au.getForum(), null);
+	}
+	
 	/**
 	 * Method to allow Spring to inject the DAO that will be tested
 	 *
