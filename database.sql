@@ -25,14 +25,16 @@ DROP TABLE IF EXISTS `authority`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `authority` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `authority` varchar(45) NOT NULL,
   `forum_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`user_id`,`authority`),
+  PRIMARY KEY (`id`),
   KEY `fk_a_f_idx` (`forum_id`),
+  KEY `fk_a_u_idx` (`user_id`),
   CONSTRAINT `fk_a_f` FOREIGN KEY (`forum_id`) REFERENCES `forum` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_a_u` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -186,4 +188,4 @@ CREATE TABLE `user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-03-24 10:40:35
+-- Dump completed on 2016-03-24 12:18:56

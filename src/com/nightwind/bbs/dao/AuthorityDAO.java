@@ -15,42 +15,6 @@ import org.springframework.dao.DataAccessException;
 public interface AuthorityDAO extends JpaDao<Authority> {
 
 	/**
-	 * JPQL Query - findAuthorityByAuthorityFieldContaining
-	 *
-	 */
-	public Set<Authority> findAuthorityByAuthorityFieldContaining(String authorityField) throws DataAccessException;
-
-	/**
-	 * JPQL Query - findAuthorityByAuthorityFieldContaining
-	 *
-	 */
-	public Set<Authority> findAuthorityByAuthorityFieldContaining(String authorityField, int startResult, int maxRows) throws DataAccessException;
-
-	/**
-	 * JPQL Query - findAuthorityByAuthorityField
-	 *
-	 */
-	public Set<Authority> findAuthorityByAuthorityField(String authorityField_1) throws DataAccessException;
-
-	/**
-	 * JPQL Query - findAuthorityByAuthorityField
-	 *
-	 */
-	public Set<Authority> findAuthorityByAuthorityField(String authorityField_1, int startResult, int maxRows) throws DataAccessException;
-
-	/**
-	 * JPQL Query - findAuthorityByPrimaryKey
-	 *
-	 */
-	public Authority findAuthorityByPrimaryKey(Integer userId, String authorityField_2) throws DataAccessException;
-
-	/**
-	 * JPQL Query - findAuthorityByPrimaryKey
-	 *
-	 */
-	public Authority findAuthorityByPrimaryKey(Integer userId, String authorityField_2, int startResult, int maxRows) throws DataAccessException;
-
-	/**
 	 * JPQL Query - findAllAuthoritys
 	 *
 	 */
@@ -63,15 +27,51 @@ public interface AuthorityDAO extends JpaDao<Authority> {
 	public Set<Authority> findAllAuthoritys(int startResult, int maxRows) throws DataAccessException;
 
 	/**
-	 * JPQL Query - findAuthorityByUserId
+	 * JPQL Query - findAuthorityByAuthorityField
 	 *
 	 */
-	public Set<Authority> findAuthorityByUserId(Integer userId_1) throws DataAccessException;
+	public Set<Authority> findAuthorityByAuthorityField(String authorityField) throws DataAccessException;
 
 	/**
-	 * JPQL Query - findAuthorityByUserId
+	 * JPQL Query - findAuthorityByAuthorityField
 	 *
 	 */
-	public Set<Authority> findAuthorityByUserId(Integer userId_1, int startResult, int maxRows) throws DataAccessException;
+	public Set<Authority> findAuthorityByAuthorityField(String authorityField, int startResult, int maxRows) throws DataAccessException;
+
+	/**
+	 * JPQL Query - findAuthorityByAuthorityFieldContaining
+	 *
+	 */
+	public Set<Authority> findAuthorityByAuthorityFieldContaining(String authorityField_1) throws DataAccessException;
+
+	/**
+	 * JPQL Query - findAuthorityByAuthorityFieldContaining
+	 *
+	 */
+	public Set<Authority> findAuthorityByAuthorityFieldContaining(String authorityField_1, int startResult, int maxRows) throws DataAccessException;
+
+	/**
+	 * JPQL Query - findAuthorityById
+	 *
+	 */
+	public Authority findAuthorityById(Integer id) throws DataAccessException;
+
+	/**
+	 * JPQL Query - findAuthorityById
+	 *
+	 */
+	public Authority findAuthorityById(Integer id, int startResult, int maxRows) throws DataAccessException;
+
+	/**
+	 * JPQL Query - findAuthorityByPrimaryKey
+	 *
+	 */
+	public Authority findAuthorityByPrimaryKey(Integer id_1) throws DataAccessException;
+
+	/**
+	 * JPQL Query - findAuthorityByPrimaryKey
+	 *
+	 */
+	public Authority findAuthorityByPrimaryKey(Integer id_1, int startResult, int maxRows) throws DataAccessException;
 
 }

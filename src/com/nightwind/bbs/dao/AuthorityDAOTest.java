@@ -1,26 +1,22 @@
 package com.nightwind.bbs.dao;
 
-import com.nightwind.bbs.domain.Authority;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
-
 import org.junit.runner.RunWith;
-
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.test.annotation.Rollback;
-
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
-
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
-
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
-
 import org.springframework.transaction.annotation.Transactional;
+
+import com.nightwind.bbs.domain.Authority;
+import com.nightwind.bbs.domain.Forum;
+import com.nightwind.bbs.domain.User;
 
 /**
  * Class used to test the basic Data Store Functionality
@@ -62,22 +58,24 @@ public class AuthorityDAOTest {
 		Authority instance = new Authority();
 
 		// Test create				
-		// TODO: Populate instance for create.  The store will fail if the primary key fields are blank.				
+		instance.setUser(new User(1));
+		instance.setAuthorityField("ROLE_FORUM_ADMIN");
 
 		// store the object
-		dataStore.store(instance);
+		instance = dataStore.store(instance);
+		assertEquals(instance.getUser().getId() == 1, true);
 
 		// Test update
-		// TODO: Modify non-key domain object values for update
+		instance.setForum(new Forum(1));
+		assertEquals(instance.getForum().getId() == 1, true);
 
 		// update the object
 		dataStore.store(instance);
 
 		// Test delete
 		dataStore.remove(instance);
-
 	}
-
+	
 	/**
 	 * Method to allow Spring to inject the DAO that will be tested
 	 *

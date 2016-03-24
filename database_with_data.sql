@@ -25,14 +25,16 @@ DROP TABLE IF EXISTS `authority`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `authority` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `authority` varchar(45) NOT NULL,
   `forum_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`user_id`,`authority`),
+  PRIMARY KEY (`id`),
   KEY `fk_a_f_idx` (`forum_id`),
+  KEY `fk_a_u_idx` (`user_id`),
   CONSTRAINT `fk_a_f` FOREIGN KEY (`forum_id`) REFERENCES `forum` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_a_u` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +43,7 @@ CREATE TABLE `authority` (
 
 LOCK TABLES `authority` WRITE;
 /*!40000 ALTER TABLE `authority` DISABLE KEYS */;
-INSERT INTO `authority` VALUES (1,'ROLE_ADMIN',NULL);
+INSERT INTO `authority` VALUES (1,1,'ROLE_ADMIN',NULL);
 /*!40000 ALTER TABLE `authority` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -177,7 +179,7 @@ CREATE TABLE `topic` (
 
 LOCK TABLES `topic` WRITE;
 /*!40000 ALTER TABLE `topic` DISABLE KEYS */;
-INSERT INTO `topic` VALUES (1,1,1,'Hello!','World!!!!','2016-03-21 08:30:39','2016-03-23 13:26:56',12,0,'2016-03-23 13:26:56',1),(2,1,1,'asdf','eeeeeeee','2016-03-22 12:40:18','2016-03-23 13:26:32',44,0,'2016-03-23 13:26:32',1),(3,1,1,'托尔斯泰','托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰','2016-03-23 12:15:52','2016-03-23 14:24:46',1,0,'2016-03-23 14:24:46',1),(4,1,1,'托尔斯泰1','托尔斯泰托尔斯泰托尔斯泰托尔斯泰','2016-03-23 12:16:13',NULL,6,0,'2016-03-23 13:14:40',2),(5,1,1,'托尔斯泰2','托尔斯泰托尔斯泰托尔斯ssss泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰','2016-03-23 12:16:19','2016-03-23 14:25:42',8,0,'2016-03-23 14:25:42',1);
+INSERT INTO `topic` VALUES (1,1,1,'Hello!','World!!!!','2016-03-21 08:30:39','2016-03-23 13:26:56',12,0,'2016-03-23 13:26:56',1),(2,1,1,'asdf','eeeeeeee','2016-03-22 12:40:18','2016-03-23 13:26:32',44,0,'2016-03-23 13:26:32',1),(3,1,1,'托尔斯泰','托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰','2016-03-23 12:15:52','2016-03-23 14:24:46',2,0,'2016-03-23 14:24:46',1),(4,1,1,'托尔斯泰1','托尔斯泰托尔斯泰托尔斯泰托尔斯泰','2016-03-23 12:16:13',NULL,6,0,'2016-03-23 13:14:40',2),(5,1,1,'托尔斯泰2','托尔斯泰托尔斯泰托尔斯ssss泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰','2016-03-23 12:16:19','2016-03-23 14:25:42',8,0,'2016-03-23 14:25:42',1);
 /*!40000 ALTER TABLE `topic` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -245,4 +247,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-03-24 10:41:00
+-- Dump completed on 2016-03-24 12:19:06

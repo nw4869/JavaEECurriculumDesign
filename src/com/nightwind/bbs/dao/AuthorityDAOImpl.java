@@ -67,24 +67,24 @@ public class AuthorityDAOImpl extends AbstractJpaDao<Authority> implements
 	}
 
 	/**
-	 * JPQL Query - findAuthorityByAuthorityFieldContaining
+	 * JPQL Query - findAllAuthoritys
 	 *
 	 */
 	@Transactional
-	public Set<Authority> findAuthorityByAuthorityFieldContaining(String authorityField) throws DataAccessException {
+	public Set<Authority> findAllAuthoritys() throws DataAccessException {
 
-		return findAuthorityByAuthorityFieldContaining(authorityField, -1, -1);
+		return findAllAuthoritys(-1, -1);
 	}
 
 	/**
-	 * JPQL Query - findAuthorityByAuthorityFieldContaining
+	 * JPQL Query - findAllAuthoritys
 	 *
 	 */
 
 	@SuppressWarnings("unchecked")
 	@Transactional
-	public Set<Authority> findAuthorityByAuthorityFieldContaining(String authorityField, int startResult, int maxRows) throws DataAccessException {
-		Query query = createNamedQuery("findAuthorityByAuthorityFieldContaining", startResult, maxRows, authorityField);
+	public Set<Authority> findAllAuthoritys(int startResult, int maxRows) throws DataAccessException {
+		Query query = createNamedQuery("findAllAuthoritys", startResult, maxRows);
 		return new LinkedHashSet<Authority>(query.getResultList());
 	}
 
@@ -111,24 +111,46 @@ public class AuthorityDAOImpl extends AbstractJpaDao<Authority> implements
 	}
 
 	/**
-	 * JPQL Query - findAuthorityByPrimaryKey
+	 * JPQL Query - findAuthorityByAuthorityFieldContaining
 	 *
 	 */
 	@Transactional
-	public Authority findAuthorityByPrimaryKey(Integer userId, String authorityField) throws DataAccessException {
+	public Set<Authority> findAuthorityByAuthorityFieldContaining(String authorityField) throws DataAccessException {
 
-		return findAuthorityByPrimaryKey(userId, authorityField, -1, -1);
+		return findAuthorityByAuthorityFieldContaining(authorityField, -1, -1);
 	}
 
 	/**
-	 * JPQL Query - findAuthorityByPrimaryKey
+	 * JPQL Query - findAuthorityByAuthorityFieldContaining
+	 *
+	 */
+
+	@SuppressWarnings("unchecked")
+	@Transactional
+	public Set<Authority> findAuthorityByAuthorityFieldContaining(String authorityField, int startResult, int maxRows) throws DataAccessException {
+		Query query = createNamedQuery("findAuthorityByAuthorityFieldContaining", startResult, maxRows, authorityField);
+		return new LinkedHashSet<Authority>(query.getResultList());
+	}
+
+	/**
+	 * JPQL Query - findAuthorityById
+	 *
+	 */
+	@Transactional
+	public Authority findAuthorityById(Integer id) throws DataAccessException {
+
+		return findAuthorityById(id, -1, -1);
+	}
+
+	/**
+	 * JPQL Query - findAuthorityById
 	 *
 	 */
 
 	@Transactional
-	public Authority findAuthorityByPrimaryKey(Integer userId, String authorityField, int startResult, int maxRows) throws DataAccessException {
+	public Authority findAuthorityById(Integer id, int startResult, int maxRows) throws DataAccessException {
 		try {
-			Query query = createNamedQuery("findAuthorityByPrimaryKey", startResult, maxRows, userId, authorityField);
+			Query query = createNamedQuery("findAuthorityById", startResult, maxRows, id);
 			return (com.nightwind.bbs.domain.Authority) query.getSingleResult();
 		} catch (NoResultException nre) {
 			return null;
@@ -136,47 +158,28 @@ public class AuthorityDAOImpl extends AbstractJpaDao<Authority> implements
 	}
 
 	/**
-	 * JPQL Query - findAllAuthoritys
+	 * JPQL Query - findAuthorityByPrimaryKey
 	 *
 	 */
 	@Transactional
-	public Set<Authority> findAllAuthoritys() throws DataAccessException {
+	public Authority findAuthorityByPrimaryKey(Integer id) throws DataAccessException {
 
-		return findAllAuthoritys(-1, -1);
+		return findAuthorityByPrimaryKey(id, -1, -1);
 	}
 
 	/**
-	 * JPQL Query - findAllAuthoritys
+	 * JPQL Query - findAuthorityByPrimaryKey
 	 *
 	 */
 
-	@SuppressWarnings("unchecked")
 	@Transactional
-	public Set<Authority> findAllAuthoritys(int startResult, int maxRows) throws DataAccessException {
-		Query query = createNamedQuery("findAllAuthoritys", startResult, maxRows);
-		return new LinkedHashSet<Authority>(query.getResultList());
-	}
-
-	/**
-	 * JPQL Query - findAuthorityByUserId
-	 *
-	 */
-	@Transactional
-	public Set<Authority> findAuthorityByUserId(Integer userId) throws DataAccessException {
-
-		return findAuthorityByUserId(userId, -1, -1);
-	}
-
-	/**
-	 * JPQL Query - findAuthorityByUserId
-	 *
-	 */
-
-	@SuppressWarnings("unchecked")
-	@Transactional
-	public Set<Authority> findAuthorityByUserId(Integer userId, int startResult, int maxRows) throws DataAccessException {
-		Query query = createNamedQuery("findAuthorityByUserId", startResult, maxRows, userId);
-		return new LinkedHashSet<Authority>(query.getResultList());
+	public Authority findAuthorityByPrimaryKey(Integer id, int startResult, int maxRows) throws DataAccessException {
+		try {
+			Query query = createNamedQuery("findAuthorityByPrimaryKey", startResult, maxRows, id);
+			return (com.nightwind.bbs.domain.Authority) query.getSingleResult();
+		} catch (NoResultException nre) {
+			return null;
+		}
 	}
 
 	/**

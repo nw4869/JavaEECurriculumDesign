@@ -146,6 +146,10 @@ public class Forum implements Serializable {
 	public Forum() {
 	}
 
+	public Forum(int id) {
+		this.id = id;
+	}
+
 	/**
 	 * Copies the contents of the specified bean into this bean.
 	 *
