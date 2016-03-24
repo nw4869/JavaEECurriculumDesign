@@ -162,7 +162,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<span><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss"
 											value="${reply.createTime }" /></span>
 								</p>
-								<c:if test="crtUser.id == reply.user.id">
+								<c:if test="${crtUser.id == reply.user.id }">
 									<p class="reply">
 										<a href="${replyBasePath }${reply.id}/delete"><i> </i>撤销</a>
 									</p>

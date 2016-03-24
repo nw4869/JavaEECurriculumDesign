@@ -1,5 +1,9 @@
 package com.nightwind.bbs.web;
 
+import java.util.Map;
+
+import javax.ejb.FinderException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -19,6 +23,7 @@ import com.nightwind.bbs.domain.User;
 import com.nightwind.bbs.exception.AuthorizeException;
 import com.nightwind.bbs.exception.ForumNotFoundException;
 import com.nightwind.bbs.exception.NoLoginException;
+import com.nightwind.bbs.service.AuthService;
 import com.nightwind.bbs.service.ForumService;
 import com.nightwind.bbs.web.form.TopicsForm;
 
@@ -29,6 +34,9 @@ public class ForumController {
 
 	@Autowired
 	private ForumService forumService;
+
+	@Autowired
+	private AuthService authService;
 	
 	
 	@RequestMapping( value = {"/", ""})
@@ -76,8 +84,19 @@ public class ForumController {
 	
 	@RequestMapping(value="/new", method=RequestMethod.POST)
 	public ModelAndView newForum(@ModelAttribute("forumForm") Forum forumForm, BindingResult bindingResult,
-			RedirectAttributes redirectAttributes, ModelMap model) throws NoLoginException {
+			RedirectAttributes redirectAttributes, ModelMap model) throws NoLoginException, AuthorizeException {
 		ModelAndView mav = new ModelAndView("redirect:/forum/");
+
+		// check login
+		User crtUser = (User) model.get("crtUser");
+		if (crtUser == null) {
+			throw new NoLoginException();
+		}
+		
+		// check owner
+		if (!authService.isAdmin(crtUser.getId())) {
+			throw new AuthorizeException();
+		}
 
 		if (bindingResult.hasErrors()) {
 			redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.forumForm", bindingResult);
@@ -97,8 +116,24 @@ public class ForumController {
 	
 	@RequestMapping(value = {"/{id:\\d+}/delete"})
 	public String delete(@PathVariable Integer id, @RequestHeader(value = "referer") String referer,
-			RedirectAttributes redirectAttributes) throws ForumNotFoundException {
+			RedirectAttributes redirectAttributes, ModelMap model) throws ForumNotFoundException, NoLoginException, AuthorizeException {
 		System.out.println("try to delete forum: " + id);
+		
+		Forum forum = forumService.findForumByPrimaryKey(id);
+		if (forum == null) {
+			throw new ForumNotFoundException();
+		}
+
+		// check login
+		User crtUser = (User) model.get("crtUser");
+		if (crtUser == null) {
+			throw new NoLoginException();
+		}
+		
+		// check owner
+		if (!authService.isForumAdmin(forum.getId(), crtUser.getId())) {
+			throw new AuthorizeException();
+		}
 		
 		forumService.deleteForum(id);
 		

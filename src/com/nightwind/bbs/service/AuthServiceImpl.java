@@ -53,11 +53,11 @@ public class AuthServiceImpl implements AuthService {
 
 	@Override
 	public Boolean isForumAdmin(Integer forumId, Integer userId) {
-		return containRole(getUser(userId), ROLE_FORUM_ADMIN, forumId);
+		return isAdmin(userId) || containRole(getUser(userId), ROLE_FORUM_ADMIN, forumId);
 	}
 
 	@Override
 	public Boolean isForumAdmin(Integer forumId, String username) {
-		return containRole(getUser(username), ROLE_FORUM_ADMIN, forumId);
+		return isAdmin(username) ||containRole(getUser(username), ROLE_FORUM_ADMIN, forumId);
 	}
 }

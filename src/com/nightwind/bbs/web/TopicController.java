@@ -24,7 +24,9 @@ import com.nightwind.bbs.domain.Reply;
 import com.nightwind.bbs.domain.Topic;
 import com.nightwind.bbs.domain.User;
 import com.nightwind.bbs.exception.AuthorizeException;
+import com.nightwind.bbs.exception.NoLoginException;
 import com.nightwind.bbs.exception.TopicNotFoundException;
+import com.nightwind.bbs.service.AuthService;
 import com.nightwind.bbs.service.ReplyService;
 import com.nightwind.bbs.service.TopicService;
 import com.nightwind.bbs.web.form.TopicsForm;
@@ -39,6 +41,9 @@ public class TopicController {
 	
 	@Autowired
 	private ReplyService replyService;
+	
+	@Autowired
+	private AuthService authService;
 	
 	@RequestMapping("/{id:\\d+}")
 	public ModelAndView show(@PathVariable("id") Integer id, ModelMap model) throws TopicNotFoundException {
@@ -107,7 +112,7 @@ public class TopicController {
 
 	@RequestMapping("/{id:\\d+}/reply")
 	public ModelAndView reply(@PathVariable Integer id, @Valid @ModelAttribute("replyForm") Reply reply, BindingResult bingResult, 
-			RedirectAttributes redirectAttributes, ModelMap model) throws AuthorizeException {
+			RedirectAttributes redirectAttributes, ModelMap model) throws NoLoginException {
 		ModelAndView mav = new ModelAndView("redirect:/topic/" + id);
 		if (bingResult.hasErrors()) {
 //			System.out.println(bingResult);
@@ -119,7 +124,7 @@ public class TopicController {
 		// validate authorize
 		User user = (User) model.get("crtUser");
 		if (user == null) {
-			throw new AuthorizeException();
+			throw new NoLoginException();
 		}
 		
 //		topicService.newTopicReply(id, user.getId(), reply);
@@ -130,8 +135,26 @@ public class TopicController {
 	
 	@RequestMapping(value = {"/{id:\\d+}/delete"})
 	public String delete(@PathVariable Integer id, @RequestHeader(value = "referer") String referer,
-			RedirectAttributes redirectAttributes) throws TopicNotFoundException {
+			RedirectAttributes redirectAttributes, ModelMap model) throws TopicNotFoundException, NoLoginException, AuthorizeException {
 		System.out.println("try to delete topic: " + id);
+
+		Topic topic = topicService.findTopicByPrimaryKey(id);
+		if (topic == null) {
+			throw new TopicNotFoundException();
+		}
+
+		// check login
+		User crtUser = (User) model.get("crtUser");
+		if (crtUser == null) {
+			throw new NoLoginException();
+		}
+		
+		// check owner
+		if (topic.getUser() != null && crtUser.getId() != topic.getUser().getId()) {
+			if (!authService.isForumAdmin(topic.getForum().getId(), crtUser.getId())) {
+				throw new AuthorizeException();
+			}
+		}
 		
 		topicService.deleteTopic(id);
 		

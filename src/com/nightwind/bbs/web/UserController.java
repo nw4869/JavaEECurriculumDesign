@@ -24,8 +24,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.nightwind.bbs.domain.User;
 import com.nightwind.bbs.exception.AuthorizeException;
+import com.nightwind.bbs.exception.NoLoginException;
 import com.nightwind.bbs.exception.TopicNotFoundException;
 import com.nightwind.bbs.exception.UserNotFoundException;
+import com.nightwind.bbs.service.AuthService;
 import com.nightwind.bbs.service.UserService;
 
 @SessionAttributes("crtUser")
@@ -35,6 +37,9 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private AuthService authService;
 	
 	@RequestMapping(value = {"", "/"}, method= RequestMethod.GET)
 	public String index(ModelMap model) throws UserNotFoundException {
@@ -151,8 +156,21 @@ public class UserController {
 	
 	@RequestMapping(value = {"/{id:\\d+}/delete"})
 	public String delete(@PathVariable Integer id, @RequestHeader(value = "referer") String referer,
-			RedirectAttributes redirectAttributes) throws UserNotFoundException {
+			RedirectAttributes redirectAttributes, ModelMap model) throws UserNotFoundException, AuthorizeException, NoLoginException {
 		System.out.println("try to delete user: " + id);
+
+		// check login
+		User crtUser = (User) model.get("crtUser");
+		if (crtUser == null) {
+			throw new NoLoginException();
+		}
+		
+		// check owner
+		if (crtUser.getId() != id) {
+			if (!authService.isAdmin(crtUser.getId())) {
+				throw new AuthorizeException();
+			}	
+		}
 		
 		userService.deleteUser(id);
 		
