@@ -16,9 +16,10 @@ import org.springframework.test.context.support.DirtiesContextTestExecutionListe
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.nightwind.bbs.domain.Reply;
+import com.nightwind.bbs.domain.Forum;
 import com.nightwind.bbs.domain.Topic;
 import com.nightwind.bbs.domain.User;
+import com.nightwind.bbs.exception.TopicNotFoundException;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -42,7 +43,14 @@ public class TopicServiceTest {
 
 	@Test
 	public void testNewTopic() {
-		fail("Not yet implemented");
+		Topic topic = new Topic();
+		topic.setTitle("test1");
+		topic.setContent("test");
+		
+		topic.setForum(new Forum(1));
+		topic.setUser(new User(0));
+		
+		topicService.newTopic(topic);
 	}
 	
 	@Test
@@ -61,6 +69,12 @@ public class TopicServiceTest {
 	public void testCount() {
 		Long count = topicService.countTopics(1);
 		System.out.println(count);
+	}
+	
+	@Test
+	public void testDelte() throws TopicNotFoundException {
+		Topic topic = topicService.deleteTopic(6);
+		System.out.println(topic);
 	}
 
 //	@Test

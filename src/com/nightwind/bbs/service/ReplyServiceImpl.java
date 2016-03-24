@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.nightwind.bbs.dao.ReplyDAO;
 import com.nightwind.bbs.domain.Reply;
+import com.nightwind.bbs.exception.ReplyNotFoundException;
 
 
 @Service("ReplyService")
@@ -23,6 +24,17 @@ public class ReplyServiceImpl implements ReplyService {
 		reply.setId(null);
 		reply = replyDAO.store(reply);
 		replyDAO.refresh(reply);
+		return reply;
+	}
+
+	@Override
+	public Reply deleteReply(Integer id) throws ReplyNotFoundException {
+		Reply reply = findReplyByPrimaryKey(id);
+		if (reply == null) {
+			throw new ReplyNotFoundException();
+		}
+		replyDAO.remove(reply);
+		replyDAO.flush();
 		return reply;
 	}
 }

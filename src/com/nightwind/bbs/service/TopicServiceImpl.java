@@ -9,18 +9,15 @@ import org.springframework.stereotype.Service;
 
 import com.nightwind.bbs.dao.ReplyDAO;
 import com.nightwind.bbs.dao.TopicDAO;
-import com.nightwind.bbs.domain.Reply;
 import com.nightwind.bbs.domain.Topic;
 import com.nightwind.bbs.exception.TopicNotFoundException;
 
 @Service("TopicService")
 public class TopicServiceImpl implements TopicService {
-
+	
 	@Autowired
 	private TopicDAO topicDAO;
 	
-	@Autowired
-	private ReplyDAO replyDAO;
 	
 	@Override
 	public Topic findTopicByPrimaryKey(Integer id) {
@@ -43,7 +40,7 @@ public class TopicServiceImpl implements TopicService {
 		}
 		topic.setClicks(topic.getClicks() + 1);
 		topic = topicDAO.store(topic);
-//		topicDAO.flush();
+		topicDAO.flush();
 //		topicDAO.refresh(topic);
 		return topic.getClicks();
 	}
@@ -66,17 +63,15 @@ public class TopicServiceImpl implements TopicService {
 		return (Long) query.getSingleResult();
 	}
 
-//	@Override
-//	public Reply newTopicReply(Integer topicId, Integer userId, Reply reply) {
-//		reply.setId(null);
-//		Topic topic = topicDAO.findTopicByPrimaryKey(topicId);
-//		topic.getReplies().add(reply);
-//		
-//		reply = replyDAO.store(reply);
-//		replyDAO.refresh(reply);
-////		topicDAO.refresh(topic);
-//		
-//		return reply;
-//	}
+	@Override
+	public Topic deleteTopic(Integer topicId) throws TopicNotFoundException {
+		Topic topic = findTopicByPrimaryKey(topicId);
+		if (topic == null) {
+			throw new TopicNotFoundException();
+		}
+		topicDAO.remove(topic);
+		topicDAO.flush();
+		return topic;
+	}
 
 }

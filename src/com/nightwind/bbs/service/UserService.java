@@ -57,4 +57,6 @@ public interface UserService {
 
 	String updateAvatar(Integer id, String avatar) throws UserNotFoundException;
 
+	public User deleteUser(Integer id) throws UserNotFoundException;
+
 }

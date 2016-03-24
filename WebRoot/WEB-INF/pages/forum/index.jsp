@@ -29,8 +29,16 @@
 	all forums:<br/>
 	<ul>
 		<c:forEach var="forum" items="${forums }">
-			<li> <a href="${forumBasePath }${forum.id}">${forum.title }</a> ${fn:length(forum.topics)} topic(s) </li>
+			<li> 
+			<a href="${forumBasePath }${forum.id}">${forum.title }</a> 
+			${fn:length(forum.topics)} topic(s) 
+			<a href="${forumBasePath }${forum.id}/delete">delete</a>
+			
+			</li>
 		</c:forEach>
 	</ul>
+	<c:if test="${crtUser != null }">
+		<jsp:include page="/WEB-INF/pages/forum/new.jsp" />
+	</c:if>
 </body>
 </html>

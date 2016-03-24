@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  * @generated
  */
 @ResponseStatus(value=HttpStatus.FORBIDDEN)
-public class AuthorizeException extends Exception {
+public class NoLoginException extends Exception {
 
 	private static final long serialVersionUID = 1L;
 
@@ -18,7 +18,7 @@ public class AuthorizeException extends Exception {
 	 * Default Constructor
 	 * @generated
 	 */
-	public AuthorizeException() {
+	public NoLoginException() {
 		super();
 	}
 
@@ -26,7 +26,7 @@ public class AuthorizeException extends Exception {
 	 * Constructor taking message
 	 * @generated
 	 */
-	public AuthorizeException(String message) {
+	public NoLoginException(String message) {
 		super(message);
 	}
 
@@ -34,7 +34,7 @@ public class AuthorizeException extends Exception {
 	 * Constructor taking root cause
 	 * @generated
 	 */
-	public AuthorizeException(Throwable t) {
+	public NoLoginException(Throwable t) {
 		super(t);
 	}
 
@@ -42,7 +42,7 @@ public class AuthorizeException extends Exception {
 	 * Constructor taking message and root cause
 	 * @generated
 	 */
-	public AuthorizeException(String message, Throwable t) {
+	public NoLoginException(String message, Throwable t) {
 		super(message, t);
 	}
 

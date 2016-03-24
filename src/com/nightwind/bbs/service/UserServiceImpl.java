@@ -194,4 +194,12 @@ public class UserServiceImpl implements UserService {
 		userDAO.flush();
 		return avatar;
 	}
+
+	@Override
+	public User deleteUser(Integer id) throws UserNotFoundException {
+		User user = findUserById(id);
+		userDAO.remove(user);
+		userDAO.flush();
+		return user;
+	}
 }

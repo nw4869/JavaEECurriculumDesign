@@ -18,4 +18,6 @@ public interface TopicService {
 	List<Topic> findHotTopicsByClicks(Integer startIndex, Integer maxCount);
 
 	Long countTopics(Integer forumId);
+	
+	Topic deleteTopic(Integer topicId) throws TopicNotFoundException;
 }

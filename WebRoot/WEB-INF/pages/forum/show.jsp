@@ -31,15 +31,20 @@
 	<br />
 	<br /> all topics:
 	<br />
+	<%-- <form:form action="${topicBasePath }" method="DELETE" modelAttribute="topicsForm"> --%>
 	<ul>
-		<c:forEach var="topic" items="${forum.topics }">
-			<li><a href="${topicBasePath }${topic.id}">${topic.title }</a>
+		<c:forEach var="topic" items="${forum.topics }" varStatus="status">
+			<li>
+			<%-- <form:checkbox path="[${status.index }].selected"/> --%>
+			<a href="${topicBasePath }${topic.id}">${topic.title }</a>
 			<a href="${userBasePath }${topic.user.id}">${topic.user.username }</a>
 			<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${topic.createTime }" />
 			<span>(${topic.clicks } clicks, ${fn:length(topic.replies)  } replies)</span>  
+			<a href="${topicBasePath }${topic.id}/delete">delete</a>
 			</li>
 		</c:forEach>
 	</ul>
+	<%-- </form:form> --%>
 	<c:if test="${crtUser != null }">
 		<jsp:include page="/WEB-INF/pages/topic/new.jsp" />
 	</c:if>

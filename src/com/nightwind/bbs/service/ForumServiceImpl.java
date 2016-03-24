@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.nightwind.bbs.dao.ForumDAO;
 import com.nightwind.bbs.domain.Forum;
+import com.nightwind.bbs.exception.ForumNotFoundException;
 import com.nightwind.bbs.service.ForumService;
 
 @Service("ForumService")
@@ -32,4 +33,22 @@ public class ForumServiceImpl implements ForumService {
 		return new java.util.ArrayList<Forum>(forumDAO.findAllForums(startResult, maxRows));
 	}
 
+	@Override
+	public Forum deleteForum(Integer id) throws ForumNotFoundException {
+		Forum forum = findForumByPrimaryKey(id);
+		if (forum == null) {
+			throw new ForumNotFoundException();
+		}
+		forumDAO.remove(forum);
+		forumDAO.flush();
+		return forum;
+	}
+
+	@Override
+	public Forum newForum(Forum forum) {
+		forum.setId(null);
+		forum = forumDAO.store(forum);
+		forumDAO.refresh(forum);
+		return forum;
+	}
 }

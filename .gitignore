@@ -3,3 +3,7 @@
 tm.out
 
 *.epoch
+
+*.prefs
+
+.settings/org.skyway.core.prefs
