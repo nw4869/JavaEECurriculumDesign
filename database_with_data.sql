@@ -112,7 +112,7 @@ UNLOCK TABLES;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `bbs`.`reply_AFTER_INSERT` AFTER INSERT ON `reply` FOR EACH ROW
 BEGIN
-	update `topic` set last_active_time = now(), last_active_user = new.user_id where id = new.topic_id;
+	update `topic` set last_active_time = now(), last_active_user_id = new.user_id where id = new.topic_id;
 END */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -245,4 +245,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-03-23 22:30:32
+-- Dump completed on 2016-03-24 10:41:00

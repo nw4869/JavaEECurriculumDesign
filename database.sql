@@ -36,16 +36,6 @@ CREATE TABLE `authority` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `authority`
---
-
-LOCK TABLES `authority` WRITE;
-/*!40000 ALTER TABLE `authority` DISABLE KEYS */;
-INSERT INTO `authority` VALUES (1,'ROLE_ADMIN',NULL);
-/*!40000 ALTER TABLE `authority` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `forum`
 --
 
@@ -59,16 +49,6 @@ CREATE TABLE `forum` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `forum`
---
-
-LOCK TABLES `forum` WRITE;
-/*!40000 ALTER TABLE `forum` DISABLE KEYS */;
-INSERT INTO `forum` VALUES (1,'forum1','hello forum1');
-/*!40000 ALTER TABLE `forum` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `reply`
@@ -91,16 +71,6 @@ CREATE TABLE `reply` (
   CONSTRAINT `fk_comment_userid` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `reply`
---
-
-LOCK TABLES `reply` WRITE;
-/*!40000 ALTER TABLE `reply` DISABLE KEYS */;
-INSERT INTO `reply` VALUES (1,1,1,'不错哦','嗯嗯嗯','2016-03-21 14:49:15'),(2,1,1,'是啊','。。。','2016-03-21 14:49:44'),(3,1,1,'asdf','test','2016-03-22 06:40:47'),(8,1,1,'t1','t2','2016-03-22 10:02:41'),(9,1,1,'t1','t2','2016-03-22 10:06:39'),(10,1,1,'t1','t2','2016-03-22 10:07:47'),(11,1,1,'t1','t2','2016-03-22 10:09:23'),(12,1,1,'t1','t2','2016-03-22 10:37:21'),(13,1,1,'t1','t2','2016-03-22 10:37:37'),(14,1,1,'ttt','ccc','2016-03-22 11:36:38'),(15,1,1,'asd','dd','2016-03-22 12:15:34'),(16,1,1,'asd','','2016-03-22 13:01:12'),(17,1,1,'asd','','2016-03-22 13:01:16'),(18,1,1,'ddd','','2016-03-22 13:01:36'),(19,1,1,'ddd','','2016-03-22 13:04:39'),(20,1,1,'','Using Bean Validation Validating input received from the user to maintain data integrity is an important part of application logic. Validation of data can take place at different layers in even the simplest of applications, as shown in Developing a Simple Facelets Application. The guessnumber example application validates the user input (in the h:inputText tag) for numerical data at the presentation layer and for a valid range of numbers at the business layer.  JavaBeans Validation (Bean Validation) is a new validation model available as part of Java EE 6 platform. The Bean Validation model is supported by constraints in the form of annotations placed on a field, method, or class of a JavaBeans component, such as a managed bean.  Constraints can be built in or user defined. User-defined constraints are called custom constraints. Several built-in constraints are available in the javax.validation.constraints package. Table 9-2 lists all the built-in constraints.  Table 9-2 Built-In Bean Validation Constraints','2016-03-22 13:35:44'),(31,2,1,'水水水水是水水水水水水水水sss','是是是水水水水谁谁谁水水水水谁谁谁','2016-03-23 07:49:27'),(32,2,1,NULL,'ddddddddddd','2016-03-23 08:37:18'),(33,2,1,NULL,'aaaaaaaaaaaaaasdasdasdasdasd啊啊啊啊啊啊啊啊啊啊啊啊啊啊','2016-03-23 08:37:26'),(34,2,1,NULL,'的顶顶顶顶顶顶顶顶顶顶顶顶顶','2016-03-23 08:39:15'),(35,2,1,NULL,'ssssssssssss','2016-03-23 08:41:13'),(36,2,1,NULL,'aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊','2016-03-23 08:46:25'),(37,4,1,NULL,'dddddddddd','2016-03-23 12:17:34'),(38,4,1,NULL,'test','2016-03-23 12:17:39'),(41,4,2,'test','test2','2016-03-23 13:14:40');
-/*!40000 ALTER TABLE `reply` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -112,7 +82,7 @@ UNLOCK TABLES;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `bbs`.`reply_AFTER_INSERT` AFTER INSERT ON `reply` FOR EACH ROW
 BEGIN
-	update `topic` set last_active_time = now(), last_active_user = new.user_id where id = new.topic_id;
+	update `topic` set last_active_time = now(), last_active_user_id = new.user_id where id = new.topic_id;
 END */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -132,15 +102,6 @@ CREATE TABLE `setting` (
   `bbs_desc` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `setting`
---
-
-LOCK TABLES `setting` WRITE;
-/*!40000 ALTER TABLE `setting` DISABLE KEYS */;
-/*!40000 ALTER TABLE `setting` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `topic`
@@ -170,16 +131,6 @@ CREATE TABLE `topic` (
   CONSTRAINT `fk_topic_last_active_user` FOREIGN KEY (`last_active_user_id`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `topic`
---
-
-LOCK TABLES `topic` WRITE;
-/*!40000 ALTER TABLE `topic` DISABLE KEYS */;
-INSERT INTO `topic` VALUES (1,1,1,'Hello!','World!!!!','2016-03-21 08:30:39','2016-03-23 13:26:56',12,0,'2016-03-23 13:26:56',1),(2,1,1,'asdf','eeeeeeee','2016-03-22 12:40:18','2016-03-23 13:26:32',44,0,'2016-03-23 13:26:32',1),(3,1,1,'托尔斯泰','托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰','2016-03-23 12:15:52','2016-03-23 14:24:46',1,0,'2016-03-23 14:24:46',1),(4,1,1,'托尔斯泰1','托尔斯泰托尔斯泰托尔斯泰托尔斯泰','2016-03-23 12:16:13',NULL,6,0,'2016-03-23 13:14:40',2),(5,1,1,'托尔斯泰2','托尔斯泰托尔斯泰托尔斯ssss泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰','2016-03-23 12:16:19','2016-03-23 14:25:42',8,0,'2016-03-23 14:25:42',1);
-/*!40000 ALTER TABLE `topic` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -225,16 +176,6 @@ CREATE TABLE `user` (
   UNIQUE KEY `username_UNIQUE` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `user`
---
-
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'nw','202CB962AC59075B964B07152D234B70','nw4869@gmail.com',NULL,'ss水水水水','托尔斯泰托尔斯泰','','2015-12-31 16:00:00'),(2,'test','202CB962AC59075B964B07152D234B70','test@test.com','/avatar/test.jpg',NULL,'my signature','','2016-03-19 11:57:50'),(11,'usn2','202CB962AC59075B964B07152D234B70','','','','','\0','2016-03-19 12:21:44'),(12,'啊啊','202CB962AC59075B964B07152D234B70',NULL,NULL,NULL,NULL,'','2016-03-19 12:26:21'),(15,'50c2a8c3-1d70-41','202CB962AC59075B964B07152D234B70',NULL,NULL,NULL,NULL,'','2016-03-19 12:30:30'),(17,'085773d5-90e4-44','202CB962AC59075B964B07152D234B70',NULL,NULL,NULL,NULL,'','2016-03-19 12:30:46'),(20,'e18a68e3-c6cd-4a','202CB962AC59075B964B07152D234B70',NULL,NULL,NULL,NULL,'','2016-03-19 12:31:37'),(22,'837ba119-323c-47','202CB962AC59075B964B07152D234B70',NULL,NULL,NULL,NULL,'','2016-03-19 12:33:58'),(24,'f82d12b2-f89f-48','202CB962AC59075B964B07152D234B70',NULL,NULL,NULL,NULL,'','2016-03-19 12:46:33'),(26,'905ac95c-e5cc-49','202CB962AC59075B964B07152D234B70',NULL,NULL,NULL,NULL,'','2016-03-19 13:16:58'),(27,'bd849dfd-3a80-49','202CB962AC59075B964B07152D234B70',NULL,NULL,NULL,NULL,'','2016-03-19 13:17:41'),(28,'7296230c-6524-4d','202CB962AC59075B964B07152D234B70',NULL,NULL,NULL,NULL,'','2016-03-19 13:21:15'),(29,'c2f513bf-3baf-45','202CB962AC59075B964B07152D234B70',NULL,NULL,NULL,NULL,'','2016-03-19 13:21:39'),(31,'5e39fbb8-c892-43','202CB962AC59075B964B07152D234B70',NULL,NULL,NULL,NULL,'','2016-03-19 13:22:45'),(33,'bdca8ba1-2c3c-4c','202CB962AC59075B964B07152D234B70',NULL,NULL,NULL,NULL,'','2016-03-19 13:30:16'),(34,'36fd4683-e55f-40','202CB962AC59075B964B07152D234B70',NULL,NULL,NULL,NULL,'','2016-03-19 13:54:15'),(36,'d30bc546-4dc2-4a','202CB962AC59075B964B07152D234B70',NULL,NULL,NULL,NULL,'','2016-03-19 13:54:50'),(38,'9c76ee50-b2d9-4f','202CB962AC59075B964B07152D234B70',NULL,NULL,NULL,NULL,'','2016-03-19 13:57:49'),(40,'7429497d-de6f-45','202CB962AC59075B964B07152D234B70',NULL,NULL,NULL,NULL,'','2016-03-19 14:01:38'),(42,'a4c140bd-25c6-4f','202CB962AC59075B964B07152D234B70',NULL,NULL,NULL,NULL,'','2016-03-19 14:01:46'),(44,'fc7b44ba-5ab2-4b','202CB962AC59075B964B07152D234B70',NULL,NULL,NULL,NULL,'','2016-03-19 14:03:44'),(46,'35fcf623-adb8-4b','202CB962AC59075B964B07152D234B70',NULL,NULL,NULL,NULL,'','2016-03-19 14:07:02'),(47,'ae6b5449-8d8d-4e','202CB962AC59075B964B07152D234B70',NULL,NULL,NULL,NULL,'','2016-03-20 03:11:20'),(48,'8d1577e0-cd62-4e','202CB962AC59075B964B07152D234B70',NULL,NULL,NULL,NULL,'','2016-03-20 03:12:04'),(49,'d9c5b9ba-12a1-48','202CB962AC59075B964B07152D234B70',NULL,NULL,NULL,NULL,'','2016-03-20 03:12:12'),(50,'56f63a81-832f-40','202CB962AC59075B964B07152D234B70',NULL,NULL,NULL,NULL,'','2016-03-20 03:12:24'),(51,'804b9bcf-fde4-45','202CB962AC59075B964B07152D234B70',NULL,NULL,NULL,NULL,'','2016-03-20 03:12:32'),(52,'dcdc1edf-f7b9-42','202CB962AC59075B964B07152D234B70',NULL,NULL,NULL,NULL,'','2016-03-20 03:12:41'),(56,'nw1','202CB962AC59075B964B07152D234B70',NULL,NULL,NULL,NULL,'','2016-03-20 12:24:41'),(62,'lianghao','202CB962AC59075B964B07152D234B70',NULL,NULL,NULL,NULL,'','2016-03-20 12:39:44'),(63,'nw123','202CB962AC59075B964B07152D234B70',NULL,NULL,NULL,NULL,'','2016-03-21 05:31:36');
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -245,4 +186,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-03-23 22:29:53
+-- Dump completed on 2016-03-24 10:40:35
