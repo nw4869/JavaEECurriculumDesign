@@ -431,6 +431,11 @@
     </dependency>
   </dependencies>
   <repositories>
+  	    <repository>
+      <id>repository.jboss.org-public</id>
+      <name>JBoss.org Maven repository</name>
+      <url>https://repository.jboss.org/nexus/content/groups/public</url>
+    </repository>  
     <repository>
       <id>skyway-public-site</id>
       <name>Skyway Public Maven Repository</name>
