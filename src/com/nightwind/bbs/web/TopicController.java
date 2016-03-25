@@ -1,25 +1,24 @@
 package com.nightwind.bbs.web;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.nightwind.bbs.domain.Forum;
 import com.nightwind.bbs.domain.Reply;
 import com.nightwind.bbs.domain.Topic;
 import com.nightwind.bbs.domain.User;
@@ -27,9 +26,9 @@ import com.nightwind.bbs.exception.AuthorizeException;
 import com.nightwind.bbs.exception.NoLoginException;
 import com.nightwind.bbs.exception.TopicNotFoundException;
 import com.nightwind.bbs.service.AuthService;
+import com.nightwind.bbs.service.ForumService;
 import com.nightwind.bbs.service.ReplyService;
 import com.nightwind.bbs.service.TopicService;
-import com.nightwind.bbs.web.form.TopicsForm;
 
 @SessionAttributes({"crtUser"})
 @RequestMapping("/topic")
@@ -41,6 +40,9 @@ public class TopicController {
 	
 	@Autowired
 	private ReplyService replyService;
+	
+	@Autowired
+	private ForumService forumService;
 	
 	@Autowired
 	private AuthService authService;
@@ -84,6 +86,22 @@ public class TopicController {
 
 		mav.addObject("totalCount", topicService.countTopics(-1));
 		mav.addObject("topics", topicService.findHotTopicsByClicks(startIndex, maxCount ));
+		
+		// setup new topic form
+		Topic topic = (Topic) model.get("topicForm");
+		if (topic == null) {
+			topic = new Topic();	
+		}
+		topic.setForum(new Forum());
+		mav.addObject("topicForm", topic);
+		
+		// setup select 
+		List<Forum> forums = forumService.findAllForums(-1, -1);
+		Map<Integer, String> forumMap = new HashMap<>();
+		for(Forum forum: forums) {
+			forumMap.put(forum.getId(), forum.getTitle());
+		}
+		mav.addObject("forumMap", forumMap);
 		
 		return mav;
 	}

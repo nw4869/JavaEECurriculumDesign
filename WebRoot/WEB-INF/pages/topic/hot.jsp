@@ -3,8 +3,8 @@
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
+	+ request.getServerName() + ":" + request.getServerPort()
+	+ path + "/";
 %>
 
 
@@ -21,7 +21,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 	
 	
+	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
+
 
 
 
@@ -110,31 +114,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="bolg-posts">
 	<div class="container">
 		<div class="blog">
-		
+
 			<c:forEach var="topic" items="${topics }">
-			
+
 				<div class="col-md-6 blog-top">
 					<div class="blog-in">
-						<a href="${topicBasePath }${topic.id}"><img src="images/b3.jpg" alt=" "></a>
+						<a href="${topicBasePath }${topic.id}"><img
+							src="images/b3.jpg" alt=" "></a>
 						<div class="blog-grid">
 							<h3>
 								<a href="${topicBasePath }${topic.id}">${topic.title }</a>
 							</h3>
-							<p>
-								${fn:substring(topic.content, 0, 100) }
-							</p>
+							<p>${fn:substring(topic.content, 0, 100) }</p>
 							<a href="${topicBasePath }${topic.id}" class="more">更多</a>
 							<div class="date">
-								<span class="date-in"><i> </i><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${topic.lastActiveTime }" /></span>
-								 <a href="${topicBasePath }${topic.id}"
-									class="comments"><i></i>${fn:length(topic.replies) }</a>
+								<span class="date-in"><i> </i> <fmt:formatDate
+										pattern="yyyy-MM-dd HH:mm:ss" value="${topic.lastActiveTime }" /></span>
+								<a href="${topicBasePath }${topic.id}" class="comments"><i></i>${fn:length(topic.replies) }</a>
 								<div class="clearfix"></div>
 							</div>
 						</div>
 					</div>
 					<i class="black"> </i>
 				</div>
-			
+
 			</c:forEach>
 
 
@@ -163,31 +166,37 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- #SendMessage -->
 <div class="container">
 	<div class="register">
-		<form>
+		<form:form name='topicForm' modelAttribute="topicForm"
+			action="topic/save" method='POST'>
 			<div class="register-top-grid">
 				<h3>发帖</h3>
 				<div class="wow fadeInLeft" data-wow-delay="0.4s">
-					<span>标题 <label>*</label></span> <input type="text">
+					<span>标题 <label>*</label></span>
+					<form:input id="title" name="title" path="title" />
+					<form:errors path="title" />
+
 				</div>
 				<div class="wow fadeInRight" data-wow-delay="0.4s">
-					<span>类别 <label>*</label></span> <input type="text">
+					<span>类别 <label>*</label></span>
+					 <form:select path="forum.id" items="${forumMap }" class="form-control">
+					</form:select>
 				</div>
+				<div class="clearfix"></div>
 
 				<div class="register-bottom-grid">
 
-					<div class="wow fadeInRight">
+					<div class="wow fadeInLeft" data-wow-delay="0.4s">
 						<div class="liuyan-box">
-							<textarea class="liuyan-content" name="board.msg"></textarea>
+							<form:textarea path="content" class="liuyan-content" name="board.msg"/>
+							<form:errors path="content" />
 							<input type="submit" value="发 帖" />
 						</div>
 					</div>
-		</form>
-	</div>
+				</div>
+			</div>
+		</form:form>
 
-</div>
-</div>
-</div>
-</div>
+	</div>
 </div>
 <!-- #SendMessage -->
 

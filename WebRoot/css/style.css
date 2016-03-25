@@ -51,7 +51,7 @@ label{
 
 .liuyan-box{}
 .liuyan-content{
- width:1000px;
+ width:900px;
  height:300px;
  border:1px #999
  solid;}
@@ -130,6 +130,46 @@ ul.navig li a:hover{
 	top: 7px;
 	left: 207px;
 }
+
+
+.tool {
+    margin-top: 1em;
+}
+
+
+
+.tool form button[type="submit"] {
+    background: #1BBC9B;
+    color: #FFF;
+    size:90 100
+    font-size: 1.2em;
+    padding: 0.6em 2em;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    display: inline-block;
+    text-transform: uppercase;
+    border: none;
+    outline: none;
+}
+
+.tool form button[type="checkbox"] {
+    background: #1BBC9B;
+    color: #FFF;
+    size:90 100
+    font-size: 1.2em;
+    padding: 0.6em 2em;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    display: inline-block;
+    text-transform: uppercase;
+    border: none;
+    outline: none;
+}
+
 .banner-bot{
 	padding:4em 0;
 	text-align:center;

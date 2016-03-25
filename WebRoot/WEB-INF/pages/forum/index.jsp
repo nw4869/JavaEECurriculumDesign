@@ -90,8 +90,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div id="breadcrumb_wrapper">
                 <div class="container">
 
-                    <h3>我的贴吧</h3>
-                    <h6>我的地盘，我做主</h6>
+                    <h3>话题分类</h3>
+                    <h6></h6>
 
                     <div class="clearfix"></div>
                 </div>
