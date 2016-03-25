@@ -116,6 +116,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				  </div>
 				  <a class="forgot" href="#">忘记密码?</a>
 				  <input type="submit" value="登 陆">
+				  <input type="hidden" value="${referer }" name="referer">
 			    </form:form>
 			   </div>	
 			   <div class="clearfix"> </div>

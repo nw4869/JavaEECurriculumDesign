@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.nightwind.bbs.domain.User;
 import com.nightwind.bbs.exception.AccountExistedException;
@@ -31,12 +33,21 @@ public class AuthController {
 	private UserService userService;
 
 	@RequestMapping(value = "/login", method = { RequestMethod.GET })
-	public ModelAndView displayLogin(User user, ModelMap model) {
+	public ModelAndView displayLogin(User user, ModelMap model,
+			@RequestHeader(value = "referer", required = false) String referer) {
 		ModelAndView mav = new ModelAndView();
+		
 		if (model.get("crtUser") != null) {
-			mav.setViewName("redirect:/");
+			// 用户已经登录
+			if (referer != null) {
+				mav.setViewName("redirect:"+referer);
+			} else {
+				mav.setViewName("redirect:/");
+			}
 		} else {
+			// 显示登录页面
 			mav.setViewName("auth/login.jsp");
+			model.addAttribute("referer", referer);
 			mav.addObject("userForm", user);	
 		}
 		return mav;
@@ -44,10 +55,12 @@ public class AuthController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView login(@Valid @ModelAttribute("userForm") User user,
-			BindingResult bindingResult, ModelMap model) {
-		ModelAndView mav = new ModelAndView();
+			BindingResult bindingResult, ModelMap model,
+			@RequestParam(value = "referer", required = false) String referer) {
+		ModelAndView mav = new ModelAndView("/");
+//		mav.setViewName("auth/login-success.jsp");
 		
-		System.out.println("result: " + bindingResult);
+//		System.out.println("result: " + bindingResult);
 		
 		if (bindingResult.hasErrors()) {
 			mav.setViewName("auth/login.jsp");
@@ -57,8 +70,6 @@ public class AuthController {
 		try {
 			user = userService.login(user.getUsername(), user.getPassword());
 			mav.addObject("crtUser", user);
-//			mav.setViewName("auth/login-success.jsp");
-			mav.setViewName("redirect:/");
 		} catch (AuthorizeException e) {
 			bindingResult.rejectValue("password","auth.wrongPassword", "wrong password!");
 			mav.setViewName("auth/login.jsp");
@@ -66,15 +77,25 @@ public class AuthController {
 			bindingResult.rejectValue("username","auth.userNotFound", "user not found!");
 			mav.setViewName("auth/login.jsp");
 		}
+		
+		if (model.get("referer") != null) {
+			mav.setViewName("redirect:" + (String) model.get("referer"));
+		}
+		
+		if (referer != null) {
+			mav.setViewName("redirect:" + referer);
+		}
 
 		return mav;
 	}
 
 	@RequestMapping(value="logout", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView logout(@RequestHeader(value = "referer") String referer, SessionStatus sessionStatus) {
+	public ModelAndView logout(@RequestHeader(value = "referer", required = false) String referer, SessionStatus sessionStatus) {
 //		ModelAndView mav = new ModelAndView("auth/logout-success.jsp");
 		ModelAndView mav = new ModelAndView("redirect:/");
-		mav.addObject("referer", referer);
+		if (referer != null) {
+			mav.setViewName("redirect:" + referer);
+		}
 		mav.addObject("crtUser", null);
 		sessionStatus.setComplete();
 		return mav;
