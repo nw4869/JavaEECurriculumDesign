@@ -7,3 +7,5 @@ tm.out
 *.prefs
 
 .settings/org.skyway.core.prefs
+
+.DS_Store

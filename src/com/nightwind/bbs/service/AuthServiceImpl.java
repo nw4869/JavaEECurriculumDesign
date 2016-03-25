@@ -1,6 +1,7 @@
 package com.nightwind.bbs.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.nightwind.bbs.dao.AuthorityDAO;
 import com.nightwind.bbs.dao.UserDAO;
@@ -8,6 +9,7 @@ import com.nightwind.bbs.domain.Authority;
 import com.nightwind.bbs.domain.Forum;
 import com.nightwind.bbs.domain.User;
 
+@Service("AuthService")
 public class AuthServiceImpl implements AuthService {
 
 	static public final String ROLE_ADMIN = "ROLE_ADMIN";

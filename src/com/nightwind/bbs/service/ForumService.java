@@ -1,5 +1,6 @@
 package com.nightwind.bbs.service;
 
+import java.util.Date;
 import java.util.List;
 
 import com.nightwind.bbs.domain.Forum;
@@ -16,5 +17,9 @@ public interface ForumService {
 	Forum deleteForum(Integer id) throws ForumNotFoundException;
 
 	Forum newForum(Forum forum);
+
+	Date getLastActiveTime(Integer forumId) throws ForumNotFoundException;
+
+	Long getTotalReplyCount(Integer forumId) throws ForumNotFoundException;
 
 }
