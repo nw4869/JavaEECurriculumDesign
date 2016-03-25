@@ -34,7 +34,7 @@ CREATE TABLE `authority` (
   KEY `fk_a_u_idx` (`user_id`),
   CONSTRAINT `fk_a_f` FOREIGN KEY (`forum_id`) REFERENCES `forum` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_a_u` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +43,7 @@ CREATE TABLE `authority` (
 
 LOCK TABLES `authority` WRITE;
 /*!40000 ALTER TABLE `authority` DISABLE KEYS */;
-INSERT INTO `authority` VALUES (1,1,'ROLE_ADMIN',NULL);
+INSERT INTO `authority` VALUES (1,1,'ROLE_ADMIN',NULL),(2,1,'ROLE_ADMIN',NULL),(4,1,'ROLE_ADMIN',NULL),(6,1,'ROLE_ADMIN',NULL),(7,1,'ROLE_ADMIN',NULL),(8,1,'ROLE_FORUM_ADMIN',1),(10,1,'ROLE_ADMIN',NULL);
 /*!40000 ALTER TABLE `authority` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -59,7 +59,7 @@ CREATE TABLE `forum` (
   `title` varchar(45) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,7 +68,7 @@ CREATE TABLE `forum` (
 
 LOCK TABLES `forum` WRITE;
 /*!40000 ALTER TABLE `forum` DISABLE KEYS */;
-INSERT INTO `forum` VALUES (1,'forum1','hello forum1');
+INSERT INTO `forum` VALUES (1,'forum1','hello forum1'),(2,'forum2','hello forum2'),(3,'forum3','hello forum3'),(4,'forum4','hello fourm4'),(5,'f5','as');
 /*!40000 ALTER TABLE `forum` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -91,7 +91,7 @@ CREATE TABLE `reply` (
   KEY `fk_comment_userid_idx` (`user_id`),
   CONSTRAINT `fk_comment_threadid` FOREIGN KEY (`topic_id`) REFERENCES `topic` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_comment_userid` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -100,7 +100,7 @@ CREATE TABLE `reply` (
 
 LOCK TABLES `reply` WRITE;
 /*!40000 ALTER TABLE `reply` DISABLE KEYS */;
-INSERT INTO `reply` VALUES (1,1,1,'不错哦','嗯嗯嗯','2016-03-21 14:49:15'),(2,1,1,'是啊','。。。','2016-03-21 14:49:44'),(3,1,1,'asdf','test','2016-03-22 06:40:47'),(8,1,1,'t1','t2','2016-03-22 10:02:41'),(9,1,1,'t1','t2','2016-03-22 10:06:39'),(10,1,1,'t1','t2','2016-03-22 10:07:47'),(11,1,1,'t1','t2','2016-03-22 10:09:23'),(12,1,1,'t1','t2','2016-03-22 10:37:21'),(13,1,1,'t1','t2','2016-03-22 10:37:37'),(14,1,1,'ttt','ccc','2016-03-22 11:36:38'),(15,1,1,'asd','dd','2016-03-22 12:15:34'),(16,1,1,'asd','','2016-03-22 13:01:12'),(17,1,1,'asd','','2016-03-22 13:01:16'),(18,1,1,'ddd','','2016-03-22 13:01:36'),(19,1,1,'ddd','','2016-03-22 13:04:39'),(20,1,1,'','Using Bean Validation Validating input received from the user to maintain data integrity is an important part of application logic. Validation of data can take place at different layers in even the simplest of applications, as shown in Developing a Simple Facelets Application. The guessnumber example application validates the user input (in the h:inputText tag) for numerical data at the presentation layer and for a valid range of numbers at the business layer.  JavaBeans Validation (Bean Validation) is a new validation model available as part of Java EE 6 platform. The Bean Validation model is supported by constraints in the form of annotations placed on a field, method, or class of a JavaBeans component, such as a managed bean.  Constraints can be built in or user defined. User-defined constraints are called custom constraints. Several built-in constraints are available in the javax.validation.constraints package. Table 9-2 lists all the built-in constraints.  Table 9-2 Built-In Bean Validation Constraints','2016-03-22 13:35:44'),(31,2,1,'水水水水是水水水水水水水水sss','是是是水水水水谁谁谁水水水水谁谁谁','2016-03-23 07:49:27'),(32,2,1,NULL,'ddddddddddd','2016-03-23 08:37:18'),(33,2,1,NULL,'aaaaaaaaaaaaaasdasdasdasdasd啊啊啊啊啊啊啊啊啊啊啊啊啊啊','2016-03-23 08:37:26'),(34,2,1,NULL,'的顶顶顶顶顶顶顶顶顶顶顶顶顶','2016-03-23 08:39:15'),(35,2,1,NULL,'ssssssssssss','2016-03-23 08:41:13'),(36,2,1,NULL,'aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊','2016-03-23 08:46:25'),(37,4,1,NULL,'dddddddddd','2016-03-23 12:17:34'),(38,4,1,NULL,'test','2016-03-23 12:17:39'),(41,4,2,'test','test2','2016-03-23 13:14:40');
+INSERT INTO `reply` VALUES (1,1,1,'不错哦','嗯嗯嗯','2016-03-21 14:49:15'),(2,1,1,'是啊','。。。','2016-03-21 14:49:44'),(3,1,1,'asdf','test','2016-03-22 06:40:47'),(8,1,1,'t1','t2','2016-03-22 10:02:41'),(9,1,1,'t1','t2','2016-03-22 10:06:39'),(10,1,1,'t1','t2','2016-03-22 10:07:47'),(11,1,1,'t1','t2','2016-03-22 10:09:23'),(12,1,1,'t1','t2','2016-03-22 10:37:21'),(13,1,1,'t1','t2','2016-03-22 10:37:37'),(14,1,1,'ttt','ccc','2016-03-22 11:36:38'),(15,1,1,'asd','dd','2016-03-22 12:15:34'),(16,1,1,'asd','','2016-03-22 13:01:12'),(17,1,1,'asd','','2016-03-22 13:01:16'),(18,1,1,'ddd','','2016-03-22 13:01:36'),(19,1,1,'ddd','','2016-03-22 13:04:39'),(20,1,1,'','Using Bean Validation Validating input received from the user to maintain data integrity is an important part of application logic. Validation of data can take place at different layers in even the simplest of applications, as shown in Developing a Simple Facelets Application. The guessnumber example application validates the user input (in the h:inputText tag) for numerical data at the presentation layer and for a valid range of numbers at the business layer.  JavaBeans Validation (Bean Validation) is a new validation model available as part of Java EE 6 platform. The Bean Validation model is supported by constraints in the form of annotations placed on a field, method, or class of a JavaBeans component, such as a managed bean.  Constraints can be built in or user defined. User-defined constraints are called custom constraints. Several built-in constraints are available in the javax.validation.constraints package. Table 9-2 lists all the built-in constraints.  Table 9-2 Built-In Bean Validation Constraints','2016-03-22 13:35:44'),(31,2,1,'水水水水是水水水水水水水水sss','是是是水水水水谁谁谁水水水水谁谁谁','2016-03-23 07:49:27'),(32,2,1,NULL,'ddddddddddd','2016-03-23 08:37:18'),(33,2,1,NULL,'aaaaaaaaaaaaaasdasdasdasdasd啊啊啊啊啊啊啊啊啊啊啊啊啊啊','2016-03-23 08:37:26'),(34,2,1,NULL,'的顶顶顶顶顶顶顶顶顶顶顶顶顶','2016-03-23 08:39:15'),(35,2,1,NULL,'ssssssssssss','2016-03-23 08:41:13'),(36,2,1,NULL,'aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊aaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊','2016-03-23 08:46:25'),(37,4,1,NULL,'dddddddddd','2016-03-23 12:17:34'),(38,4,1,NULL,'test','2016-03-23 12:17:39'),(41,4,2,'test','test2','2016-03-23 13:14:40'),(42,5,1,NULL,'顶顶顶顶顶大大大','2016-03-25 09:33:39');
 /*!40000 ALTER TABLE `reply` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -170,7 +170,7 @@ CREATE TABLE `topic` (
   CONSTRAINT `fk_thread_forumid` FOREIGN KEY (`forum_id`) REFERENCES `forum` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `fk_thread_userid` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fk_topic_last_active_user` FOREIGN KEY (`last_active_user_id`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -179,7 +179,7 @@ CREATE TABLE `topic` (
 
 LOCK TABLES `topic` WRITE;
 /*!40000 ALTER TABLE `topic` DISABLE KEYS */;
-INSERT INTO `topic` VALUES (1,1,1,'Hello!','World!!!!','2016-03-21 08:30:39','2016-03-23 13:26:56',12,0,'2016-03-23 13:26:56',1),(2,1,1,'asdf','eeeeeeee','2016-03-22 12:40:18','2016-03-23 13:26:32',44,0,'2016-03-23 13:26:32',1),(3,1,1,'托尔斯泰','托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰','2016-03-23 12:15:52','2016-03-23 14:24:46',2,0,'2016-03-23 14:24:46',1),(4,1,1,'托尔斯泰1','托尔斯泰托尔斯泰托尔斯泰托尔斯泰','2016-03-23 12:16:13',NULL,6,0,'2016-03-23 13:14:40',2),(5,1,1,'托尔斯泰2','托尔斯泰托尔斯泰托尔斯ssss泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰','2016-03-23 12:16:19','2016-03-23 14:25:42',8,0,'2016-03-23 14:25:42',1);
+INSERT INTO `topic` VALUES (1,1,1,'Hello!','World!!!!','2016-03-21 08:30:39','2016-03-23 13:26:56',12,0,'2016-03-23 13:26:56',1),(2,1,1,'asdf','sss','2016-03-22 12:40:18','2016-03-25 08:51:24',61,0,'2016-03-25 08:51:24',1),(3,1,1,'托尔斯泰','托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰','2016-03-23 12:15:52','2016-03-23 14:24:46',2,0,'2016-03-23 14:24:46',1),(4,1,1,'托尔斯泰1','托尔斯泰托尔斯泰托尔斯泰托尔斯泰','2016-03-23 12:16:13',NULL,7,0,'2016-03-23 13:14:40',2),(5,1,1,'托尔斯泰2','托尔斯泰托尔斯泰托尔斯ssss泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰','2016-03-23 12:16:19','2016-03-23 14:25:42',12,0,'2016-03-25 09:33:39',1),(6,2,2,'aa','bbb','2016-03-25 08:54:50',NULL,0,0,'2016-03-25 08:54:50',2),(7,2,1,'bbb','test','2016-03-25 08:58:34',NULL,1,0,'2016-03-25 08:58:34',1),(8,2,1,'bbb','test','2016-03-25 09:03:19',NULL,1,0,'2016-03-25 09:03:19',1);
 /*!40000 ALTER TABLE `topic` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -191,10 +191,24 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 trigger tirgger_update_thread
-before
-UPDATE ON `topic` FOR EACH ROW 
-BEGIN
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trigger_before_insert_topic` BEFORE INSERT ON `topic` FOR EACH ROW BEGIN
+	set new.last_active_user_id = new.user_id;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `tirgger_before_update_topic` BEFORE UPDATE ON `topic` FOR EACH ROW BEGIN
 	if NEW.content != OLD.content or NEW.title != OLD.title then
         set NEW.last_modified = NOW(), new.last_active_time = NOW(), new.last_active_user_id = new.user_id;
 	END IF;
@@ -247,4 +261,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-03-24 12:19:06
+-- Dump completed on 2016-03-25 21:06:40

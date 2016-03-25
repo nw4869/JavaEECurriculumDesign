@@ -1,8 +1,8 @@
 package com.nightwind.bbs.web;
 
-import java.util.Map;
-
-import javax.ejb.FinderException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +25,6 @@ import com.nightwind.bbs.exception.ForumNotFoundException;
 import com.nightwind.bbs.exception.NoLoginException;
 import com.nightwind.bbs.service.AuthService;
 import com.nightwind.bbs.service.ForumService;
-import com.nightwind.bbs.web.form.TopicsForm;
 
 @SessionAttributes("crtUser")
 @RequestMapping("/forum")
@@ -40,9 +39,20 @@ public class ForumController {
 	
 	
 	@RequestMapping( value = {"/", ""})
-	public ModelAndView list(ModelMap model) {
+	public ModelAndView list(ModelMap model) throws ForumNotFoundException {
 		ModelAndView mav = new ModelAndView("/forum/index.jsp");
-		mav.addObject("forums", forumService.findAllForums(-1, -1));
+		List<Forum> forums = forumService.findAllForums(-1, -1);
+		mav.addObject("forums", forums);
+		
+		List<Date> lastActiveTimeList = new ArrayList<>(forums.size());
+		List<Long> repliesCountList = new ArrayList<>(forums.size());
+		for (Forum forum: forums) {
+			lastActiveTimeList.add(forumService.getLastActiveTime(forum.getId()));
+			repliesCountList.add(forumService.getTotalReplyCount(forum.getId()));
+		}
+		mav.addObject("lastActiveTimeList", lastActiveTimeList);
+		mav.addObject("repliesCountList", repliesCountList);
+		
 		
 		// setup forumForm for new Forum
 		Forum forumForm = (Forum) model.get("forumForm");
@@ -50,6 +60,8 @@ public class ForumController {
 			forumForm = new Forum();
 		}
 		mav.addObject("forumForm", forumForm);
+		
+		mav.addObject("authService", authService);
 		
 		return mav;
 	}
