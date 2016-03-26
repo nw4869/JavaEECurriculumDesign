@@ -40,6 +40,11 @@
 			<param-value>Mysql_bbs</param-value>
 		</init-param>
 	</filter>
+
+	<filter>
+		<filter-name>sitemesh</filter-name>
+		<filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter</filter-class>
+	</filter>
 	
     <filter-mapping>
           <filter-name>encodingFilter</filter-name>
@@ -50,6 +55,12 @@
 		<filter-name>Mysql_bbsFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	<filter-mapping>
+		<filter-name>sitemesh</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
 	<servlet>
 		<description>generated-servlet</description>
 		<servlet-name>bbs Servlet</servlet-name>

@@ -1,4 +1,4 @@
-<%@taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator"  %>
+<%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator" prefix="decorator" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -16,3 +16,4 @@
 <c:set var="hotTopicPath" value="${pageContext.request.contextPath }/topic/hot"></c:set>
 <c:set var="replyBasePath" value="${pageContext.request.contextPath }/reply/"></c:set>
 
+<%-- <c:set var="title" value="My Title"/> --%>

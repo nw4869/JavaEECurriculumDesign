@@ -19,6 +19,6 @@ public class Utils {
 	}
 	
 	static boolean isNotBlank(String str) {
-		return str != null && str.trim().length() > 0; 
+		return str != null && str.trim().length() > 0;
 	}
 }
