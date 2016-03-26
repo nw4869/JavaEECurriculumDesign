@@ -17,4 +17,8 @@ public class Utils {
 	static String getCrtUseranem(ModelMap model) {
 		return getCrtUser(model) != null ? getCrtUser(model).getUsername() : null;
 	}
+	
+	static boolean isNotBlank(String str) {
+		return str != null && str.trim().length() > 0; 
+	}
 }

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -99,7 +101,7 @@ public class ForumController {
 	}
 	
 	@RequestMapping(value="/new", method=RequestMethod.POST)
-	public ModelAndView newForum(@ModelAttribute("forumForm") Forum forumForm, BindingResult bindingResult,
+	public ModelAndView newForum(@Valid @ModelAttribute("forumForm") Forum forumForm, BindingResult bindingResult,
 			RedirectAttributes redirectAttributes, ModelMap model) throws NoLoginException, AuthorizeException {
 		ModelAndView mav = new ModelAndView("redirect:/forum/");
 
@@ -116,6 +118,7 @@ public class ForumController {
 
 		if (bindingResult.hasErrors()) {
 			redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.forumForm", bindingResult);
+			redirectAttributes.addFlashAttribute("forumForm", forumForm);
 			return mav;
 		}
 		

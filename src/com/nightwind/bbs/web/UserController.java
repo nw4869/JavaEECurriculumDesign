@@ -55,15 +55,15 @@ public class UserController {
 	public ModelAndView info(@PathVariable(value = "id")  Integer id, ModelMap model) throws UserNotFoundException {
 		ModelAndView mav = new ModelAndView();
 		
-		// 直接已经登录，直接跳到更新页面
+		// 直接已经登录且id是用户，直接跳到更新页面
 		User user = (User) model.get("crtUser");
-		if (user != null) {
+		if (user != null && user.getId().equals(id)) {
 			mav.setViewName("redirect:/user/update");
 			return mav;
 		}
 			
 		mav.addObject("user", userService.findUserById(id));
-		mav.setViewName("user/info.jsp");
+		mav.setViewName("user/index.jsp");
 		return mav;
 	}
 	

@@ -2,22 +2,30 @@ package com.nightwind.bbs.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.nightwind.bbs.dao.AuthorityDAO;
+import com.nightwind.bbs.dao.ForumDAO;
 import com.nightwind.bbs.dao.UserDAO;
 import com.nightwind.bbs.domain.Authority;
 import com.nightwind.bbs.domain.Forum;
 import com.nightwind.bbs.domain.User;
+import com.nightwind.bbs.exception.ForumNotFoundException;
+import com.nightwind.bbs.exception.UserNotFoundException;
 
+@Transactional
 @Service("AuthService")
 public class AuthServiceImpl implements AuthService {
 
 	static public final String ROLE_ADMIN = "ROLE_ADMIN";
 	
 	static public final String ROLE_FORUM_ADMIN = "ROLE_FORUM_ADMIN";
-	
+
 	@Autowired
 	private UserDAO userDAO;
+	
+	@Autowired
+	private ForumDAO forumDAO;
 	
 	@Autowired
 	private AuthorityDAO authorityDAO;
@@ -51,6 +59,60 @@ public class AuthServiceImpl implements AuthService {
 	@Override
 	public Boolean isAdmin(String username) {
 		return containRole(getUser(username), ROLE_ADMIN, null);
+	}
+	
+	@Transactional
+	@Override
+	public void setAdmin(Integer userId, Boolean set) throws UserNotFoundException {
+		User user = userDAO.findUserById(userId);
+		if (user == null) {
+			throw new UserNotFoundException();
+		}
+		if (set && !isAdmin(userId)) {
+			Authority authority = new Authority();
+			
+			authority.setUser(user);
+			authority.setAuthorityField(ROLE_ADMIN);
+			authorityDAO.store(authority);
+			authorityDAO.flush();
+		} else {
+			for (Authority authority: user.getAuthorities()) {
+				if (authority.getAuthorityField().equals(ROLE_ADMIN)) {
+					authorityDAO.remove(authority);
+				}
+			}
+			authorityDAO.flush();
+		}
+	}
+
+	@Transactional
+	@Override
+	public void setForumAdmin(Integer forumId, Integer userId, Boolean set) throws UserNotFoundException, ForumNotFoundException {
+		User user = userDAO.findUserById(userId);
+		if (user == null) {
+			throw new UserNotFoundException();
+		}
+		Forum forum = forumDAO.findForumById(forumId);
+		if (forum == null) {
+			throw new ForumNotFoundException();
+		}
+		
+		if (set && !isForumAdmin(forumId, userId)) {
+			Authority authority = new Authority();
+			
+			authority.setForum(forum);
+			authority.setUser(user);
+			authority.setAuthorityField(ROLE_FORUM_ADMIN);
+			authorityDAO.store(authority);
+			authorityDAO.flush();
+		} else {
+			for (Authority authority: user.getAuthorities()) {
+				if (authority.getAuthorityField().equals(ROLE_FORUM_ADMIN) && authority.getForum().getId() == forumId) {
+					authorityDAO.remove(authority);
+				}
+			}
+			authorityDAO.flush();
+		}
 	}
 
 	@Override

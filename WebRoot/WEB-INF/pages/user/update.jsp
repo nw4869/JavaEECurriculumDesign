@@ -11,7 +11,7 @@
 <html>
 <head>
 <base href="<%=basePath%>">
-<title>MY Post Bar</title>
+<title>${crtUser.username } - 个人信息</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords"
@@ -220,10 +220,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<form:form name='updateForm' modelAttribute="userForm"
 			action="user/update" method='POST'>
 			<div class="register-top-grid">
-				<h3>个人信息</h3>
+				<h3>${crtUser.username } - 个人信息</h3>
 
 				<div class="wow fadeInLeft" data-wow-delay="0.4s">
-					<span>更换头像 <label>*</label></span>
+					<span>更换头像 </span>
 
 					<div id="preview">
 						<img id="imghead" border=0 src="images/head_180.jpg" width="180"
