@@ -70,6 +70,7 @@ public class Topic implements Serializable {
 	/**
 	 */
 
+	@NotBlank
 	@Size(max=45)
 	@Column(name = "title", length = 45, nullable = false)
 	@Basic(fetch = FetchType.EAGER)

@@ -25,6 +25,7 @@ import com.nightwind.bbs.exception.ForumNotFoundException;
 import com.nightwind.bbs.exception.NoLoginException;
 import com.nightwind.bbs.service.AuthService;
 import com.nightwind.bbs.service.ForumService;
+import com.nightwind.bbs.web.Utils;
 
 @SessionAttributes("crtUser")
 @RequestMapping("/forum")
@@ -61,7 +62,7 @@ public class ForumController {
 		}
 		mav.addObject("forumForm", forumForm);
 		
-		mav.addObject("authService", authService);
+		mav.addObject("isAdmin", authService.isAdmin(Utils.getCrtUserId(model)));
 		
 		return mav;
 	}
@@ -87,6 +88,9 @@ public class ForumController {
 		topic.setForum(forum);
 		topic.setUser((User) model.get("crtUser"));
 		mav.addObject("topicForm", topic);
+
+		mav.addObject("isAdmin", authService.isAdmin(Utils.getCrtUserId(model)));
+		mav.addObject("isForumAdmin", authService.isForumAdmin(id, Utils.getCrtUserId(model)));
 		
 		// setup admin multi delete toic form
 		// TODO
@@ -122,7 +126,7 @@ public class ForumController {
 		
 		forumService.newForum(forumForm);
 		
-		mav.addObject("message", "new forum success");
+		redirectAttributes.addFlashAttribute("message", "new forum success");
 		return mav;
 	}
 	

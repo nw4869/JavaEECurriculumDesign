@@ -91,8 +91,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div id="breadcrumb_wrapper">
                 <div class="container">
 
-                    <h3>趣帖</h3>
-                    <h6>莫愁前路无知己，贴贴相逢终有遇</h6>
+                    <h3>${forum.title }</h3>
+                    <h6>${forum.description }</h6>
 
                     <div class="clearfix"></div>
                 </div>
@@ -129,7 +129,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <div class="ds_price">
                                 <fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${topic.lastActiveTime }" />
                             </div>
-                            <div class="ds_order"><a href="${topicBasePath }${topic.id}" class="button">回复</a></div>
+                            <div class="ds_order">
+                            	<a href="${topicBasePath }${topic.id}" class="button">回复</a>
+                            	<c:if test="${isForumAdmin }">
+                            		<a href="${topicBasePath }${topic.id}/delete" class="button">删除</a>
+                            	</c:if>
+                            </div>
                             <div class="clearfix"></div>
                         </div>
                     </c:forEach>
@@ -155,7 +160,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <li><a href="#">12</a></li>
                     <li><a href="#" class="next">下一页</a></li>
                 </ul>
-
+                
                 <c:if test="${crtUser != null}">
 
                     <div class="leave">

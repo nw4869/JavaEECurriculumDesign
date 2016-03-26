@@ -65,6 +65,10 @@ public class TopicController {
 		replyForm.setUser((User) model.get("crtUser"));
 		mav.addObject("replyForm", replyForm);
 		
+		// authority
+		mav.addObject("isAdmin", authService.isAdmin(Utils.getCrtUserId(model)));
+		mav.addObject("isForumAdmin", authService.isForumAdmin(topic.getForum().getId(), Utils.getCrtUserId(model)));
+		
 		return mav;
 	}
 	
@@ -154,7 +158,6 @@ public class TopicController {
 	@RequestMapping(value = {"/{id:\\d+}/delete"})
 	public String delete(@PathVariable Integer id, @RequestHeader(value = "referer") String referer,
 			RedirectAttributes redirectAttributes, ModelMap model) throws TopicNotFoundException, NoLoginException, AuthorizeException {
-		System.out.println("try to delete topic: " + id);
 
 		Topic topic = topicService.findTopicByPrimaryKey(id);
 		if (topic == null) {
@@ -176,7 +179,6 @@ public class TopicController {
 		
 		topicService.deleteTopic(id);
 		
-		System.out.println("redirect:" + referer);
 		redirectAttributes.addFlashAttribute("message", "delete topic suceess");
 		return "redirect:" + referer;
 	}

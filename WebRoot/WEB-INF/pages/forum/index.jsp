@@ -135,7 +135,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     </c:otherwise>
                                 </c:choose>
                             </div>
-                            <div class="ds_order"><a href="${forumBasePath }${forum.id}" class="button">发帖</a></div>
+                            <div class="ds_order">
+                            	<a href="${forumBasePath }${forum.id}" class="button">发帖</a>
+                            	<c:if test="${isAdmin }">
+                            		<a href="${forumBasePath }${forum.id}/delete" class="button">删除</a>
+                            	</c:if>
+                            </div>
                             <div class="clearfix"></div>
                         </div>
                     </c:forEach>
@@ -152,9 +157,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         message: ${message }
                     </div>
                 </c:if>
-                
 
-                <!--<c:if test="${crtUser != null && authService.isAdmin(crtUser.id)}">
+                <c:if test="${isAdmin }">
 
                     <div class="leave">
                         <h3>新建论坛</h3>
@@ -185,7 +189,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </form:form>
 
                     </div>
-                </c:if>-->
+                </c:if>
 
             </div>
 
