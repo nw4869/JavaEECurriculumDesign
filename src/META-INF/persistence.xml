@@ -12,6 +12,7 @@
       			<class>com.nightwind.bbs.domain.User</class>
       			<class>com.nightwind.bbs.domain.Authority</class>
       			<class>com.nightwind.bbs.domain.Topic</class>
+      			<class>com.nightwind.bbs.domain.Mail</class>
    			<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		</persistence-unit>
 

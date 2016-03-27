@@ -78,6 +78,13 @@ public class UserDAOTest {
 
 	}
 
+	@Test
+	public void getMails() {
+		User user = dataStore.findUserById(1);
+		System.out.println(user.getMailsForReciver());
+	}
+	
+
 	/**
 	 * Method to allow Spring to inject the DAO that will be tested
 	 *

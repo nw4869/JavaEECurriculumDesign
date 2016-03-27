@@ -7,11 +7,14 @@ import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.*;
 import javax.persistence.*;
 
@@ -136,6 +139,17 @@ public class User implements Serializable {
 	@OneToMany(mappedBy = "user", cascade = { CascadeType.REMOVE }, fetch = FetchType.LAZY)
 	@XmlElement(name = "", namespace = "")
 	java.util.Set<com.nightwind.bbs.domain.Reply> replies;
+	
+	/**
+	 */
+	@OneToMany(mappedBy = "sender", cascade = { CascadeType.REMOVE }, fetch = FetchType.LAZY)
+	@XmlElement(name = "", namespace = "")
+	java.util.Set<com.nightwind.bbs.domain.Mail> mailsForSender;
+	/**
+	 */
+	@OneToMany(mappedBy = "reciver", cascade = { CascadeType.REMOVE }, fetch = FetchType.LAZY)
+	@XmlElement(name = "", namespace = "")
+	java.util.Set<com.nightwind.bbs.domain.Mail> mailsForReciver;
 
 	/**
 	 */
@@ -289,6 +303,31 @@ public class User implements Serializable {
 		}
 		return replies;
 	}
+	
+
+	public java.util.Set<com.nightwind.bbs.domain.Mail> getMailsForSender() {
+		if (mailsForSender == null) {
+			mailsForSender = new LinkedHashSet<Mail>();
+		}
+		return mailsForSender;
+	}
+
+	public void setMailsForSender(
+			java.util.Set<com.nightwind.bbs.domain.Mail> mailsForSender) {
+		this.mailsForSender = mailsForSender;
+	}
+
+	public java.util.Set<com.nightwind.bbs.domain.Mail> getMailsForReciver() {
+		if (mailsForReciver == null) {
+			mailsForReciver = new LinkedHashSet<Mail>();
+		}
+		return mailsForReciver;
+	}
+
+	public void setMailsForReciver(
+			java.util.Set<com.nightwind.bbs.domain.Mail> mailsForReciver) {
+		this.mailsForReciver = mailsForReciver;
+	}
 
 	/**
 	 */
@@ -316,6 +355,8 @@ public class User implements Serializable {
 		setAuthorities(new java.util.LinkedHashSet<com.nightwind.bbs.domain.Authority>(that.getAuthorities()));
 		setTopics(new java.util.LinkedHashSet<com.nightwind.bbs.domain.Topic>(that.getTopics()));
 		setReplies(new java.util.LinkedHashSet<com.nightwind.bbs.domain.Reply>(that.getReplies()));
+		setMailsForReciver(new java.util.LinkedHashSet<>(that.getMailsForReciver()));
+		setMailsForSender(new java.util.LinkedHashSet<>(that.getMailsForSender()));
 	}
 
 	/**

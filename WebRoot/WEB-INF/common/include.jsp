@@ -15,5 +15,6 @@
 <c:set var="replyBasePath" value="${pageContext.request.contextPath }/reply/"></c:set>
 <c:set var="hotTopicPath" value="${pageContext.request.contextPath }/topic/hot"></c:set>
 <c:set var="replyBasePath" value="${pageContext.request.contextPath }/reply/"></c:set>
+<c:set var="mailBasePath" value="${pageContext.request.contextPath }/mail/"></c:set>
 
 <%-- <c:set var="title" value="My Title"/> --%>
