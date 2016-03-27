@@ -68,13 +68,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<li class="dropdown1"><a href="${userBasePath }">我的贴吧</a></li>
 					<li class="dropdown1"><a href="${hotTopicPath }">最新热帖</a></li>
 					<li class="dropdown1"><a href="${forumBasePath }">话题分类</a></li>
-					<li class="dropdown1"><a href="">团队</a></li>
+					<li class="dropdown1"><a href="${mailBasePath }">邮件</a>
+						<ul class="dropdown2">
+							<li><a href="${mailBasePath }">收件箱</a></li>
+							<li><a href="${mailBasePath }sent">发件箱</a></li>
+						</ul>
+					</li>
 					<c:choose>
 						<c:when test="${crtUser == null }">
 							<li class="dropdown1"><a href="${ loginPath }">登录|注册</a></li>	
 						</c:when>
 						<c:otherwise>
-							<li class="dropdown1"><a href="${ logoutPath }">登出</a></li>
+							<li class="dropdown1">
+                                <a href="javascript:void(0)">${crtUser.username}</a>
+                                <ul class="dropdown2">
+                                    <c:if test="${isAdmin }">
+                                        <li><a href="${adminBasePath}">系统管理</a></li>
+                                    </c:if>
+                                    <li><a href="${userBasePath}">个人信息</a></li>
+                                    <li><a href="${mailBasePath}">邮件</a></li>
+                                    <li><a href="${ logoutPath }">登出</a></li>
+                                </ul>
+                            </li>
 						</c:otherwise>
 					</c:choose>
 				</ul>

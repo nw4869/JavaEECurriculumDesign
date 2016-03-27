@@ -102,7 +102,6 @@
 </script>
 </head>
 <body>
-
 <div class="container">
 	<div class="register">
 		<form:form name='updateForm' modelAttribute="userForm"

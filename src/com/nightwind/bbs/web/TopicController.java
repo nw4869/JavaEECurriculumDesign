@@ -112,7 +112,7 @@ public class TopicController {
 
 	@RequestMapping("/save")
 	public String save(@Valid @ModelAttribute("topicForm") Topic topic, BindingResult bindingResult, 
-			RedirectAttributes redirectAttributes, ModelMap model) throws AuthorizeException {
+			RedirectAttributes redirectAttributes, ModelMap model) throws NoLoginException {
 //		System.out.println("try to save topic: " + topic);
 		if (bindingResult.hasErrors()) {
 			System.out.println(bindingResult);
@@ -124,7 +124,7 @@ public class TopicController {
 		// validate authorize
 		User user = (User) model.get("crtUser");
 		if (user == null) {
-			throw new AuthorizeException();
+			throw new NoLoginException();
 		}
 		
 		topic.setUser(user);

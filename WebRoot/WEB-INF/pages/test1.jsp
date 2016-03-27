@@ -16,7 +16,8 @@ ${title == '热帖' }
 	Hello World
     crtUser: ${crtUser.username}
     service: ${AuthService}
-    isAdmin: ${authService.isAdmin(crtUser.username) }
+    <%-- isAdmin: ${AuthService.isAdmin(crtUser.id) } --%>
+    isAdmin1: ${isAdmin }
     testBean: ${myTestBean }
     UserDAO: ${UserDAO }
 </body>

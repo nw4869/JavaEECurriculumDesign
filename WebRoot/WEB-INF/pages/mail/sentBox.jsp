@@ -5,7 +5,7 @@
 
 <head>
 <meta name="nav_index" content="4">
-<meta name="my_title" content="收件箱">
+<meta name="my_title" content="发件箱">
 <meta name="my_description" content="&nbsp;">
 <title>inbox</title>
 </head>
@@ -18,7 +18,7 @@
 			<!-- dedicated servers -->
 			<div id="dedicated_servers">
 				<div class="services-bottom">
-					<div class="ds_ram">发件人</div>
+					<div class="ds_ram">收件人</div>
 					<div class="ds_processor">标题</div>
 					<div class="ds_cores">&nbsp;</div>
 					<div class="ds_diskspace">时间</div>
@@ -29,7 +29,7 @@
 				</div>
 				<c:forEach var="mail" items="${mails }">
 					<div class="ds">
-						<div class="ds_ram">${mail.sender.username }</div>
+						<div class="ds_ram">${mail.reciver.username }</div>
 						<div class="ds_processor">
 							<a href="${mailBasePath }${mail.id}">${mail.title }</a>
 						</div>

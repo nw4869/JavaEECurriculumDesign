@@ -56,9 +56,20 @@
 	<!-- ******************************************************************** -->
 	<bean id="beanNameViewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver" />
 	
-	<bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+<!-- 	<bean id="myTestBean" class="com.nightwind.bbs.domain.User"> -->
+<!-- 		<property name="username" value="testBean"></property> -->
+<!-- 	</bean> -->
+	
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
         <property name="prefix" value="/WEB-INF/pages/" />
+      	<property name="exposedContextBeanNames">
+			<list>
+			   <value>AuthService</value>
+<!--  			   <value>myTestBean</value> -->
+<!-- 			   <value>UserDAO</value> -->
+			</list>
+		</property>
 	</bean>
 
 	<bean id="iPhoneUserAgentViewResolver" class="org.skyway.spring.util.viewresolution.UserAgentViewResolver">

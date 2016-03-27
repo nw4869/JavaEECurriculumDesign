@@ -21,16 +21,20 @@ import com.nightwind.bbs.domain.User;
 import com.nightwind.bbs.exception.AccountExistedException;
 import com.nightwind.bbs.exception.AuthorizeException;
 import com.nightwind.bbs.exception.UserNotFoundException;
+import com.nightwind.bbs.service.AuthService;
 import com.nightwind.bbs.service.UserService;
 
 
-@SessionAttributes("crtUser")
+@SessionAttributes({"crtUser", "isAdmin"})
 @Controller("AuthController")
 @RequestMapping(value = "/auth")
 public class AuthController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private AuthService authService;
 
 	@RequestMapping(value = "/login", method = { RequestMethod.GET })
 	public ModelAndView displayLogin(User user, ModelMap model,
@@ -70,6 +74,7 @@ public class AuthController {
 		try {
 			user = userService.login(user.getUsername(), user.getPassword());
 			mav.addObject("crtUser", user);
+			mav.addObject("isAdmin", authService.isAdmin(user.getId()));
 		} catch (AuthorizeException e) {
 			bindingResult.rejectValue("password","auth.wrongPassword", "wrong password!");
 			mav.setViewName("auth/login.jsp");

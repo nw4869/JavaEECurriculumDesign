@@ -15,4 +15,9 @@ public class MainController {
 		return mav;
 	}	
 	
+	@RequestMapping("/test1")
+	public ModelAndView test() {
+		ModelAndView mav = new ModelAndView("test1.jsp");
+		return mav;
+	}
 }
