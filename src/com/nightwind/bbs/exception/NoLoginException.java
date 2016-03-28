@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  * 
  * @generated
  */
-@ResponseStatus(value=HttpStatus.FORBIDDEN)
+//@ResponseStatus(value=HttpStatus.FORBIDDEN, reason="No login")
 public class NoLoginException extends Exception {
 
 	private static final long serialVersionUID = 1L;

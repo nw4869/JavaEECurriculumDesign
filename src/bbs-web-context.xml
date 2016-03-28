@@ -84,6 +84,25 @@
         <property name="order" value="-1" />
     </bean>
     
+
+	<!-- 异常处理 -->
+	<bean id="exceptionResolver" class="com.nightwind.bbs.web.MyMappingExceptionResolver" >
+		<property name="exceptionMappings">
+			<map>
+				<entry key="com.nightwind.bbs.exception.NoLoginException" value="redirect:/auth/login"/>
+				<entry key="com.nightwind.bbs.exception.ResourceNotFoundException" value="/error/404.jsp"/>
+			</map>
+		</property>
+		<property name="statusCodes">
+			<map>
+				<entry key="redirect:/auth/login" value="403"/>
+				<entry key="/error/404.jsp" value="404"/>
+			</map>
+		</property>
+	</bean>
+
+
+    
     <!-- 上传文件 -->  
 <!-- 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
 	    <property name="defaultEncoding" value="utf-8"/>  

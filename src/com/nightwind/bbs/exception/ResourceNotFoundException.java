@@ -1,28 +1,27 @@
 package com.nightwind.bbs.exception;
 
+import java.lang.Exception;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-
-public class MailReciverValidateException extends Exception {
+public class ResourceNotFoundException extends Exception {
 
 	private static final long serialVersionUID = 1L;
-	
-	private static final String DEFAULT_MSG = "User Not Found";
 
 	/**
 	 * Default Constructor
 	 * @generated
 	 */
-	public MailReciverValidateException() {
-		super(DEFAULT_MSG);
+	public ResourceNotFoundException() {
+		super();
 	}
 
 	/**
 	 * Constructor taking message
 	 * @generated
 	 */
-	public MailReciverValidateException(String message) {
+	public ResourceNotFoundException(String message) {
 		super(message);
 	}
 
@@ -30,7 +29,7 @@ public class MailReciverValidateException extends Exception {
 	 * Constructor taking root cause
 	 * @generated
 	 */
-	public MailReciverValidateException(Throwable t) {
+	public ResourceNotFoundException(Throwable t) {
 		super(t);
 	}
 
@@ -38,12 +37,12 @@ public class MailReciverValidateException extends Exception {
 	 * Constructor taking message and root cause
 	 * @generated
 	 */
-	public MailReciverValidateException(String message, Throwable t) {
+	public ResourceNotFoundException(String message, Throwable t) {
 		super(message, t);
 	}
 
-	public MailReciverValidateException(Integer userId) {
-		super(DEFAULT_MSG + ": userId=" + userId);
+	public ResourceNotFoundException(String message, Throwable cause,
+			boolean enableSuppression, boolean writableStackTrace) {
+		super(message, cause, enableSuppression, writableStackTrace);
 	}
-
 }

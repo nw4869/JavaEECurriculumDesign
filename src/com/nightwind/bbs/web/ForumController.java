@@ -75,11 +75,17 @@ public class ForumController {
 	 * @param model
 	 * @return
 	 * @throws AuthorizeException
+	 * @throws ForumNotFoundException 
 	 */
 	@RequestMapping( value = {"/{id}"})
-	public ModelAndView show(@PathVariable Integer id, ModelMap model) throws AuthorizeException {
+	public ModelAndView show(@PathVariable Integer id, ModelMap model) throws AuthorizeException, ForumNotFoundException {
 		ModelAndView mav = new ModelAndView("/forum/show.jsp");
 		Forum forum = forumService.findForumByPrimaryKey(id);
+		
+		if (forum == null) {
+			throw new ForumNotFoundException();
+		}
+		
 		mav.addObject("forum", forum);
 		
 		// setup new topic form

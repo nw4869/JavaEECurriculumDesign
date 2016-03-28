@@ -15,7 +15,7 @@
 
 			<div class="banner-top">
 				<ul class="nav banner-nav">
-					<li><a class='${activeIndex == 0 ? "active" :""}'  href="${homePath }">主页</a></li>
+					<li><a class='${nav_index == 0 ? "active" :""}'  href="${homePath }">主页</a></li>
 					<li class="dropdown1"><a class='${nav_index == 1 ? "active" :""}' href="${userBasePath }">我的贴吧</a></li>
 					<li class="dropdown1"><a class='${nav_index == 2 ? "active" :""}'	href="${hotTopicPath }">最新热帖</a></li>
 					<li class="dropdown1"><a class='${nav_index == 3 ? "active" :""}' href="${forumBasePath }">话题分类</a></li>

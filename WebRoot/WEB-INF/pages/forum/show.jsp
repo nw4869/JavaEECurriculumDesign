@@ -5,7 +5,7 @@
 
     <head>
 
-        <meta name="nav_index" content="1">
+        <meta name="nav_index" content="3">
         <meta name="my_title" content="${forum.title}">
         <meta name="my_description" content="${forum.description}">
         <title>${forum.title}</title>
