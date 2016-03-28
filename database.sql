@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `bbs` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `bbs`;
--- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.19, for osx10.7 (i386)
 --
 -- Host: localhost    Database: bbs
 -- ------------------------------------------------------
--- Server version	5.7.9-log
+-- Server version	5.6.23
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -72,7 +72,7 @@ CREATE TABLE `mail` (
   KEY `fk_m_ru_idx` (`reciver_user_id`),
   CONSTRAINT `fk_m_ru` FOREIGN KEY (`reciver_user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_m_su` FOREIGN KEY (`sender_user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145,7 +145,7 @@ CREATE TABLE `topic` (
   `last_modified` timestamp NULL DEFAULT NULL,
   `clicks` int(11) NOT NULL DEFAULT '0',
   `pin` tinyint(4) NOT NULL DEFAULT '0',
-  `last_active_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_active_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `last_active_user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_thread_forumid_idx` (`forum_id`),
@@ -166,7 +166,7 @@ CREATE TABLE `topic` (
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trigger_before_insert_topic` BEFORE INSERT ON `topic` FOR EACH ROW BEGIN
-	set new.last_active_user_id = new.user_id;
+	set new.last_active_user_id = new.user_id, new.last_active_time = now();
 END */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -225,4 +225,4 @@ CREATE TABLE `user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-03-27 10:05:59
+-- Dump completed on 2016-03-28 18:42:03

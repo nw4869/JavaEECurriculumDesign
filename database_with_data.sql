@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `bbs` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `bbs`;
--- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.19, for osx10.7 (i386)
 --
 -- Host: localhost    Database: bbs
 -- ------------------------------------------------------
--- Server version	5.7.9-log
+-- Server version	5.6.23
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -92,7 +92,7 @@ CREATE TABLE `mail` (
   KEY `fk_m_ru_idx` (`reciver_user_id`),
   CONSTRAINT `fk_m_ru` FOREIGN KEY (`reciver_user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_m_su` FOREIGN KEY (`sender_user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -101,7 +101,7 @@ CREATE TABLE `mail` (
 
 LOCK TABLES `mail` WRITE;
 /*!40000 ALTER TABLE `mail` DISABLE KEYS */;
-INSERT INTO `mail` VALUES (1,1,2,'t1','c1','2016-03-26 16:26:58','\0'),(2,2,1,'t2','c2','2016-03-26 16:31:42','\0'),(3,2,1,'t3','c3','2016-03-27 01:57:17','\0');
+INSERT INTO `mail` VALUES (1,1,2,'t1','c1','2016-03-26 16:26:58','\0'),(2,2,1,'t2','c2','2016-03-26 16:31:42','\0'),(3,2,1,'t3','c3','2016-03-27 01:57:17','\0'),(5,1,2,'阿萨德法师打发斯蒂芬','阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬阿萨德法师打发斯蒂芬','2016-03-28 10:00:43','\0');
 /*!40000 ALTER TABLE `mail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -194,7 +194,7 @@ CREATE TABLE `topic` (
   `last_modified` timestamp NULL DEFAULT NULL,
   `clicks` int(11) NOT NULL DEFAULT '0',
   `pin` tinyint(4) NOT NULL DEFAULT '0',
-  `last_active_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_active_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `last_active_user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_thread_forumid_idx` (`forum_id`),
@@ -212,7 +212,7 @@ CREATE TABLE `topic` (
 
 LOCK TABLES `topic` WRITE;
 /*!40000 ALTER TABLE `topic` DISABLE KEYS */;
-INSERT INTO `topic` VALUES (1,1,1,'Hello!','World!!!!','2016-03-21 08:30:39','2016-03-23 13:26:56',12,0,'2016-03-23 13:26:56',1),(2,1,1,'asdf','sss','2016-03-22 12:40:18','2016-03-25 08:51:24',62,0,'2016-03-25 08:51:24',1),(3,1,1,'托尔斯泰','托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰','2016-03-23 12:15:52','2016-03-23 14:24:46',3,0,'2016-03-23 14:24:46',1),(4,1,1,'托尔斯泰1','托尔斯泰托尔斯泰托尔斯泰托尔斯泰','2016-03-23 12:16:13',NULL,7,0,'2016-03-23 13:14:40',2),(5,1,1,'托尔斯泰2','托尔斯泰托尔斯泰托尔斯ssss泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰','2016-03-23 12:16:19','2016-03-23 14:25:42',14,0,'2016-03-25 09:33:39',1),(6,2,2,'aa','bbb','2016-03-25 08:54:50',NULL,0,0,'2016-03-25 08:54:50',2),(7,2,1,'bbb','test','2016-03-25 08:58:34',NULL,1,0,'2016-03-25 08:58:34',1),(8,2,1,'bbb','test','2016-03-25 09:03:19',NULL,1,0,'2016-03-25 09:03:19',1),(9,1,1,'f','fff','2016-03-25 16:25:58',NULL,1,0,'2016-03-25 16:25:58',1),(10,5,1,'dddddd','dddddddddddddddd','2016-03-25 16:26:50',NULL,5,0,'2016-03-25 16:27:24',1);
+INSERT INTO `topic` VALUES (1,1,1,'Hello!','World!!!!','2016-03-21 08:30:39','2016-03-23 13:26:56',12,0,'2016-03-23 13:26:56',1),(2,1,1,'asdf','sss','2016-03-22 12:40:18','2016-03-25 08:51:24',62,0,'2016-03-25 08:51:24',1),(3,1,1,'托尔斯泰','托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰','2016-03-23 12:15:52','2016-03-23 14:24:46',4,0,'2016-03-23 14:24:46',1),(4,1,1,'托尔斯泰1','托尔斯泰托尔斯泰托尔斯泰托尔斯泰','2016-03-23 12:16:13',NULL,7,0,'2016-03-23 13:14:40',2),(5,1,1,'托尔斯泰2','托尔斯泰托尔斯泰托尔斯ssss泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰托尔斯泰托尔斯泰托尔斯aaaaaaa泰托尔斯泰','2016-03-23 12:16:19','2016-03-23 14:25:42',15,0,'2016-03-25 09:33:39',1),(6,2,2,'aa','bbb','2016-03-25 08:54:50',NULL,0,0,'2016-03-25 08:54:50',2),(7,2,1,'bbb','test','2016-03-25 08:58:34',NULL,1,0,'2016-03-25 08:58:34',1),(8,2,1,'bbb','test','2016-03-25 09:03:19',NULL,1,0,'2016-03-25 09:03:19',1),(9,1,1,'f','fff','2016-03-25 16:25:58',NULL,1,0,'2016-03-25 16:25:58',1),(10,5,1,'dddddd','dddddddddddddddd','2016-03-25 16:26:50',NULL,5,0,'2016-03-25 16:27:24',1);
 /*!40000 ALTER TABLE `topic` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -225,7 +225,7 @@ UNLOCK TABLES;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trigger_before_insert_topic` BEFORE INSERT ON `topic` FOR EACH ROW BEGIN
-	set new.last_active_user_id = new.user_id;
+	set new.last_active_user_id = new.user_id, new.last_active_time = now();
 END */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -294,4 +294,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-03-27 10:05:48
+-- Dump completed on 2016-03-28 18:38:34

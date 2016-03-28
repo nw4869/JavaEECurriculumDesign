@@ -17,6 +17,9 @@
 
 			<!-- dedicated servers -->
 			<div id="dedicated_servers">
+                <c:if test="${message != null}">
+                    <c:out value="${message}"/>
+                </c:if>
 				<div class="services-bottom">
 					<div class="ds_ram">发件人</div>
 					<div class="ds_processor">标题</div>
@@ -37,7 +40,7 @@
 						<div class="ds_diskspace">${mail.sendTime }</div>
 						<div class="ds_bandwidth">${mail.read ? "已读" : "未读" }</div>
 						<div class="ds_price">
-							<a href="${mailBasePath }${mail.id}/reply" class="button">回复</a>
+							<a href="${mailBasePath }send?reciver=${mail.sender.username}" class="button">回复</a>
 						</div>
 						<div class="ds_order">
 							<a href="${mailBasePath }${mail.id}/delete" class="button">删除</a>

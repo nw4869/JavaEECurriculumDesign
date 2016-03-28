@@ -24,6 +24,11 @@ public class MailServiceImpl implements MailService {
 	
 	@Autowired
 	private UserDAO userDAO;
+	
+	@Override
+	public Mail findMailByPrimaryKey(Integer id) {
+		return mailDAO.findMailByPrimaryKey(id);
+	}
 
 	@Override
 	public List<Mail> findMailsForReciver(Integer userId, Integer startIndex,
@@ -48,7 +53,7 @@ public class MailServiceImpl implements MailService {
 			throw new MailReciverValidateException();
 		}
 		User reciver = reciverSet.iterator().next();
-		if (reciver.getId() == sender.getId()) {
+		if (reciver.getId().equals(sender.getId())) {
 			throw new MailReciverValidateException();
 		}
 		
@@ -73,6 +78,16 @@ public class MailServiceImpl implements MailService {
 		mailDAO.remove(mail);
 		mailDAO.flush();
 		return mail;
+	}
+
+	@Override
+	public void setRead(Integer mailId, Boolean read) throws MailNotFoundException {
+		Mail mail = mailDAO.findMailById(mailId);
+		if (mail == null) {
+			throw new MailNotFoundException();
+		}
+		mail.setRead(true);
+		mailDAO.flush();
 	}
 	
 }

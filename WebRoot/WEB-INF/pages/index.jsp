@@ -72,6 +72,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<ul class="dropdown2">
 							<li><a href="${mailBasePath }">收件箱</a></li>
 							<li><a href="${mailBasePath }sent">发件箱</a></li>
+							<li><a href="${mailBasePath }send">发邮件</a></li>
 						</ul>
 					</li>
 					<c:choose>

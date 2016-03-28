@@ -18,5 +18,9 @@ public interface MailService {
 			String content) throws UserNotFoundException, MailReciverValidateException;
 
 	Mail deleteMail(Integer id) throws MailNotFoundException;
+
+	Mail findMailByPrimaryKey(Integer id);
+
+	void setRead(Integer mailId, Boolean read) throws MailNotFoundException;
 	
 }
