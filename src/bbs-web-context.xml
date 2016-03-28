@@ -91,12 +91,14 @@
 			<map>
 				<entry key="com.nightwind.bbs.exception.NoLoginException" value="redirect:/auth/login"/>
 				<entry key="com.nightwind.bbs.exception.ResourceNotFoundException" value="/error/404.jsp"/>
+				<entry key="com.nightwind.bbs.exception.UserDisabledException" value="/error/userDisabled.jsp"/>
 			</map>
 		</property>
 		<property name="statusCodes">
 			<map>
 				<entry key="redirect:/auth/login" value="403"/>
 				<entry key="/error/404.jsp" value="404"/>
+				<entry key="/error/userDisabled.jsp" value="403"/>
 			</map>
 		</property>
 	</bean>

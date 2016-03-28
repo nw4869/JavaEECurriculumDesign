@@ -156,6 +156,7 @@ public class UserServiceTest {
 	 * Operation Unit Test
 	 * @throws AuthorizeException
 	 * @throws UserNotFoundException
+	 * @throws UserDisabledException 
 	 * 
 	 * @generated
 	 * TO AVOID LOSING MANUAL CHANGES, turn generation off for this file or method.
@@ -164,7 +165,7 @@ public class UserServiceTest {
 	 * Add the NOT keyword after the @generated annotation on this method to preserve changes to this method only.
 	 */
 	@Test
-	public void login() throws AuthorizeException, UserNotFoundException {
+	public void login() throws AuthorizeException, UserNotFoundException, UserDisabledException {
 		// TODO: JUnit - Populate test inputs for operation: login 
 		String username = "lh";
 		String password = "123";

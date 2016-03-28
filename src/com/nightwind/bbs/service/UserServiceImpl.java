@@ -101,13 +101,17 @@ public class UserServiceImpl implements UserService {
 	/**
 	 * @throws AuthorizeException
 	 * @throws UserNotFoundException
+	 * @throws UserDisabledException 
 	 * 
 	 * 
 	 */
 	@Override
-	public User login(String username, String password) throws AuthorizeException, UserNotFoundException {
+	public User login(String username, String password) throws AuthorizeException, UserNotFoundException, UserDisabledException {
 		User user = findUserByUsername(username);
 		if (user.getPassword().equals(encriptPassword(password))) {
+			if (!user.getEnabled()) {
+				throw new UserDisabledException();
+			}
 			return user;
 		} else {
 			throw new AuthorizeException();

@@ -13,10 +13,11 @@ public interface UserService {
 	/**
 	 * @throws AuthorizeException
 	 * @throws UserNotFoundException
+	 * @throws UserDisabledException 
 	 * 
 	 * 
 	 */
-	public User login(String username, String password) throws AuthorizeException, UserNotFoundException;
+	public User login(String username, String password) throws AuthorizeException, UserNotFoundException, UserDisabledException;
 
 	/**
 	 * @throws AccountExistedException 
