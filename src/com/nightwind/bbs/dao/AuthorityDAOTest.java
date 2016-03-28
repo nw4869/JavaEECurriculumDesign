@@ -90,6 +90,11 @@ public class AuthorityDAOTest {
 		assertEquals(au.getForum(), null);
 	}
 	
+	@Test
+	public void testUpdate() {
+		dataStore.createQuerySingleResult("update Authority set forum.id=2 where id=1").executeUpdate();
+	}
+	
 	/**
 	 * Method to allow Spring to inject the DAO that will be tested
 	 *

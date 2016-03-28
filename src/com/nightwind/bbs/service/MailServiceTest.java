@@ -16,6 +16,8 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
 import org.springframework.transaction.annotation.Transactional;
 
 import com.nightwind.bbs.domain.Mail;
+import com.nightwind.bbs.exception.MailReciverValidateException;
+import com.nightwind.bbs.exception.UserNotFoundException;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @TestExecutionListeners({
@@ -41,4 +43,8 @@ public class MailServiceTest {
 		System.out.println(mails1);
 	}
 
+	@Test
+	public void testSendMail() throws UserNotFoundException, MailReciverValidateException {
+		mailService.sendMail(1, "test", "tt", "cc");
+	}
 }

@@ -73,7 +73,7 @@ public class Mail implements Serializable {
 	/**
 	 */
 
-	@Column(name = "read", nullable = false)
+	@Column(name = "`read`")
 	@Basic(fetch = FetchType.EAGER)
 	@XmlElement
 	Boolean read;

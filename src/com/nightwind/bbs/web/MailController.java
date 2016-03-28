@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.nightwind.bbs.domain.Mail;
 import com.nightwind.bbs.domain.User;
+import com.nightwind.bbs.exception.MailReciverValidateException;
 import com.nightwind.bbs.exception.NoLoginException;
 import com.nightwind.bbs.exception.UserNotFoundException;
 import com.nightwind.bbs.service.MailService;
@@ -73,7 +74,10 @@ public class MailController {
 			throw new NoLoginException();
 		}
 
-		Mail mail = new Mail();
+		Mail mail = (Mail) model.get("mailForm");
+		if (mail == null) {
+			mail = new Mail();	
+		}
 		User reciver = new User();
 		reciver.setUsername(recvUsername);
 		mail.setReciver(reciver);
@@ -84,7 +88,7 @@ public class MailController {
 	
 	@RequestMapping(value = {"/send"}, method={RequestMethod.POST})
 	public ModelAndView sender(@Valid @ModelAttribute("mailForm") Mail mailForm, BindingResult bindingResult, 
-			RedirectAttributes redirectAttributes, ModelMap model) throws NoLoginException, UserNotFoundException {
+			RedirectAttributes redirectAttributes, ModelMap model) throws NoLoginException, UserNotFoundException, MailReciverValidateException {
 		ModelAndView mav = new ModelAndView("redirect:/mail/send");
 
 		// login need
@@ -93,6 +97,11 @@ public class MailController {
 			throw new NoLoginException();
 		}
 
+		if (!Utils.isNotBlank(mailForm.getReciver().getUsername()) || 
+				crtUser.getUsername().equals(mailForm.getReciver().getUsername())) {
+			bindingResult.rejectValue("reciver.username", "reciver.username", "收件人错误");
+		}
+		
 		if (bindingResult.hasErrors()) {
 			redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.mailForm", bindingResult);
 			redirectAttributes.addFlashAttribute("mailForm", mailForm);

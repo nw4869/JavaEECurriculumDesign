@@ -12,6 +12,7 @@ import com.nightwind.bbs.dao.UserDAO;
 import com.nightwind.bbs.domain.Mail;
 import com.nightwind.bbs.domain.User;
 import com.nightwind.bbs.exception.MailNotFoundException;
+import com.nightwind.bbs.exception.MailReciverValidateException;
 import com.nightwind.bbs.exception.UserNotFoundException;
 
 @Transactional
@@ -37,19 +38,26 @@ public class MailServiceImpl implements MailService {
 	}
 
 	@Override
-	public Mail sendMail(Integer senderUserId, String reciverUsername, String title, String content) throws UserNotFoundException {
+	public Mail sendMail(Integer senderUserId, String reciverUsername, String title, String content) throws UserNotFoundException, MailReciverValidateException {
 		User sender = userDAO.findUserById(senderUserId);
 		Set<User> reciverSet = userDAO.findUserByUsername(reciverUsername);
-		if (sender == null || reciverSet.isEmpty()) {
+		if (sender == null) {
 			throw new UserNotFoundException();
 		}
+		if (reciverSet.isEmpty()) {
+			throw new MailReciverValidateException();
+		}
 		User reciver = reciverSet.iterator().next();
+		if (reciver.getId() == sender.getId()) {
+			throw new MailReciverValidateException();
+		}
 		
 		Mail mail = new Mail();
 		mail.setReciver(reciver);
 		mail.setSender(sender);
 		mail.setTitle(title);
 		mail.setContent(content);
+		mail.setRead(false);
 		
 		mail = mailDAO.store(mail);
 		mailDAO.flush();

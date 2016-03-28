@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.nightwind.bbs.domain.Mail;
 import com.nightwind.bbs.exception.MailNotFoundException;
+import com.nightwind.bbs.exception.MailReciverValidateException;
 import com.nightwind.bbs.exception.UserNotFoundException;
 
 public interface MailService {
@@ -14,7 +15,7 @@ public interface MailService {
 			Integer maxCount);
 
 	Mail sendMail(Integer senderUserId, String reciverUsername, String title,
-			String content) throws UserNotFoundException;
+			String content) throws UserNotFoundException, MailReciverValidateException;
 
 	Mail deleteMail(Integer id) throws MailNotFoundException;
 	
