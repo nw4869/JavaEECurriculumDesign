@@ -157,7 +157,6 @@ public class UserController {
 	@RequestMapping(value = {"/{id:\\d+}/delete"})
 	public String delete(@PathVariable Integer id, @RequestHeader(value = "referer") String referer,
 			RedirectAttributes redirectAttributes, ModelMap model) throws UserNotFoundException, AuthorizeException, NoLoginException {
-		System.out.println("try to delete user: " + id);
 
 		// check login
 		User crtUser = (User) model.get("crtUser");
@@ -172,10 +171,10 @@ public class UserController {
 			}	
 		}
 		
+		User user = userService.findUserById(id);
 		userService.deleteUser(id);
 		
-		System.out.println("redirect:" + referer);
-		redirectAttributes.addFlashAttribute("message", "delete user suceess");
+		redirectAttributes.addFlashAttribute("message", "delete user " + user.getUsername() + " suceess");
 		return "redirect:" + referer;
 	}
 }

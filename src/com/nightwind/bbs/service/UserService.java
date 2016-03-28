@@ -1,5 +1,7 @@
 package com.nightwind.bbs.service;
 
+import java.util.List;
+
 import com.nightwind.bbs.domain.User;
 import com.nightwind.bbs.exception.*;
 
@@ -59,5 +61,7 @@ public interface UserService {
 	String updateAvatar(Integer id, String avatar) throws UserNotFoundException;
 
 	public User deleteUser(Integer id) throws UserNotFoundException;
+
+	List<User> findAllUsers(Integer startResult, Integer maxRows);
 
 }

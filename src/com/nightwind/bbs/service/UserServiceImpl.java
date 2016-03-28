@@ -3,12 +3,12 @@ package com.nightwind.bbs.service;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.NoSuchElementException;
+import java.util.List;
 
 import javax.persistence.PersistenceException;
 
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.UnexpectedRollbackException;
@@ -16,7 +16,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.nightwind.bbs.dao.UserDAO;
 import com.nightwind.bbs.domain.User;
-import com.nightwind.bbs.exception.*;
+import com.nightwind.bbs.exception.AccountExistedException;
+import com.nightwind.bbs.exception.AuthorizeException;
+import com.nightwind.bbs.exception.UserDisabledException;
+import com.nightwind.bbs.exception.UserNotFoundException;
 
 /**
  * 
@@ -41,6 +44,11 @@ public class UserServiceImpl implements UserService {
 	 * @AuxiliaryModelComponent
 	 */
 	public UserServiceImpl() {
+	}
+	
+	@Override
+	public List<User> findAllUsers(Integer startResult, Integer maxRows) {
+		return new ArrayList<>(userDAO.findAllUsers(startResult, maxRows));
 	}
 
 	/**

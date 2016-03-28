@@ -55,7 +55,8 @@ public class AdminController {
 		mav.addObject(page);
 		mav.addObject(count);
 
-		// TODO find user
+		int startResult = (page - 1) * count;
+		mav.addObject("users", userService.findAllUsers(startResult, count));
 		
 		return mav;
 	}
