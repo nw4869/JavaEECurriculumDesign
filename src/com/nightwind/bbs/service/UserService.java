@@ -64,4 +64,8 @@ public interface UserService {
 
 	List<User> findAllUsers(Integer startResult, Integer maxRows);
 
+	Long countUsersLike(User user);
+
+	List<User> findUsersLike(User user, Integer startResult, Integer maxRows);
+
 }

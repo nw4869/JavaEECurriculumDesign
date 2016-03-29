@@ -23,8 +23,10 @@ public class MyMappingExceptionResolver extends SimpleMappingExceptionResolver {
 //        }
         
         // Make the full URL available to the view - note ModelAndView uses addObject()
-        // but Model uses addAttribute(). They work the same. 
-        mav.addObject("referer", request.getRequestURL());
+        // but Model uses addAttribute(). They work the same.
+        if (mav != null) {
+            mav.addObject("referer",  request.getRequestURL());	
+        }
         return mav;
     }
 }

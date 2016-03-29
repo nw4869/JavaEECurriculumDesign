@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.PersistenceException;
+import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,8 +48,36 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
+	public List<User> findUsersLike(User user, Integer startResult, Integer maxRows) {
+		String queryString = "select u from User u where str(u.id) like ?1 and u.username like ?2";
+		String id = "%";
+		String username = "%";
+		if (user.getId() != null) {
+			id = String.valueOf(user.getId());
+		}
+		if (user.getUsername() != null) {
+			username = "%" + user.getUsername() + "%";
+		}
+		return new ArrayList<>(userDAO.executeQuery(queryString, startResult, maxRows, id, username));
+	}
+	
+	@Override
 	public List<User> findAllUsers(Integer startResult, Integer maxRows) {
 		return new ArrayList<>(userDAO.findAllUsers(startResult, maxRows));
+	}
+	
+	@Override
+	public Long countUsersLike(User user) {
+		String id = "%";
+		String username = "%";
+		if (user.getId() != null) {
+			id = String.valueOf(user.getId());
+		}
+		if (user.getUsername() != null) {
+			username = "%" + user.getUsername() + "%";
+		}
+		Query query = userDAO.createQuerySingleResult("select count(u) from User u where str(u.id) like ?1 and u.username like ?2", id, username);
+		return (Long) query.getSingleResult();
 	}
 
 	/**

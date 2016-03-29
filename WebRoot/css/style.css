@@ -141,7 +141,7 @@ ul.navig li a:hover{
 .tool form button[type="submit"] {
     background: #1BBC9B;
     color: #FFF;
-    size:90 100
+    size:90 100;
     font-size: 1.2em;
     padding: 0.6em 2em;
     transition: 0.5s all;
@@ -157,7 +157,7 @@ ul.navig li a:hover{
 .tool form button[type="checkbox"] {
     background: #1BBC9B;
     color: #FFF;
-    size:90 100
+    size:90 100;
     font-size: 1.2em;
     padding: 0.6em 2em;
     transition: 0.5s all;
@@ -198,14 +198,14 @@ ul.navig li a:hover{
 nav a , ul.navig a{
 	position: relative;
 	display: inline-block;
-	margin: 0px 0px 10px;
+	/*margin: 0px 0px 10px;*/
 	outline: none;
 	text-decoration: none;
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	font-weight: 400;
 	text-shadow: 0 0 1px rgba(255,255,255,0.3);
-	font-size: 1.35em;
+	/*font-size: 1.35em;*/
 }
 nav a:hover,
 nav a:focus, ul.navig a:hover, ul.navig a:focus {
@@ -1464,7 +1464,7 @@ a.forgot {
 	margin-bottom: 4px;
 	padding-left: 27px;
 	font-size: 1.1em;
-	line-height: 27px;
+	/*line-height: 27px;*/
 	cursor: pointer;
 }
 .checkbox {
@@ -1518,10 +1518,10 @@ a.forgot {
 	-moz-transition: opacity 0.1s;
 	-webkit-transition: opacity 0.1s;
 }
-.checkbox input {
+/*.checkbox input {
 	position: absolute;
 	left: -9999px;
-}
+}*/
 .checkbox input:checked + i:after {
 	opacity: 1;
 }

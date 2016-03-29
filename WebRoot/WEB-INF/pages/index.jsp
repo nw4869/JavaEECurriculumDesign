@@ -84,7 +84,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <a href="javascript:void(0)">${crtUser.username}</a>
                                 <ul class="dropdown2">
                                     <c:if test="${isAdmin }">
-                                        <li><a href="${adminBasePath}/user">用户管理</a></li>
+                                        <li><a href="${adminBasePath}user">用户管理</a></li>
                                     </c:if>
                                     <li><a href="${userBasePath}">个人信息</a></li>
                                     <li><a href="${mailBasePath}">邮件</a></li>

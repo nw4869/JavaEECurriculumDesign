@@ -1,14 +1,18 @@
 package com.nightwind.bbs.web;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.nightwind.bbs.domain.User;
 import com.nightwind.bbs.exception.AuthorizeException;
 import com.nightwind.bbs.service.AuthService;
 import com.nightwind.bbs.service.UserService;
@@ -38,25 +42,29 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/user")
-	public ModelAndView userManager(ModelMap model, 
+	public ModelAndView userManager(ModelMap model, @ModelAttribute("userForm") User userForm,
 			@RequestParam(value="page", required=false) Integer page,
-			@RequestParam(value="count", required=false) Integer count) throws AuthorizeException {
+			@RequestParam(value="maxRows", required=false) Integer maxRows) throws AuthorizeException {
 		ModelAndView mav = new ModelAndView("/admin/user.jsp");
-		
+		System.out.println(userForm);
 		checkAuthority(model);
 		
 		// setup page and page count
 		if (page == null) {
 			page = 1;
 		}
-		if (count == null) {
-			count = 10;
+		if (maxRows == null) {
+			maxRows = 10;
 		}
-		mav.addObject(page);
-		mav.addObject(count);
 
-		int startResult = (page - 1) * count;
-		mav.addObject("users", userService.findAllUsers(startResult, count));
+		int startResult = (page - 1) * maxRows;
+		List<User> users = userService.findUsersLike(userForm, startResult, maxRows);
+		mav.addObject("users", users);
+		
+		mav.addObject("pageCount", userService.countUsersLike(userForm) / maxRows + 1);
+		mav.addObject("page", page);
+		mav.addObject("maxRows", maxRows);
+		mav.addObject("userForm", userForm);
 		
 		return mav;
 	}
