@@ -7,13 +7,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.nightwind.bbs.domain.User;
 import com.nightwind.bbs.exception.AuthorizeException;
+import com.nightwind.bbs.exception.UserNotFoundException;
 import com.nightwind.bbs.service.AuthService;
 import com.nightwind.bbs.service.UserService;
 
@@ -46,7 +50,7 @@ public class AdminController {
 			@RequestParam(value="page", required=false) Integer page,
 			@RequestParam(value="maxRows", required=false) Integer maxRows) throws AuthorizeException {
 		ModelAndView mav = new ModelAndView("/admin/user.jsp");
-		System.out.println(userForm);
+//		System.out.println(userForm);
 		checkAuthority(model);
 		
 		// setup page and page count
@@ -65,6 +69,22 @@ public class AdminController {
 		mav.addObject("page", page);
 		mav.addObject("maxRows", maxRows);
 		mav.addObject("userForm", userForm);
+		
+		return mav;
+	}
+
+	
+	@RequestMapping(value="/user/{id:\\d+}/setStatus")
+	public ModelAndView setStatus(@RequestParam("enable") Boolean enable, ModelMap model, RedirectAttributes redirectAttributes, 
+			@RequestHeader(value = "referer") String referer, @PathVariable("id")Integer id) throws AuthorizeException, UserNotFoundException {
+		checkAuthority(model);
+
+		User user = userService.findUserById(id);
+		
+		userService.setSataus(id, enable);
+		
+		ModelAndView mav = new ModelAndView("redirect:" + referer);
+		redirectAttributes.addFlashAttribute("message", "update " + user.getUsername() + " status success");
 		
 		return mav;
 	}

@@ -243,4 +243,12 @@ public class UserServiceImpl implements UserService {
 		userDAO.flush();
 		return user;
 	}
+	
+	@Override
+	public void setSataus(Integer id, Boolean enable) throws UserNotFoundException {
+		User user = findUserById(id);
+		user.setEnabled(enable);
+		userDAO.store(user);
+		userDAO.flush();
+	}
 }

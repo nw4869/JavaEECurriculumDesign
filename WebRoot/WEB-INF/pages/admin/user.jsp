@@ -19,9 +19,9 @@
                 vertical-align: middle;
             }
         </style>
-        
+
         <script type="text/javascript">
-        	$(function(){
+            $(function(){
         		var currentPage = parseInt($("nav > ul > li.active > a").text());
         		var currentIndex = -1;
         		var count = $("nav > ul.pagination > li").size() - 2;
@@ -64,13 +64,68 @@
 	        		}
         		});
         	});
-        
         </script>
-        
+
     </head>
 
 
     <body>
+
+
+            <!-- 模态框（Modal） -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                &times;
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">
+                      修改权限
+                    </h4>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="role" id="roleUser" value="roleUser" checked> 普通用户
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="role" id="roleAdmin" value="roleAdmin"> 系统管理员
+                                    </label>
+                                </div>
+
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="role" id="roleForumAdmin" value="roleForumAdmin"> 论坛管理员
+                                    </label>
+                                    <select class="form-control" style="width: 30%;">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
+                                </div>
+                            </form>
+
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                            </button>
+                            <button type="button" class="btn btn-primary">
+                                提交更改
+                            </button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal -->
+            </div>
 
         <div class="container">
             <div id="message" style="margin-top: 20px;">
@@ -91,17 +146,17 @@
                     <form:form id="searchForm" class="form-inline" action="admin/user" modelAttribute="userForm" method="get">
                         <div class="form-group">
                             <label for="id">序号</label>
-                            <form:input type="text" class="form-control" name="id" path="id" placeholder="id"/>
+                            <form:input type="text" class="form-control" name="id" path="id" placeholder="id" />
                         </div>
                         <div class="form-group">
                             <label for="username">用户名</label>
-                            <form:input type="text" class="form-control" name="username" path="username" placeholder="username"/>
+                            <form:input type="text" class="form-control" name="username" path="username" placeholder="username" />
                         </div>
                         <div class="form-group">
-	                        <label for="page">页码</label>
-	                        <input type="text" class="form-control" name="page" value="${page }">
+                            <label for="page">页码</label>
+                            <input type="text" class="form-control" name="page" value="${page }">
                         </div>
-                        <input type="hidden" name="maxRows" value="${maxRows }"/>
+                        <input type="hidden" name="maxRows" value="${maxRows }" />
                         <button type="submit" class="btn btn-default">Search</button>
                     </form:form>
 
@@ -115,7 +170,7 @@
                             <th>用户名</th>
                             <th>昵称</th>
                             <th>邮箱</th>
-                            <th>可用</th>
+                            <th>启用</th>
                             <th>创建时间</th>
                             <th>操作</th>
                         </tr>
@@ -133,9 +188,10 @@
                                     <a href="${userBasePath}${user.id}/delete">
                                         <button type="button" class="btn btn-default">删除</button>
                                     </a>
-                                    <a href="${userBasePath}${user.id}/setStatus?enable=${user.enabled ? 'false' : 'true'}">
+                                    <a href="${adminBasePath}user/${user.id}/setStatus?enable=${user.enabled ? 'false' : 'true'}">
                                         <button type="button" class="btn btn-default">${user.enabled ? "停用" : "启用"}</button>
                                     </a>
+                                    <button class="btn btn-default" data-toggle="modal" data-target="#myModal">权限</button>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -149,7 +205,7 @@
                                 </a>
                             </li>
                             <c:forEach var="i" begin="1" end="${pageCount }">
-                            	<li class="${page == i ? 'active' : ''}"><a href="javascript:void(0);">${i }</a></li>
+                                <li class="${page == i ? 'active' : ''}"><a href="javascript:void(0);">${i }</a></li>
                             </c:forEach>
                             <li id="next" class="disabled">
                                 <a href="javascript:void(0);" aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span>
@@ -159,6 +215,7 @@
                     </nav>
                 </div>
             </div>
+
 
         </div>
     </body>

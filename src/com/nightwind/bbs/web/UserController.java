@@ -164,7 +164,7 @@ public class UserController {
 			throw new NoLoginException();
 		}
 		
-		// check owner
+		// check owner or admin
 		if (crtUser.getId() != id) {
 			if (!authService.isAdmin(crtUser.getId())) {
 				throw new AuthorizeException();

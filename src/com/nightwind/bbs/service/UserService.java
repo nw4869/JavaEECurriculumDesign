@@ -68,4 +68,6 @@ public interface UserService {
 
 	List<User> findUsersLike(User user, Integer startResult, Integer maxRows);
 
+	void setSataus(Integer id, Boolean enable) throws UserNotFoundException;
+
 }
