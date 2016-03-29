@@ -1,8 +1,10 @@
 package com.nightwind.bbs.web;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -78,13 +81,41 @@ public class ForumController {
 	 * @throws ForumNotFoundException 
 	 */
 	@RequestMapping( value = {"/{id}"})
-	public ModelAndView show(@PathVariable Integer id, ModelMap model) throws AuthorizeException, ForumNotFoundException {
+	public ModelAndView show(@PathVariable Integer id,
+			@RequestParam(value="page", required=false) Integer page,
+			@RequestParam(value="maxRows", required=false) Integer maxRows,
+			ModelMap model) throws AuthorizeException, ForumNotFoundException {
 		ModelAndView mav = new ModelAndView("/forum/show.jsp");
 		Forum forum = forumService.findForumByPrimaryKey(id);
 		
 		if (forum == null) {
 			throw new ForumNotFoundException();
 		}
+
+		Set<Topic> allTopics = forum.getTopics();
+		
+		// setup page and page count
+		if (page == null) {
+			page = 1;
+		}
+		if (maxRows == null) {
+			maxRows = 10;
+		}		
+		int startResult = (page - 1) * maxRows;
+		if (startResult > allTopics.size()) {
+			startResult = allTopics.size();
+		}
+		int endResult = startResult+ maxRows;
+		if (endResult > allTopics.size()) {
+			endResult = allTopics.size();
+		}
+
+		mav.addObject("page", page);
+		mav.addObject("maxRows", maxRows);
+		mav.addObject("pageCount", allTopics.size() / maxRows + 1);
+		
+		List<Topic> topics = new ArrayList<Topic>(allTopics).subList(startResult, endResult) ;
+		mav.addObject("topics", topics);
 		
 		mav.addObject("forum", forum);
 		
@@ -99,9 +130,6 @@ public class ForumController {
 
 		mav.addObject("isAdmin", authService.isAdmin(Utils.getCrtUserId(model)));
 		mav.addObject("isForumAdmin", authService.isForumAdmin(id, Utils.getCrtUserId(model)));
-		
-		// setup admin multi delete toic form
-		// TODO
 		
 		return mav;
 	}

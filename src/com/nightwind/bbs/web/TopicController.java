@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -73,23 +74,26 @@ public class TopicController {
 	}
 	
 	@RequestMapping("/hot")
-	public ModelAndView hot(Integer startIndex, Integer maxCount, Integer page, ModelMap model) {
+	public ModelAndView hot(
+			@RequestParam(value="page", required=false) Integer page,
+			@RequestParam(value="maxRows", required=false) Integer maxRows,
+			ModelMap model) {
 		ModelAndView mav = new ModelAndView("topic/hot.jsp");
 
-		if (maxCount == null) {
-			maxCount = 4;
+		// setup page and page count
+		if (page == null) {
+			page = 1;
 		}
-		
-		if (startIndex == null) {
-			startIndex = 0;
-		}
-		
-		if (page != null) {
-			startIndex = maxCount * page;
-		}
+		if (maxRows == null) {
+			maxRows = 4;
+		}		
+		int startResult = (page - 1) * maxRows;
 
-		mav.addObject("totalCount", topicService.countTopics(-1));
-		mav.addObject("topics", topicService.findHotTopicsByClicks(startIndex, maxCount ));
+		mav.addObject("page", page);
+		mav.addObject("maxRows", maxRows);
+		mav.addObject("pageCount", topicService.countTopics(-1) / maxRows + 1);
+		
+		mav.addObject("topics", topicService.findHotTopicsByClicks(startResult, maxRows ));
 		
 		// setup new topic form
 		Topic topic = (Topic) model.get("topicForm");

@@ -29,7 +29,7 @@
                         <div class="ds_order"></div>
                         <div class="clearfix"></div>
                     </div>
-                    <c:forEach var="topic" items="${forum.topics }" varStatus="status">
+                    <c:forEach var="topic" items="${topics }" varStatus="status">
                         <div class="ds">
                             <div class="ds_processor"><a href="${topicBasePath }${topic.id}">${topic.title }</a></div>
                             <div class="ds_ram"><a href="${userBasePath }${topic.user.id}">${topic.user.username }</a></div>
@@ -58,20 +58,32 @@
 
 
                 <div class="clearfix"> </div>
-                <ul class="start">
-                    <li><span class="prev">上一页</span></li>
-                    <li><span>1</span></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">6</a></li>
-                    <li><a href="#">7</a></li>
-                    <li><a href="#">8</a></li>
-                    <li><span>.....</span></li>
-                    <li><a href="#">12</a></li>
-                    <li><a href="#" class="next">下一页</a></li>
-                </ul>
+                    <ul class="start">
+                        <c:url value="forum/${forum.id}" var="prevPageurl">
+                                <c:param name="page" value="${page - 1}"/>
+                        </c:url>
+                        <li><a href="${page > 1 ? prevPageurl : 'javascript:void(0);'}"><span class="prev">&lt;上一页</span></a></li>
+                        <c:forEach var="i" begin="1" end="${pageCount }">
+                            <c:url value="forum/${forum.id}" var="pageUrl">
+                                <c:param name="page" value="${i}"/>
+                            </c:url>
+                            <li><a href="${pageUrl}">
+                                <c:choose>
+                                    <c:when test="${i == page}">
+                                        <b>${i}</b>
+                                    </c:when>
+                                    <c:otherwise>
+                                        ${i}
+                                    </c:otherwise>
+                                </c:choose>
+                                </a></li>
+                        </c:forEach>
+                        
+                        <c:url value="forum/${forum.id}" var="nextPageurl">
+                                <c:param name="page" value="${page + 1}"/>
+                        </c:url>
+                        <li><a href="${page < pageCount ? nextPageurl : 'javascript:void(0);'}" class="next">下一页&gt;</a></li>
+                    </ul>
 
                 <c:if test="${crtUser != null}">
 

@@ -50,34 +50,7 @@
 				</c:forEach>
 
 				<div class="clearfix"></div>
-				<ul class="start">
-					<li><span class="prev">上一页</span></li>
-					<li><span>1</span></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li><a href="#">6</a></li>
-					<li><a href="#">7</a></li>
-					<li><a href="#">8</a></li>
-					<li><span>.....</span></li>
-					<li><a href="#">12</a></li>
-					<li><a href="#" class="next">下一页</a></li>
-				</ul>
-				<div class="leave">
-					<form>
-						<div class="text-top">
-							<div class="clearfix"></div>
-						</div>
-					</form>
-
-				</div>
 			</div>
-
-
-
-			<div class="space"></div>
-
 
 		</div>
 	</div>
