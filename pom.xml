@@ -429,19 +429,50 @@
     	<artifactId>sitemesh</artifactId>
     	<version>2.4.2</version>
     </dependency>
+	<dependency>
+		<groupId>com.fasterxml.jackson.core</groupId>
+		<artifactId>jackson-core</artifactId>
+		<version>2.7.3</version>
+	</dependency>
+	<dependency>
+		<groupId>com.fasterxml.jackson.core</groupId>
+		<artifactId>jackson-databind</artifactId>
+		<version>2.7.3</version>
+	</dependency>
+	
+
   </dependencies>
   <repositories>
-  	    <repository>
+      <repository>
+      <id>central</id>
+      <name>Maven Repository Switchboard</name>
+      <url>http://repo1.maven.org/maven2</url>
+    </repository>
+    <repository>
       <id>repository.jboss.org-public</id>
       <name>JBoss.org Maven repository</name>
       <url>https://repository.jboss.org/nexus/content/groups/public</url>
     </repository>  
-    <repository>
+     <repository>
       <id>skyway-public-site</id>
       <name>Skyway Public Maven Repository</name>
       <url>http://downloads.skywayperspectives.org/maven-repo</url>
-    </repository>
+    </repository> 
   </repositories>
+    <pluginRepositories>
+    <pluginRepository>
+      <id>central</id>
+      <name>Maven Plugin Repository</name>
+      <url>http://repo1.maven.org/maven2</url>
+      <layout>default</layout>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <releases>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+    </pluginRepository>
+  </pluginRepositories>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <resources>

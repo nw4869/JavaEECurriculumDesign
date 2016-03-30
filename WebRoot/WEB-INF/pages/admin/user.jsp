@@ -64,6 +64,74 @@
 	        		}
         		});
         	});
+        	
+        	function setupRoleModal(userId, role, forumIds) {
+        		/* console.log('userid: ' + userId + ' role: ' + role + ' forumIds: ' + forumIds); */
+        		// 初始化表单userid
+        		$("#roleAdminForm input[name='userId']").val(userId);
+        		// 初始化权限
+        		switch (role) {
+        		case 1:
+        			$("#roleAdmin").prop("checked", true);
+        			break;
+        		case 2:
+        			$("#roleForumAdmin").prop("checked", true);
+        			
+        			break;
+        		default:
+        			$("#roleUser").prop("checked", true);
+        			break;
+        		}
+        		
+        		// 初始化论坛选项
+        		var forumIdsArray = forumIds.trim().split(" ");  
+        		$("#roleForumSelect option").each(function(i, item) {
+        			for (var j = 0; j < forumIdsArray.length; j++) {
+        				if ($(item).val() == forumIdsArray[j]) {
+        					$(item).prop("selected", true);
+        					break;
+        				} else {
+        					$(item).prop("selected", false);
+        				}
+        			}
+        		});
+        		
+        		// 设置表单提交地址
+        		$("#roleAdminForm").prop("action", "admin/user/" + userId + "/role");
+        	}
+        	
+        	function submitRoleForm() {
+        		var userId = $("#roleAdminForm input[name='userId']").val();
+        		var role = $("#roles :checked").val();
+        		var forumIds = $("#roleForumSelect").val() || [];
+	        	$.ajax({
+	        		method:	"POST",
+	        		url:	"admin/user/" + userId + "/role",
+	        		data:	{userId: userId, role: role, forumIds: forumIds},
+	        		async:	false,
+	        	})
+		        	.done(function(html) {
+		        		if (html === 'success') {
+		        			$("#myModal").modal('toggle');
+		        			$("#message").append('<div class="alert alert-success alert-dismissible" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button> 修改权限成功 </div>');
+		        			
+		        			var roleDisplay = role;
+		        			if (role === 'ROLE_ADMIN') {
+		        				roleDisplay = '系统管理员';
+		        			} else if (role === 'ROLE_USER') {
+		        				roleDisplay = '普通用户';
+		        			} else if (role === 'ROLE_FORUM_ADMIN') {
+		        				roleDisplay = '论坛管理员 ' + forumIds.toString();
+		        			}
+		        			$("#adminTable td[name='idDisplay']").filter(function(i){ return $(this).text() == userId; } ).parent().find("td[name='roleDisplay']").text(roleDisplay);
+		        		} else {
+		        			$("#myModal div.modal-body").append("failed");	        		
+		        		}
+		        	})
+		        	.fail(function(html) {
+	        			$("#myModal div.modal-body").append("failed");
+		        	})
+        	}
         </script>
 
     </head>
@@ -85,39 +153,42 @@
                     </h4>
                         </div>
                         <div class="modal-body">
-                            <form>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="role" id="roleUser" value="roleUser" checked> 普通用户
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="role" id="roleAdmin" value="roleAdmin"> 系统管理员
-                                    </label>
-                                </div>
-
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="role" id="roleForumAdmin" value="roleForumAdmin"> 论坛管理员
-                                    </label>
-                                    <select class="form-control" style="width: 30%;">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                    </select>
-                                </div>
+                            <form id="roleAdminForm" >
+                            	<div class="row">
+                            		<div id="roles" class="col-lg-4">
+		                                <div class="radio">
+		                                    <label>
+		                                        <input type="radio" name="role" id="roleUser" value="ROLE_USER" checked> 普通用户
+		                                    </label>
+		                                </div>
+		                                <div class="radio">
+		                                    <label>
+		                                        <input type="radio" name="role" id="roleAdmin" value="ROLE_ADMIN"> 系统管理员
+		                                    </label>
+		                                </div>
+		                                <div class="radio">
+		                                    <label>
+		                                        <input type="radio" name="role" id="roleForumAdmin" value="ROLE_FORUM_ADMIN"> 论坛管理员
+		                                    </label>
+		                                </div>
+                            		</div>
+                            		<div class="col-lg-8">
+	                                    <select id="roleForumSelect" multiple class="form-control" style="width: 100%;">
+	                                    	<c:forEach var="forum" items="${forums }">
+	                                    		<option value="${forum.id }">${forum.title }</option>
+	                                    	</c:forEach>
+	                                    </select>
+                            		</div>
+                            	</div>
+								<input type="hidden" name="userId" id="userId">
                             </form>
-
 
 
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">关闭
                             </button>
-                            <button type="button" class="btn btn-primary">
+                            <button type="button" class="btn btn-primary" onclick="submitRoleForm()">
                                 提交更改
                             </button>
                         </div>
@@ -163,7 +234,7 @@
                 </div>
 
                 <!-- Table -->
-                <table class="adminTable table table-striped">
+                <table id="adminTable" class="adminTable table table-striped">
                     <thead>
                         <tr>
                             <th style='text-align: center;'>序号</th>
@@ -171,6 +242,7 @@
                             <th>昵称</th>
                             <th>邮箱</th>
                             <th>启用</th>
+                            <th>权限</th>
                             <th>创建时间</th>
                             <th>操作</th>
                         </tr>
@@ -178,11 +250,34 @@
                     <tbody>
                         <c:forEach var="user" items="${users}">
                             <tr>
-                                <td style="text-align: center;">${user.id}</td>
+                                <td name="idDisplay" style="text-align: center;">${user.id}</td>
                                 <td><a href="${userBasePath}${user.id}">${user.username}</a></td>
                                 <td>${user.memberTitle}</td>
                                 <td>${user.email}</td>
                                 <td>${user.enabled}</td>
+                                <td name="roleDisplay">
+                                	<c:set var="role" value="0"/>
+                                	<c:set var="forumIds" value=""/>
+                               		<c:set var="forums" value="${AuthService.getAdminForums(user.id) }"/>
+                                	<c:choose>
+                                		<c:when test="${AuthService.isAdmin(user.id)}">
+                                			系统管理员
+                                			<c:set var="role" value="1"/>
+                                		</c:when>
+                                		<c:when test="${fn:length(forums) > 0 }">
+                                			论坛管理员: 
+                                			<c:forEach var="forum" items="${forums }">
+                                				<c:set var="forumIds" value="${forumIds } ${forum.id }"/>
+                                				<a href="${forumBasePath }${forum.id}">${forum.id }</a>
+                                			</c:forEach>
+                                			<c:set var="role" value="2"/>
+                                		</c:when>
+                                		<c:otherwise>
+                                			普通用户
+                                			<c:set var="role" value="0"/>
+                                		</c:otherwise>
+                                	</c:choose>
+                                </td>
                                 <td>${user.createTime}</td>
                                 <td>
                                     <a href="${userBasePath}${user.id}/delete">
@@ -191,7 +286,8 @@
                                     <a href="${adminBasePath}user/${user.id}/setStatus?enable=${user.enabled ? 'false' : 'true'}">
                                         <button type="button" class="btn btn-default">${user.enabled ? "停用" : "启用"}</button>
                                     </a>
-                                    <button class="btn btn-default" data-toggle="modal" data-target="#myModal">权限</button>
+                                    <button class="btn btn-default" data-toggle="modal" data-target="#myModal" 
+                                    	onclick="setupRoleModal(${user.id}, ${role}, '${forumIds }')">权限</button>
                                 </td>
                             </tr>
                         </c:forEach>

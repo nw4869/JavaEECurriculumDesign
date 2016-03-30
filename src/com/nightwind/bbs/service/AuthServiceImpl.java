@@ -1,5 +1,8 @@
 package com.nightwind.bbs.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -68,6 +71,8 @@ public class AuthServiceImpl implements AuthService {
 		if (user == null) {
 			throw new UserNotFoundException();
 		}
+		clearAuthority(user.getId());
+
 		if (set && !isAdmin(userId)) {
 			Authority authority = new Authority();
 			
@@ -96,7 +101,8 @@ public class AuthServiceImpl implements AuthService {
 		if (forum == null) {
 			throw new ForumNotFoundException();
 		}
-		
+		clearAuthority(user.getId());
+
 		if (set && !isForumAdmin(forumId, userId)) {
 			Authority authority = new Authority();
 			
@@ -114,6 +120,45 @@ public class AuthServiceImpl implements AuthService {
 			authorityDAO.flush();
 		}
 	}
+	
+	@Transactional
+	@Override
+	public void setForumsAdmin(Integer[] forumIds, Integer userId) throws UserNotFoundException, ForumNotFoundException {
+		User user = userDAO.findUserById(userId);
+		if (user == null) {
+			throw new UserNotFoundException();
+		}
+		clearAuthority(user.getId());
+		for (Integer forumId: forumIds) {
+			Forum forum = forumDAO.findForumById(forumId);
+			if (forum == null) {
+				throw new ForumNotFoundException();
+			}
+			
+			Authority auth = new Authority();
+			auth.setUser(user);
+			auth.setAuthorityField(ROLE_FORUM_ADMIN);
+			auth.setForum(forum);
+			
+			authorityDAO.store(auth);
+		}
+		authorityDAO.flush();
+	}
+	
+	@Transactional
+	@Override
+	public void clearAuthority(Integer userId) throws UserNotFoundException {
+		User user = userDAO.findUserById(userId);
+		if (user == null) {
+			throw new UserNotFoundException();
+		}
+		
+		for (Authority auth: user.getAuthorities()) {
+			authorityDAO.remove(auth);
+		}
+		authorityDAO.flush();
+		
+	}
 
 	@Override
 	public Boolean isForumAdmin(Integer forumId, Integer userId) {
@@ -123,5 +168,25 @@ public class AuthServiceImpl implements AuthService {
 	@Override
 	public Boolean isForumAdmin(Integer forumId, String username) {
 		return isAdmin(username) ||containRole(getUser(username), ROLE_FORUM_ADMIN, forumId);
+	}
+	
+	@Override
+	public List<Forum> getAdminForums(Integer userId) {
+		List<Forum> forumList = new ArrayList<>();
+		User user = userDAO.findUserByPrimaryKey(userId);
+		if (user == null) {
+			return forumList;
+		}
+		if (isAdmin(userId)) {
+			forumList.addAll(forumDAO.findAllForums());
+			return forumList;
+		} 
+		
+		for (Authority auth: user.getAuthorities()) {
+			if (auth.getAuthorityField().equals(ROLE_FORUM_ADMIN)) {
+				forumList.add(auth.getForum());
+			}
+		}
+		return forumList;
 	}
 }
