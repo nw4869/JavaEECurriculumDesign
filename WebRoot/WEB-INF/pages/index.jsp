@@ -85,6 +85,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <ul class="dropdown2">
                                     <c:if test="${isAdmin }">
                                         <li><a href="${adminBasePath}user">用户管理</a></li>
+                                        <li><a href="${adminBasePath}topic">话题管理</a></li>
                                     </c:if>
                                     <li><a href="${userBasePath}">个人信息</a></li>
                                     <li><a href="${mailBasePath}">邮件</a></li>

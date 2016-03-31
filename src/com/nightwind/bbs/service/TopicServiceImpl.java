@@ -1,5 +1,6 @@
 package com.nightwind.bbs.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Query;
@@ -7,7 +8,6 @@ import javax.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.nightwind.bbs.dao.ReplyDAO;
 import com.nightwind.bbs.dao.TopicDAO;
 import com.nightwind.bbs.domain.Topic;
 import com.nightwind.bbs.exception.TopicNotFoundException;
@@ -73,5 +73,44 @@ public class TopicServiceImpl implements TopicService {
 		topicDAO.flush();
 		return topic;
 	}
+	
+	static boolean isNotBlank(String str) {
+		return str != null && str.trim().length() > 0;
+	}
 
+	@Override
+	public List<Topic> findTopicLike(Topic topic, int startResult,
+			Integer maxRows) {
+		String queryString = "select t from Topic t where str(t.id) like ?1 and t.title like ?2";
+		String id = "%";
+		String title = "%";
+		
+		if (topic.getId() != null) {
+			id = String.valueOf(topic.getId());
+		}
+		
+		if (isNotBlank( topic.getTitle())) {
+			title = "%" + topic.getTitle() + "%";
+		}
+		
+		return new ArrayList<Topic>(topicDAO.executeQuery(queryString, startResult, maxRows,
+				id, title));		
+	}
+
+	@Override
+	public Long countTopicLike(Topic topic) {
+		String queryString = "select count(t) from Topic t where str(t.id) like ?1 and t.title like ?2";
+		String id = "%";
+		String title = "%";
+		
+		if (topic.getId() != null) {
+			id = String.valueOf(topic.getId());
+		}
+		
+		if (!isNotBlank( topic.getTitle())) {
+			title = "%" + topic.getTitle() + "%";
+		}
+		Query query = topicDAO.createQuerySingleResult(queryString, id, title);
+		return (Long)query.getSingleResult();
+	}
 }

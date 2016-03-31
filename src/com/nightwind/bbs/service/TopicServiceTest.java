@@ -76,6 +76,13 @@ public class TopicServiceTest {
 		Topic topic = topicService.deleteTopic(6);
 		System.out.println(topic);
 	}
+	
+	@Test
+	public void testFindTopicLike() {
+		Topic topic = new Topic();
+		List<Topic> topics = topicService.findTopicLike(topic, 0, 10);
+		System.out.println(topics);
+	}
 
 //	@Test
 //	public void testNewTopicReply() {

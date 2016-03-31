@@ -1,11 +1,9 @@
 package com.nightwind.bbs.web;
 
-import java.io.OutputStream;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,27 +16,13 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
-
-
-
-
-
-
-
-
-import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.util.JsonGeneratorDelegate;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.nightwind.bbs.domain.Authority;
+import com.nightwind.bbs.domain.Topic;
 import com.nightwind.bbs.domain.User;
 import com.nightwind.bbs.exception.AuthorizeException;
 import com.nightwind.bbs.exception.UserNotFoundException;
 import com.nightwind.bbs.service.AuthService;
 import com.nightwind.bbs.service.ForumService;
+import com.nightwind.bbs.service.TopicService;
 import com.nightwind.bbs.service.UserService;
 
 @SessionAttributes("crtUser")
@@ -54,6 +38,9 @@ public class AdminController {
 	
 	@Autowired
 	private ForumService forumService;
+	
+	@Autowired
+	private TopicService topicService;
 	
 	protected void checkAuthority(ModelMap model) throws AuthorizeException {
 		if (authService.isAdmin(Utils.getCrtUserId(model)) == false) {
@@ -116,7 +103,7 @@ public class AdminController {
 	
 	@RequestMapping(value="/user/{id:\\d+}/role")
 	public @ResponseBody String setAuthority(@PathVariable("id")Integer userId, String role, 
-			@RequestParam(value="forumIds[]", required=false)Integer[] forumIds) throws JsonProcessingException {
+			@RequestParam(value="forumIds[]", required=false)Integer[] forumIds) {
 		boolean success = true; 
 		try {
 			userService.findUserById(userId);
@@ -139,13 +126,32 @@ public class AdminController {
 		return success ? "success" : "failed";
 	}
 	
-	@RequestMapping(value="/topic", method=RequestMethod.POST)
-	public ModelAndView topicManager(ModelMap model) throws AuthorizeException {
+	@RequestMapping(value="/topic")
+	public ModelAndView topicManager(ModelMap model, 
+			@ModelAttribute("topicForm") Topic topicForm,
+			@RequestParam(value="page", required=false) Integer page,
+			@RequestParam(value="maxRows", required=false) Integer maxRows)
+					throws AuthorizeException {
 		checkAuthority(model);
 		
 		ModelAndView mav = new ModelAndView("/admin/topic.jsp");
 
-		// TODO
+		// setup page and page count
+		if (page == null) {
+			page = 1;
+		}
+		if (maxRows == null) {
+			maxRows = 10;
+		}
+
+		int startResult = (page - 1) * maxRows;
+		List<Topic> topics = topicService.findTopicLike(topicForm, startResult, maxRows);
+		mav.addObject("topics", topics);
+		
+		mav.addObject("pageCount", topicService.countTopicLike(topicForm) / maxRows + 1);
+		mav.addObject("page", page);
+		mav.addObject("maxRows", maxRows);
+		mav.addObject("topicForm", topicForm);
 		
 		return mav;
 	}

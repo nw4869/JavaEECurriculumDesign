@@ -20,4 +20,8 @@ public interface TopicService {
 	Long countTopics(Integer forumId);
 	
 	Topic deleteTopic(Integer topicId) throws TopicNotFoundException;
+
+	List<Topic> findTopicLike(Topic topicForm, int startResult, Integer maxRows);
+
+	Long countTopicLike(Topic topic);
 }
