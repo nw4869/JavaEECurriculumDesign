@@ -83,6 +83,12 @@ public class TopicServiceTest {
 		List<Topic> topics = topicService.findTopicLike(topic, 0, 10);
 		System.out.println(topics);
 	}
+	
+	@Test
+	public void testSeach() {
+		Object[] result = topicService.searchTopic("托", 0, 10);
+		System.out.println(result[0]);
+	}
 
 //	@Test
 //	public void testNewTopicReply() {

@@ -33,6 +33,13 @@ public class TopicServiceImpl implements TopicService {
 	}
 	
 	@Override
+	public Topic saveTopic(Topic topic) {
+		topic = topicDAO.store(topic);
+		topicDAO.refresh(topic);		
+		return topic;
+	}
+	
+	@Override
 	public Integer increaseClick(Integer id) throws TopicNotFoundException {
 		Topic topic = findTopicByPrimaryKey(id);
 		if (topic == null) {
@@ -107,10 +114,34 @@ public class TopicServiceImpl implements TopicService {
 			id = String.valueOf(topic.getId());
 		}
 		
-		if (!isNotBlank( topic.getTitle())) {
+		if (isNotBlank( topic.getTitle())) {
 			title = "%" + topic.getTitle() + "%";
 		}
 		Query query = topicDAO.createQuerySingleResult(queryString, id, title);
 		return (Long)query.getSingleResult();
+	}
+
+	/**
+	 * return: [0]: result (List<Topic>), [1]: total count(Long)
+	 */
+	@Override
+	public Object[] searchTopic(String search, int startResult,
+			Integer maxRows) {
+		Object[] result = new Object[2];
+		String queryString = "select t from Topic t where str(t.id) like ?1 or t.title like ?1 or t.content like ?1";
+		String countQueryString = "select count(t) from Topic t where str(t.id) like ?1 or t.title like ?1 or t.content like ?1";
+
+		if (isNotBlank(search)) {
+			search = "%" + search + "%";
+		} else {
+			result[0] = new ArrayList<>();
+			result[1] = 0;
+			return result;
+		}
+
+		result[0] = new ArrayList<Topic>(topicDAO.executeQuery(queryString, startResult, maxRows, search));		
+		Query query = topicDAO.createQuerySingleResult(countQueryString, search);
+		result[1] = query.getSingleResult();
+		return result;
 	}
 }

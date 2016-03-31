@@ -31,7 +31,9 @@
 					<div class="clearfix"></div>
 				</div>
 				<p class="eget">${topic.content }</p>
-
+				<c:if test="${topic.user.id == crtUser.id || AuthService.isAdmin(crtUser.id)}">
+					<a href="${topicBasePath }${topic.id}/update"><button type="button" class="btn btn-success">修改话题</button></a>
+				</c:if>
 				<div class="single-middle">
 					<ul class="social-share">
 						<li><span>分享至</span></li>

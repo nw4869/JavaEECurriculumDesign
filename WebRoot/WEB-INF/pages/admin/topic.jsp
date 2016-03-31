@@ -45,7 +45,7 @@
                 <!-- Default panel contents -->
                 <div class="panel-heading">话题管理</div>
                 <div class="panel-body">
-                    <form:form id="searchForm" class="form-inline" action="admin/topic" modelAttribute="topicForm" method="get">
+                    <form:form id="searchForm" class="form-inline" action="admin/topic" modelAttribute="topicForm" method="POST">
                         <div class="form-group">
                             <label for="id">序号</label>
                             <form:input type="text" class="form-control" name="id" path="id" placeholder="id" />
@@ -60,6 +60,7 @@
                         </div>
                         <input type="hidden" name="maxRows" value="${maxRows }" />
                         <button type="submit" class="btn btn-default">Search</button>
+                        <label>总记录数：${totalRows }</label>
                     </form:form>
 
                 </div>

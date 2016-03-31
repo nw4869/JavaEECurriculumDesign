@@ -76,8 +76,10 @@ public class AdminController {
 		mav.addObject("users", users);
 		
 		mav.addObject("forums", forumService.findAllForums(-1, -1));
-		
-		mav.addObject("pageCount", userService.countUsersLike(userForm) / maxRows + 1);
+
+		long totalRows = userService.countUsersLike(userForm);
+		mav.addObject("totalRows", totalRows);
+		mav.addObject("pageCount", totalRows / maxRows + 1);
 		mav.addObject("page", page);
 		mav.addObject("maxRows", maxRows);
 		mav.addObject("userForm", userForm);
@@ -148,6 +150,8 @@ public class AdminController {
 		List<Topic> topics = topicService.findTopicLike(topicForm, startResult, maxRows);
 		mav.addObject("topics", topics);
 		
+		long totalRows = topicService.countTopicLike(topicForm);
+		mav.addObject("totalRows", totalRows);
 		mav.addObject("pageCount", topicService.countTopicLike(topicForm) / maxRows + 1);
 		mav.addObject("page", page);
 		mav.addObject("maxRows", maxRows);

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
@@ -133,6 +134,65 @@ public class TopicController {
 		
 		topic.setUser(user);
 		topic = topicService.newTopic(topic);
+		return "redirect:/topic/" + topic.getId();
+	}
+	
+	@RequestMapping( value = "/{id}/update", method=RequestMethod.GET)
+	public ModelAndView displayUpdate(@PathVariable("id") Integer id,
+			ModelMap model
+			) throws TopicNotFoundException, NoLoginException, AuthorizeException {
+		ModelAndView mav = new ModelAndView("topic/update.jsp");
+
+		// validate authorize
+		User user = (User) model.get("crtUser");
+		if (user == null ) {
+			throw new NoLoginException();
+		}
+		
+		Topic existingTopic = topicService.findTopicByPrimaryKey(id);
+		if (existingTopic == null) {
+			throw new TopicNotFoundException();
+		}
+		
+		if (!user.getId().equals(existingTopic.getUser().getId())) {
+			throw new AuthorizeException();
+		}
+		
+		mav.addObject("topicForm", existingTopic);
+		
+		return mav;
+	}
+	
+	@RequestMapping( value = "/{id}/update", method=RequestMethod.POST)
+	public String update(@PathVariable("id") Integer id, @Valid @ModelAttribute("topicForm") Topic topic, BindingResult bindingResult, 
+			RedirectAttributes redirectAttributes, ModelMap model) throws NoLoginException, AuthorizeException, TopicNotFoundException {
+//		System.out.println("try to save topic: " + topic);
+		if (bindingResult.hasErrors()) {
+			System.out.println(bindingResult);
+			redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.topicForm", bindingResult);
+			redirectAttributes.addFlashAttribute("topicForm", topic);
+			return "redirect:/topic/" + topic.getForum().getId();
+		}
+		
+		// validate authorize
+		User user = (User) model.get("crtUser");
+		if (user == null ) {
+			throw new NoLoginException();
+		}
+		
+		Topic existingTopic = topicService.findTopicByPrimaryKey(id);
+		if (existingTopic == null) {
+			throw new TopicNotFoundException();
+		}
+		
+		if (!user.getId().equals(existingTopic.getUser().getId())) {
+			throw new AuthorizeException();
+		}
+		
+		existingTopic.setTitle(topic.getTitle());
+		existingTopic.setContent(topic.getContent());
+		
+		topic = topicService.saveTopic(existingTopic);
 		return "redirect:/topic/" + topic.getId();
 	}
 

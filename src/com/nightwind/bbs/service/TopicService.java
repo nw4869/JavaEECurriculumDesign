@@ -24,4 +24,8 @@ public interface TopicService {
 	List<Topic> findTopicLike(Topic topicForm, int startResult, Integer maxRows);
 
 	Long countTopicLike(Topic topic);
+
+	Object[] searchTopic(String search, int startResult, Integer maxRows);
+
+	Topic saveTopic(Topic topic);
 }
